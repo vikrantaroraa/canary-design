@@ -1,9 +1,9 @@
 import React from "react";
 
-const ExampleComponent1 = () => {
+const DummyComponent1 = () => {
   return (
     <div>
-      Example Component-1
+      Dummy Component-1
       <p>
         It was popularised in the 1960s with the release of Letraset sheets
         containing Lorem Ipsum passages, and more recently with desktop
@@ -14,4 +14,4 @@ const ExampleComponent1 = () => {
   );
 };
 
-export default ExampleComponent1;
+export default DummyComponent1;

@@ -1,10 +1,10 @@
+import ExampleTabs from "src/components/example-components/TabsTypeAExample";
 import "./App.css";
-import TabsTypeA from "src/components/TabsTypeA";
 
 function App() {
   return (
     <>
-      <TabsTypeA />
+      <ExampleTabs />
     </>
   );
 }

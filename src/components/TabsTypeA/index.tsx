@@ -1,42 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "src/components/TabsTypeA/index.module.css";
-import ExampleComponent1 from "src/components/example-components/Component1";
-import ExampleComponent3 from "src/components/example-components/Component3";
-import {
-  TabsDataProps,
-  TabsTypeAProps,
-} from "src/components/TabsTypeA/index.interface";
-
-const tabsData: TabsDataProps[] = [
-  {
-    key: "1",
-    label: "Tab 1",
-    children: <ExampleComponent1 />,
-  },
-  {
-    key: "2",
-    label: "Tab 2",
-    children: "Component-2 is something",
-  },
-  {
-    key: "3",
-    label: "Tab 3",
-    children: <ExampleComponent3 />,
-  },
-];
-
-const TabsTypeA = () => {
-  const tabHandler = (index: number) => {
-    console.log(`active tab index: ${index}`);
-  };
-
-  return (
-    <Tabs tabsData={tabsData} tabHandler={tabHandler} defaultActiveKey={1} />
-  );
-};
+import { TabsTypeAProps } from "src/components/TabsTypeA/index.interface";
 
 // THIS IS THE MAIN TABS COMPONENT
-const Tabs = ({ tabsData, tabHandler, defaultActiveKey }: TabsTypeAProps) => {
+const TabsTypeA = ({
+  tabsData,
+  tabHandler,
+  defaultActiveKey,
+}: TabsTypeAProps) => {
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
@@ -71,4 +42,4 @@ const Tabs = ({ tabsData, tabHandler, defaultActiveKey }: TabsTypeAProps) => {
   );
 };
 
-export default TabsTypeA;
+export { TabsTypeA };
