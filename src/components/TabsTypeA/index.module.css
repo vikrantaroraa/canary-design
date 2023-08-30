@@ -1,0 +1,36 @@
+.tabs {
+  width: 100%;
+}
+.tabs-navigation {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 30px;
+  flex: auto;
+  overflow: hidden;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tab {
+  font-family: "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.active-tab {
+  border-bottom: 2px solid #4285fa;
+  font-weight: 500;
+  color: #4285fa;
+}
+
+.tab-content {
+  border-top: 0px solid #f3f3f3;
+  padding: 18px 0;
+}
