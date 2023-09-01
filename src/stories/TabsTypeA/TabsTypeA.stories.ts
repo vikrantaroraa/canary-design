@@ -6,7 +6,12 @@ const meta = {
   title: "Example/TabsTypeA",
   component: TabsTypeA,
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {
+    defaultActiveKey: {
+      options: [0, 1, 2],
+      control: { type: "radio" },
+    },
+  },
 } satisfies Meta<typeof TabsTypeA>;
 
 export default meta;
