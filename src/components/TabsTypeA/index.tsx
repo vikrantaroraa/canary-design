@@ -6,12 +6,12 @@ import { TabsTypeAProps } from "src/components/TabsTypeA/index.interface";
 const TabsTypeA = ({
   tabsData,
   tabHandler,
-  defaultActiveKey,
+  defaultActiveKey = 0,
 }: TabsTypeAProps) => {
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
-    defaultActiveKey && setActiveTab(defaultActiveKey);
+    setActiveTab(defaultActiveKey);
   }, [defaultActiveKey]);
 
   return (

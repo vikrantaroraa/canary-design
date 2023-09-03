@@ -9,5 +9,5 @@ export interface TabsDataProps {
 export interface TabsTypeAProps {
   tabsData: TabsDataProps[];
   tabHandler: (index: number) => void;
-  defaultActiveKey: number;
+  defaultActiveKey?: number;
 }

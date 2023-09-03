@@ -8,7 +8,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     defaultActiveKey: {
-      options: [0, 1, 2],
+      options: [...tabsData.keys()],
       control: { type: "radio" },
     },
   },
@@ -25,6 +25,6 @@ export const ExampleTabs: Story = {
   args: {
     tabsData: tabsData,
     tabHandler: tabHandler,
-    defaultActiveKey: 1,
+    defaultActiveKey: 2,
   },
 };
