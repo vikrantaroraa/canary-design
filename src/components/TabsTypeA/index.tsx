@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import styles from "src/components/TabsTypeA/index.module.css";
 import { TabsTypeAProps } from "src/components/TabsTypeA/index.interface";
 
-// THIS IS THE MAIN TABS COMPONENT
+/**
+ * This is a tabs component. Tabs make it easy to switch between different views.
+ * There is also another type of tabs component called TabsTypeB component.
+ */
 const TabsTypeA = ({
   tabsData,
   tabHandler,

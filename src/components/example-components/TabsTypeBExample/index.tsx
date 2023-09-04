@@ -9,6 +9,10 @@ import DummyComponent1 from "src/components/dummy-components/Component1";
 import DummyComponent2 from "src/components/dummy-components/Component2";
 import DummyComponent3 from "src/components/dummy-components/Component3";
 
+/**
+ * This is another tabs component. It differs from the TabsTypeA component only in terms of
+ * the boilerplate code. Rest of the working is exactly the same.
+ */
 const ExampleTabsTypeB = () => {
   const [activeTab, setActiveTab] = useState(0);
 
