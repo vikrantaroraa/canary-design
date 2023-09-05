@@ -2,6 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { TabsTypeA } from "src/components/TabsTypeA";
 import { tabsData } from "src/components/example-components/TabsTypeAExample";
 
+/**
+ * This is a tabs component. Tabs make it easy to switch between different views.
+ * There is also another type of tabs component called TabsTypeB component.
+ */
 const meta = {
   title: "Example/TabsTypeA",
   component: TabsTypeA,
