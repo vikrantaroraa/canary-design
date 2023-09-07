@@ -86,4 +86,4 @@ function MultiStepForm() {
   );
 }
 
-export default MultiStepForm;
+export { MultiStepForm };
