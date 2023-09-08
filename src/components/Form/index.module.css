@@ -1,0 +1,38 @@
+form {
+  border: 1px solid black;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: max-content;
+  position: relative;
+}
+
+.label-and-input-wrapper {
+  display: grid;
+  gap: 1rem 0.5rem;
+  justify-content: flex-start;
+  grid-template-columns: auto minmax(auto, 400px);
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.button-container {
+  text-align: center;
+}
+
+form button {
+  padding: 4px 8px;
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+form button:hover {
+  text-align: center;
+  cursor: pointer;
+}
