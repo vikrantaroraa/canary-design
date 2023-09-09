@@ -53,18 +53,11 @@ function MultiStepForm() {
   return (
     <div className={styles["form-container"]}>
       <form onSubmit={onSubmit}>
-        <div style={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}>
+        <div className={styles["step-indicator"]}>
           {currentStepIndex + 1} / {steps.length}
         </div>
         {step}
-        <div
-          style={{
-            marginTop: "1rem",
-            display: "flex",
-            gap: "0.5rem",
-            justifyContent: "flex-end",
-          }}
-        >
+        <div className={styles["navigation-buttons"]}>
           {!isFirstStep && (
             <button type="button" onClick={back}>
               Back

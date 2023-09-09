@@ -7,3 +7,16 @@
   font-family: Arial;
   max-width: max-content;
 }
+
+.step-indicator {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.navigation-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
