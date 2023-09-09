@@ -3,6 +3,7 @@ import { AccountForm } from "src/components/MultiStepForm/Forms/AccountForm";
 import { AddressForm } from "src/components/MultiStepForm/Forms/AddressForm";
 import { UserForm } from "src/components/MultiStepForm/Forms/UserForm";
 import { useMultiStepForm } from "src/components/MultiStepForm/useMultiStepForm";
+import styles from "src/components/MultiStepForm/index.module.css";
 
 type FormData = {
   firstName: string;
@@ -50,17 +51,7 @@ function MultiStepForm() {
   };
 
   return (
-    <div
-      style={{
-        position: "relative",
-        border: "1px solid black",
-        padding: "2rem",
-        margin: "1rem",
-        borderRadius: "0.5rem",
-        fontFamily: "Arial",
-        maxWidth: "max-content",
-      }}
-    >
+    <div className={styles["form-container"]}>
       <form onSubmit={onSubmit}>
         <div style={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}>
           {currentStepIndex + 1} / {steps.length}

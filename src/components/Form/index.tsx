@@ -25,7 +25,7 @@ function Form() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className={styles["form"]}>
       <div className={styles["heading"]}> Example Form</div>
       <div className={styles["label-and-input-wrapper"]}>
         <label>First Name</label>
