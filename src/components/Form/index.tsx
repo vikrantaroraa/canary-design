@@ -1,75 +1,67 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import styles from "src/components/Form/index.module.css";
 
-function Form() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    street: "",
-    city: "",
-    state: "",
-  });
+interface FormInputProps {
+  autoFocus?: boolean;
+  required?: boolean;
+  type: string;
+  name: string;
+  handleForm?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  stateDataObject?: object;
+}
 
-  const { firstName, lastName, street, city, state } = formData;
+export interface FormInputDataProps {
+  label: string;
+  inputData: FormInputProps;
+}
+
+export interface FormProps {
+  formHeading?: string;
+  formInputData: FormInputDataProps[];
+}
+
+function Form({ formHeading, formInputData }: FormProps) {
+  const my_object = {};
+  const [stateObject, setStateObject] = useState({});
+
+  useEffect(() => {
+    formInputData.map((dataObject: FormInputDataProps) => {
+      my_object[dataObject.inputData.name] = "";
+    });
+    setStateObject(my_object);
+    console.log(my_object);
+    console.log(typeof my_object["lastName" as keyof typeof my_object]);
+  }, []);
 
   const handleForm = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
+    setStateObject({
+      ...stateObject,
       [event.target.name]: event.target.value,
     });
   };
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log(formData);
+    console.log(stateObject);
   };
 
   return (
     <form onSubmit={onSubmit} className={styles["form"]}>
-      <div className={styles["heading"]}> Example Form</div>
+      <div className={styles["heading"]}>{formHeading}</div>
       <div className={styles["label-and-input-wrapper"]}>
-        <label>First Name</label>
-        <input
-          autoFocus
-          required
-          type="text"
-          name="firstName"
-          value={firstName}
-          onChange={(event) => handleForm(event)}
-        />
-        <label>Last Name</label>
-        <input
-          required
-          type="text"
-          name="lastName"
-          value={lastName}
-          onChange={(event) => handleForm(event)}
-        />
-
-        <label>Street</label>
-        <input
-          required
-          type="text"
-          name="street"
-          value={street}
-          onChange={(event) => handleForm(event)}
-        />
-        <label>City</label>
-        <input
-          required
-          type="text"
-          name="city"
-          value={city}
-          onChange={(event) => handleForm(event)}
-        />
-        <label>State</label>
-        <input
-          required
-          type="text"
-          name="state"
-          value={state}
-          onChange={(event) => handleForm(event)}
-        />
+        {formInputData.map((inputDataObject) => {
+          const { label, inputData } = inputDataObject;
+          return (
+            <>
+              <FormLabel label={label} />
+              <FormInput
+                {...inputData}
+                handleForm={handleForm}
+                stateDataObject={stateObject}
+              />
+            </>
+          );
+        })}
       </div>
       <div className={styles["button-container"]}>
         <button type="submit">Submit</button>
@@ -77,5 +69,29 @@ function Form() {
     </form>
   );
 }
+
+const FormLabel = ({ label }: { label: string }) => {
+  return <span>{label}</span>;
+};
+
+const FormInput = ({
+  autoFocus,
+  required,
+  type,
+  name,
+  handleForm,
+  stateDataObject,
+}: FormInputProps) => {
+  return (
+    <input
+      autoFocus={autoFocus}
+      required={required}
+      type={type}
+      name={name}
+      value={stateDataObject[name as keyof typeof stateDataObject]}
+      onChange={(event) => handleForm(event)}
+    />
+  );
+};
 
 export { Form };
