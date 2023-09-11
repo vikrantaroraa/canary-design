@@ -2,7 +2,7 @@ import React, { FormEvent } from "react";
 import { Form } from "src/components/Form";
 import { FormInputDataProps } from "src/components/Form/index.interface";
 
-const formDataArray: FormInputDataProps[] = [
+export const formDataArray: FormInputDataProps[] = [
   {
     label: "First Name",
     inputData: {
