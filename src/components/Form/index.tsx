@@ -1,26 +1,12 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  FormInputDataProps,
+  FormInputProps,
+  FormProps,
+} from "src/components/Form/index.interface";
 import styles from "src/components/Form/index.module.css";
 
-interface FormInputProps {
-  autoFocus?: boolean;
-  required?: boolean;
-  type: string;
-  name: string;
-  handleForm?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  stateDataObject?: object;
-}
-
-export interface FormInputDataProps {
-  label: string;
-  inputData: FormInputProps;
-}
-
-export interface FormProps {
-  formHeading?: string;
-  formInputData: FormInputDataProps[];
-}
-
-function Form({ formHeading, formInputData }: FormProps) {
+function Form({ formHeading, formInputData, onSubmit }: FormProps) {
   const my_object = {};
   const [stateObject, setStateObject] = useState({});
 
@@ -40,26 +26,21 @@ function Form({ formHeading, formInputData }: FormProps) {
     });
   };
 
-  const onSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log(stateObject);
-  };
-
   return (
-    <form onSubmit={onSubmit} className={styles["form"]}>
+    <form onSubmit={(e) => onSubmit(e, stateObject)} className={styles["form"]}>
       <div className={styles["heading"]}>{formHeading}</div>
-      <div className={styles["label-and-input-wrapper"]}>
-        {formInputData.map((inputDataObject) => {
+      <div>
+        {formInputData.map((inputDataObject, index) => {
           const { label, inputData } = inputDataObject;
           return (
-            <>
+            <div key={index} className={styles["label-and-input-wrapper"]}>
               <FormLabel label={label} />
               <FormInput
                 {...inputData}
                 handleForm={handleForm}
                 stateDataObject={stateObject}
               />
-            </>
+            </div>
           );
         })}
       </div>

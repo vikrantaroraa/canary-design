@@ -1,5 +1,6 @@
-import React from "react";
-import { Form, FormInputDataProps } from "src/components/Form";
+import React, { FormEvent } from "react";
+import { Form } from "src/components/Form";
+import { FormInputDataProps } from "src/components/Form/index.interface";
 
 const formDataArray: FormInputDataProps[] = [
   {
@@ -31,8 +32,19 @@ const formDataArray: FormInputDataProps[] = [
   },
 ];
 
+const onFormSubmit = (event: FormEvent, value: unknown) => {
+  event.preventDefault();
+  console.log(value);
+};
+
 function FormExample() {
-  return <Form formHeading="From heading prop" formInputData={formDataArray} />;
+  return (
+    <Form
+      onSubmit={onFormSubmit}
+      formHeading="From heading prop"
+      formInputData={formDataArray}
+    />
+  );
 }
 
 export { FormExample };

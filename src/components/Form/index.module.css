@@ -10,8 +10,9 @@
 .label-and-input-wrapper {
   display: grid;
   gap: 1rem 0.5rem;
+  margin-bottom: 15px;
   justify-content: flex-start;
-  grid-template-columns: auto minmax(auto, 400px);
+  grid-template-columns: 115px minmax(auto, 400px);
 }
 
 .heading {
