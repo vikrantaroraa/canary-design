@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import styles from "src/components/dummy-components/Steps/index.module.css";
 
 function Steps() {
@@ -6,24 +6,20 @@ function Steps() {
   const formRef = useRef(null);
   const stepsRef = useRef<HTMLDivElement[]>([]);
 
-  useEffect(() => {
-    const formSteps = stepsRef.current;
-    let currentStep = formSteps.findIndex((step) => {
-      return step.classList.contains(`${styles["active"]}`);
-    });
-    if (currentStep < 0) {
-      currentStep = 0;
-    }
-    formSteps[currentStep].classList.add(`${styles["active"]}`);
-    console.log(currentStep);
-  }, []);
+  const onSubmit = (event: FormEvent) => {
+    event?.preventDefault();
+    if (activeIndex < 2) setActiveIndex(activeIndex + 1);
+    alert("Form Submitted");
+  };
 
   return (
     <div className={styles["steps"]}>
-      <form ref={formRef} data-multi-step>
+      <form ref={formRef} onSubmit={onSubmit} data-multi-step>
         <div
           ref={(el) => (stepsRef.current[0] = el)}
-          className={`${styles["card"]} `}
+          className={`${styles["card"]} ${
+            activeIndex === 0 ? styles["active"] : ""
+          }`}
           data-step="1"
         >
           <h3 className={styles["step-title"]}>Step 1</h3>
@@ -39,7 +35,9 @@ function Steps() {
         </div>
         <div
           ref={(el) => (stepsRef.current[1] = el)}
-          className={styles["card"]}
+          className={`${styles["card"]} ${
+            activeIndex === 1 ? styles["active"] : ""
+          }`}
           data-step="2"
         >
           <h3 className={styles["step-title"]}>Step 2</h3>
@@ -55,12 +53,22 @@ function Steps() {
             <label htmlFor="zip">Zip Code</label>
             <input type="text" name="zip" id="zip" />
           </div>
-          <button type="submit">Previous</button>
+          <button
+            type="submit"
+            onClick={(event) => {
+              event?.preventDefault();
+              setActiveIndex(activeIndex - 1);
+            }}
+          >
+            Previous
+          </button>
           <button type="submit">Next</button>
         </div>
         <div
           ref={(el) => (stepsRef.current[2] = el)}
-          className={styles["card"]}
+          className={`${styles["card"]} ${
+            activeIndex === 2 ? styles["active"] : ""
+          }`}
           data-step="3"
         >
           <h3 className={styles["step-title"]}>Step 3</h3>
@@ -72,8 +80,15 @@ function Steps() {
             <label htmlFor="lastName">Last Name</label>
             <input type="text" name="lastName" id="lastName" />
           </div>
-
-          <button type="submit">Previous</button>
+          <button
+            type="submit"
+            onClick={(event) => {
+              event?.preventDefault();
+              setActiveIndex(activeIndex - 1);
+            }}
+          >
+            Previous
+          </button>
           <button type="submit">Submit</button>
         </div>
       </form>
