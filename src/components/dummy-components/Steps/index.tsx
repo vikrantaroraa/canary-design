@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useRef, useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import styles from "src/components/dummy-components/Steps/index.module.css";
 
 function Steps() {

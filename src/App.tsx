@@ -4,6 +4,7 @@ import { ExampleTabsTypeB } from "src/components/example-components/TabsTypeBExa
 import { MultiStepForm } from "src/components/MultiStepForm";
 import { FormExample } from "src/components/example-components/FormExample";
 import Steps from "src/components/dummy-components/Steps";
+import { Button } from "src/components/Button";
 
 function App() {
   return (
@@ -12,7 +13,11 @@ function App() {
       <ExampleTabsTypeB />
       <MultiStepForm />
       <FormExample /> */}
-      <Steps />
+      {/* <Steps /> */}
+      <Button type="fill" onClick={() => console.log("hi")}>
+        Hello
+      </Button>
+      <Button onClick={() => console.log("hi")}>Hello</Button>
     </>
   );
 }
