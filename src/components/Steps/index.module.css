@@ -1,0 +1,49 @@
+.steps-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.steps-and-line {
+  flex: 1;
+  position: relative;
+  /* background-color: lightyellow; */
+  /* border: 1px dotted; */
+}
+
+.line {
+  border: 1px solid;
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% + 40px);
+  width: calc(100% - 85px);
+}
+
+.steps-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  /* background-color: grey; */
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+
+.step-inactive .circle {
+  background-color: #bbb;
+}
+
+.step-inactive .label {
+  color: #888;
+}
+
+.step-inactive .line {
+  border-color: #eee;
+}
