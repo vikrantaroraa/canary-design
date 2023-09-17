@@ -3,6 +3,8 @@
   width: 100%;
   justify-content: space-between;
 }
+/* The line gets stretched to the next element which can be seen by giving the border and background color. 
+See why the line gets stretched out of its parent component i.e "steps-and-line" */
 .steps-and-line {
   flex: 1;
   position: relative;
@@ -36,14 +38,44 @@
   border-radius: 100%;
 }
 
+/* step-inactive css */
 .step-inactive .circle {
   background-color: #bbb;
+  color: #000;
 }
 
 .step-inactive .label {
   color: #888;
 }
 
-.step-inactive .line {
+/* If a step is active then the line before it, which is coming towards it, is blue. But the line next to 
+it which is essentially its corresponding line, should be greyed out as well because it will be blued 
+when we move to the next step*/
+.step-inactive .line,
+.step-active .line {
   border-color: #eee;
+}
+
+/* step-active css */
+.step-active .circle {
+  background: #3d84f5;
+  color: #fff;
+}
+
+.step-active .label {
+  color: #000;
+}
+
+/* step-done css */
+.step-done .circle {
+  background: #236ee8;
+  color: #eee;
+}
+
+.step-done .label {
+  color: #222;
+}
+
+.step-done .line {
+  border-color: #3d84f5;
 }

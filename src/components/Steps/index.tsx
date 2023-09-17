@@ -11,7 +11,7 @@ function Steps({ steps }: StepsProps) {
       {steps.map((step, index) => {
         return (
           <div
-            className={`${styles["steps-and-line"]} ${styles["step-inactive"]} `}
+            className={`${styles["steps-and-line"]} ${styles["step-inactive"]} ${styles["step-active"]} ${styles["step-done"]}`}
           >
             <div className={styles["steps-info"]}>
               <div className={styles["circle"]}>{index + 1}</div>
