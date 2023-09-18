@@ -1,23 +1,18 @@
+.steps {
+  padding: 5px;
+  width: 100%;
+}
 .steps-container {
   display: flex;
-  width: 100%;
-  justify-content: space-between;
+  gap: 15px;
+  /* background-color: lightblue; */
 }
 /* The line gets stretched to the next element which can be seen by giving the border and background color. 
 See why the line gets stretched out of its parent component i.e "steps-and-line" */
 .steps-and-line {
-  flex: 1;
-  position: relative;
+  display: flex;
+  gap: 15px;
   /* background-color: lightyellow; */
-  /* border: 1px dotted; */
-}
-
-.line {
-  border: 1px solid;
-  position: absolute;
-  top: calc(50% - 10px);
-  left: calc(50% + 40px);
-  width: calc(100% - 85px);
 }
 
 .steps-info {
@@ -25,16 +20,30 @@ See why the line gets stretched out of its parent component i.e "steps-and-line"
   justify-content: center;
   align-items: center;
   display: flex;
-  flex-direction: column;
-  /* background-color: grey; */
+  gap: 10px;
+  white-space: nowrap;
+  width: auto;
+}
+
+.line-container {
+  position: relative;
+  flex: 2;
+  text-align: center;
+}
+
+.line {
+  border: 1px solid;
+  position: absolute;
+  top: calc(50%);
+  width: 100%;
 }
 
 .circle {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  width: 50px;
+  height: 36px;
+  width: 36px;
   border-radius: 100%;
 }
 
@@ -78,4 +87,18 @@ when we move to the next step*/
 
 .step-done .line {
   border-color: #3d84f5;
+}
+
+.navigation-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.steps-content {
+  border-radius: 8px;
+  margin-top: 1rem;
+  padding: 10px;
+  border: 1px dotted;
+  background-color: rgba(0, 0, 0, 0.02);
 }
