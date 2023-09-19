@@ -47,6 +47,17 @@ See why the line gets stretched out of its parent component i.e "steps-and-line"
   border-radius: 100%;
 }
 
+.circle-done {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  border-radius: 100%;
+  background-color: #e6f4ff;
+  border-color: #e6f4ff;
+}
+
 /* step-inactive css */
 .step-inactive .circle {
   background-color: #bbb;
