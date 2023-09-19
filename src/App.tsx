@@ -4,7 +4,7 @@ import { ExampleTabsTypeB } from "src/components/example-components/TabsTypeBExa
 import { MultiStepForm } from "src/components/MultiStepForm";
 import { FormExample } from "src/components/example-components/FormExample";
 import { Button } from "src/components/Button";
-import { ExampleSteps } from "src/components/Steps";
+import { ExampleSteps } from "src/components/example-components/StepsExample";
 
 function App() {
   return (

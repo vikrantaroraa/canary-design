@@ -1,28 +1,7 @@
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "src/components/Button";
+import { StepsProps } from "src/components/Steps/index.interface";
 import styles from "src/components/Steps/index.module.css";
-import DummyComponent1 from "src/components/dummy-components/Component1";
-
-function UserDetails() {
-  return <h2>User details</h2>;
-}
-
-function Payment() {
-  return <h2>Payment information</h2>;
-}
-
-function Confirmation() {
-  return <h2>Booking is confirmed</h2>;
-}
-
-export interface StepsDataProps {
-  // key: string;
-  title: string;
-  content: ReactNode;
-}
-export interface StepsProps {
-  steps: StepsDataProps[];
-}
 
 function Steps({ steps }: StepsProps) {
   const [activeStep, setActiveStep] = useState(0);
@@ -80,21 +59,3 @@ function Steps({ steps }: StepsProps) {
 }
 
 export { Steps };
-
-export const ExampleSteps = () => {
-  const steps = [
-    {
-      title: "User details",
-      content: <UserDetails />,
-    },
-    {
-      title: "Payment",
-      content: "Second-content",
-    },
-    {
-      title: "Booking confirmation",
-      content: <DummyComponent1 />,
-    },
-  ];
-  return <Steps steps={steps} />;
-};
