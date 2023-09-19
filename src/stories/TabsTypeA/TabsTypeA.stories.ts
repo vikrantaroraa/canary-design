@@ -29,6 +29,6 @@ export const ExampleTabs: Story = {
   args: {
     tabsData: tabsData,
     tabHandler: tabHandler,
-    defaultActiveKey: 2,
+    defaultActiveKey: 0,
   },
 };
