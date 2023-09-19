@@ -9,4 +9,5 @@ export interface StepsDataProps {
 }
 export interface StepsProps {
   steps: StepsDataProps[];
+  activeStep: number;
 }

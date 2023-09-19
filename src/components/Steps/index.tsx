@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { Button } from "src/components/Button";
+import React from "react";
 import { StepsProps } from "src/components/Steps/index.interface";
 import styles from "src/components/Steps/index.module.css";
 
-function Steps({ steps }: StepsProps) {
-  const [activeStep, setActiveStep] = useState(0);
+function Steps({ steps, activeStep }: StepsProps) {
   return (
     <div className={styles["steps"]}>
       <div className={styles["steps-container"]}>
@@ -52,7 +50,9 @@ function Steps({ steps }: StepsProps) {
           );
         })}
       </div>
-      <div className={styles["steps-content"]}>{steps[activeStep].content}</div>
+      {/* DO NOT DELETE this commented code, this code can later be used if we want to create a stepper 
+      component in any other project */}
+      {/* <div className={styles["steps-content"]}>{steps[activeStep].content}</div>
       <div className={styles["navigation-buttons"]}>
         <Button
           type="fill"
@@ -69,7 +69,7 @@ function Steps({ steps }: StepsProps) {
             Previous
           </Button>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

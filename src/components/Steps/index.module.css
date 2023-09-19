@@ -1,5 +1,6 @@
 .steps {
-  padding: 5px;
+  /* this padding may very well be given by the parent component consuming the Steps component */
+  /* padding: 5px; */
   width: 100%;
 }
 .steps-container {
@@ -61,6 +62,7 @@ See why the line gets stretched out of its parent component i.e "steps-and-line"
 /* step-inactive css */
 .step-inactive .circle {
   background-color: #bbb;
+  background-color: rgba(0, 0, 0, 0.06);
   color: #000;
 }
 
@@ -100,16 +102,18 @@ when we move to the next step*/
   border-color: #3d84f5;
 }
 
-.navigation-buttons {
+/* DO NOT DELETE THIS COMMENTED CSS - SEE STEPS COMPONENT FOR MORE DETAILS */
+/* .navigation-buttons {
   margin-top: 1rem;
   display: flex;
   gap: 0.5rem;
-}
+} */
 
-.steps-content {
+/* .steps-content {
   border-radius: 8px;
   margin-top: 1rem;
   padding: 10px;
   border: 1px dotted;
   background-color: rgba(0, 0, 0, 0.02);
-}
+  min-height: 300px;
+} */
