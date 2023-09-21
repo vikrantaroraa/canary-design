@@ -5,6 +5,7 @@ import { MultiStepForm } from "src/components/MultiStepForm";
 import { FormExample } from "src/components/example-components/FormExample";
 import { Button } from "src/components/Button";
 import { ExampleSteps } from "src/components/example-components/StepsExample";
+import FileUpload from "src/components/FileUpload";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <ExampleTabsTypeB />
       <MultiStepForm /> */}
       {/* <FormExample /> */}
-      <ExampleSteps />
+      {/* <ExampleSteps /> */}
+      <FileUpload />
       {/* <Button type="fill" onClick={() => console.log("hi")}>
         Hello
       </Button>
