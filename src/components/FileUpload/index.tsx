@@ -5,20 +5,22 @@ import fileIcon from "src/assets/file-icon.svg";
 import deleteFile from "src/assets/delete-file.svg";
 
 function FileUpload() {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<string>("");
   const [fileName, setFileName] = useState("No File Selected");
-  const formRef = useRef();
+  const formRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className={styles["file-upload"]}>
-      <form onClick={() => formRef.current.click()}>
+      <form onClick={() => formRef.current?.click()}>
         <input
           ref={formRef}
           type="file"
           accept="image/*"
           hidden
           onChange={({ target: { files } }) => {
-            files[0] && setFileName(files[0].name);
+            // Here we replaced files[0] with files because if files !== null then files[0] will definitely
+            // be non-null. Also it takes care of the error 'files' is possibly 'null'
+            files && setFileName(files[0].name);
             if (files) {
               setImage(URL.createObjectURL(files[0]));
             }
@@ -50,7 +52,7 @@ function FileUpload() {
             width={30}
             onClick={() => {
               setFileName("No File Selected");
-              setImage(null);
+              setImage("");
             }}
           />
         </span>
