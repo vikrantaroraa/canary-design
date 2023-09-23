@@ -8,6 +8,25 @@ form {
   width: 500px;
   cursor: pointer;
   border-radius: 5px;
+  padding: 5px;
+}
+
+.images-container {
+  height: 100%;
+  width: 100%;
+  gap: 10px;
+  background-color: red;
+}
+
+.upload-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed;
+  background-color: #f4f4f4;
+  height: 100px;
+  width: 100px;
+  border-radius: 5px;
 }
 
 section {

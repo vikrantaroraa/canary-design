@@ -15,7 +15,12 @@ function App() {
       <MultiStepForm /> */}
       {/* <FormExample /> */}
       {/* <ExampleSteps /> */}
-      <FileUpload />
+      <FileUpload
+        multiple
+        getFiles={(files: unknown) => {
+          console.log("files from getFiles: ", files);
+        }}
+      />
       {/* <Button type="fill" onClick={() => console.log("hi")}>
         Hello
       </Button>
