@@ -2,19 +2,10 @@ import React, { ChangeEvent, useRef, useState } from "react";
 import styles from "src/components/FileUpload/index.module.css";
 import fileIcon from "src/assets/file-icon.svg";
 import deleteFile from "src/assets/delete-file.svg";
-
-export interface FileType {
-  url: string;
-  name: string;
-  id: string;
-  size: number;
-  type: string;
-}
-
-export interface FileUploadProps {
-  multiple: boolean;
-  getFiles: (allSelectedFiles: FileType[]) => void;
-}
+import {
+  FileType,
+  FileUploadProps,
+} from "src/components/FileUpload/index.interface";
 
 function FileUpload({ multiple, getFiles }: FileUploadProps) {
   const [allSelectedFiles, setAllSelectedFiles] = useState<FileType[]>([]);
@@ -25,7 +16,6 @@ function FileUpload({ multiple, getFiles }: FileUploadProps) {
 
   const fileHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    // console.log("all files selected: ", files);
     let update = allSelectedFiles;
     for (const file of files) {
       const { name, size, type } = file;
@@ -42,9 +32,10 @@ function FileUpload({ multiple, getFiles }: FileUploadProps) {
         update = [fileData];
       }
     }
+    // storing the value of "update" array variable in another array "_allFilesSelected" because react does not re-render on
+    // updating the array even if it is a state variable because it is reference by address.
     const _allFilesSelected = [...update];
     setAllSelectedFiles(_allFilesSelected);
-    // console.log("new Files data: ", update);
     getFiles(update);
   };
 
@@ -55,7 +46,7 @@ function FileUpload({ multiple, getFiles }: FileUploadProps) {
 
   return (
     <div className={styles["file-upload"]}>
-      <section>
+      <div className={styles["upload-and-delete-file"]}>
         <div
           onClick={() => formRef.current?.click()}
           className={styles["upload-file"]}
@@ -81,20 +72,16 @@ function FileUpload({ multiple, getFiles }: FileUploadProps) {
             onClick={() => setAllSelectedFiles([])}
           />
         </span>
-      </section>
+      </div>
       <div className={styles["uploaded-image-and-message"]}>
         {allSelectedFiles.length !== 0 ? (
-          <div className={styles["images-container"]}>
+          <div className={styles["all-images-container"]}>
             {allSelectedFiles.map((file) => (
               <div
                 className={styles["image-container"]}
                 onClick={() => removeFile(file.id)}
               >
-                <img
-                  style={{ objectFit: "cover", border: "1px solid #f6f6f6" }}
-                  src={file.url}
-                  alt={file.name}
-                />
+                <img src={file.url} alt={file.name} />
                 <p className={styles["close-image-icon"]}>x</p>
               </div>
             ))}
