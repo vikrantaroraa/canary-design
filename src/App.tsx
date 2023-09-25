@@ -5,7 +5,7 @@ import { MultiStepForm } from "src/components/MultiStepForm";
 import { FormExample } from "src/components/example-components/FormExample";
 import { Button } from "src/components/Button";
 import { ExampleSteps } from "src/components/example-components/StepsExample";
-import FileUpload from "src/components/FileUpload";
+import FileUploadExample from "src/components/example-components/FileUploadExample";
 
 function App() {
   return (
@@ -15,12 +15,7 @@ function App() {
       <MultiStepForm /> */}
       {/* <FormExample /> */}
       {/* <ExampleSteps /> */}
-      <FileUpload
-        multiple
-        getFiles={(files: unknown) => {
-          console.log("files from getFiles: ", files);
-        }}
-      />
+      <FileUploadExample />
       {/* <Button type="fill" onClick={() => console.log("hi")}>
         Hello
       </Button>

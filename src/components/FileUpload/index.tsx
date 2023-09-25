@@ -96,4 +96,4 @@ function FileUpload({ multiple, getFiles }: FileUploadProps) {
   );
 }
 
-export default FileUpload;
+export { FileUpload };
