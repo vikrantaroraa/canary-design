@@ -1,13 +1,13 @@
 .file-upload {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 .upload-and-delete-file {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
   border-radius: 5px;
   border: 2px solid #e4e4e4;
   border-radius: 6px;
@@ -20,7 +20,6 @@
   height: 100%;
   flex: 1;
   padding: 10px 12px;
-  border-right: 2px dashed;
 }
 
 .upload-file:hover {
@@ -38,6 +37,7 @@
 .delete-icon {
   padding: 10px 12px;
   cursor: pointer;
+  border-left: 2px dashed;
 }
 
 .delete-icon:hover {

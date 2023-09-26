@@ -7,7 +7,12 @@ import {
   FileUploadProps,
 } from "src/components/FileUpload/index.interface";
 
-function FileUpload({ multiple, getFiles }: FileUploadProps) {
+function FileUpload({
+  multiple,
+  getFiles,
+  showImageWall = true,
+  showDeleteIcon = true,
+}: FileUploadProps) {
   const [allSelectedFiles, setAllSelectedFiles] = useState<FileType[]>([]);
   const formRef = useRef<HTMLInputElement>(null);
 
@@ -64,34 +69,36 @@ function FileUpload({ multiple, getFiles }: FileUploadProps) {
             Upload Files
           </span>
         </div>
-        <span className={styles["delete-icon"]}>
-          <img
-            src={deleteFile}
-            height={30}
-            width={30}
+        {showDeleteIcon && (
+          <span
+            className={styles["delete-icon"]}
             onClick={() => setAllSelectedFiles([])}
-          />
-        </span>
-      </div>
-      <div className={styles["uploaded-image-and-message"]}>
-        {allSelectedFiles.length !== 0 ? (
-          <div className={styles["all-images-container"]}>
-            {allSelectedFiles.map((file) => (
-              <div
-                className={styles["image-container"]}
-                onClick={() => removeFile(file.id)}
-              >
-                <img src={file.url} alt={file.name} />
-                <p className={styles["close-image-icon"]}>x</p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className={styles["no-files-message"]}>
-            <p>Your files will appear here</p>
-          </div>
+          >
+            <img src={deleteFile} height={30} width={30} />
+          </span>
         )}
       </div>
+      {showImageWall && (
+        <div className={styles["uploaded-image-and-message"]}>
+          {allSelectedFiles.length !== 0 ? (
+            <div className={styles["all-images-container"]}>
+              {allSelectedFiles.map((file) => (
+                <div
+                  className={styles["image-container"]}
+                  onClick={() => removeFile(file.id)}
+                >
+                  <img src={file.url} alt={file.name} />
+                  <p className={styles["close-image-icon"]}>x</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className={styles["no-files-message"]}>
+              <p>Your files will appear here</p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

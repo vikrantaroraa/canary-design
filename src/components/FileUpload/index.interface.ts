@@ -9,4 +9,6 @@ export interface FileType {
 export interface FileUploadProps {
   multiple: boolean;
   getFiles: (allSelectedFiles: FileType[]) => void;
+  showImageWall?: boolean;
+  showDeleteIcon?: boolean;
 }
