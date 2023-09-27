@@ -1,14 +1,12 @@
 import React, { ChangeEvent, useRef, useState } from "react";
 import styles from "src/components/FileUpload/DragAndDrop/index.module.css";
 import imageIcon from "src/assets/image-icon.svg";
-import { FileType } from "src/components/FileUpload/index.interface";
+import {
+  DragAndDropProps,
+  FileType,
+} from "src/components/FileUpload/index.interface";
 
-export interface FileUploadProps {
-  multiple: boolean;
-  getFiles: (allSelectedFiles: FileType[]) => void;
-}
-
-function DragAndDrop({ multiple, getFiles }: FileUploadProps) {
+function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
   const [allSelectedFiles, setAllSelectedFiles] = useState<FileType[]>([]);
   const formRef = useRef<HTMLInputElement>(null);
 
