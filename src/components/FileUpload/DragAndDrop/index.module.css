@@ -1,52 +1,87 @@
 form {
-  /* display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column; */
   border: 2px dashed #3d3d3d;
   height: 300px;
-  width: 500px;
-  /* cursor: pointer;
+  /* width: 500px; */
+  cursor: pointer;
   border-radius: 5px;
-  padding: 5px; */
 }
 
-.images-container {
+.all-images-container {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   gap: 10px;
-  /* background-color: red; */
+  height: 100%;
+  overflow-y: scroll;
+  padding: 5px;
+  /* background-color: lightgreen; */
 }
 
 .image-container {
-  height: 80px;
-  width: 60px;
+  position: relative;
+  height: 95px;
+  width: 85px;
 }
 
 .image-container img {
   height: 100%;
   width: 100%;
+  object-fit: cover;
+  border: 1px solid #f6f6f6;
+}
+
+.image-container .close-image-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  right: 2px;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+  /* background-color: lightblue; */
 }
 
 .upload-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px dashed;
-  background-color: #f4f4f4;
-  height: 100px;
-  width: 100px;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
   border-radius: 5px;
+  cursor: pointer;
+
+  /* may later need this css when improving design and functionality */
+  /* border: 2px dashed; */
+  /* background-color: #f4f4f4; */
+  /* height: 100px;
+  width: 100px; */
 }
 
-section {
+/* may later need this css when improving design and functionality */
+.upload-button:hover {
+  /* background-color: #d9e2f5; */
+  /* background-color: #f2f7ff; */
+}
+
+.browse-or-drop-message {
+  font-size: 18px;
+  color: #666666;
+}
+
+/* not needed as of now, may later need this css when implementing section, if implemented it at all */
+/* section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 12px;
   margin-top: 20px;
-  width: 500px;
   background-color: #e9f0ff;
   border-radius: 5px;
 }
@@ -59,4 +94,4 @@ section .filename-and-delete-icon {
 
 .delete-icon {
   cursor: pointer;
-}
+} */

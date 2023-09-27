@@ -3,7 +3,9 @@ import { FileUpload } from "src/components/FileUpload";
 
 function FileUploadExample() {
   return (
-    <div style={{ width: 500 }}>
+    <div
+    // style={{ width: 500 }}
+    >
       <FileUpload
         multiple
         getFiles={(files: unknown) => {
@@ -11,6 +13,7 @@ function FileUploadExample() {
         }}
         showImageWall={false}
         showDeleteIcon={false}
+        dragging
       />
     </div>
   );

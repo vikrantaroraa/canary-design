@@ -6,12 +6,14 @@ import {
   FileType,
   FileUploadProps,
 } from "src/components/FileUpload/index.interface";
+import { DragAndDrop } from "src/components/FileUpload/DragAndDrop";
 
 function FileUpload({
   multiple,
   getFiles,
   showImageWall = true,
   showDeleteIcon = true,
+  dragging = false,
 }: FileUploadProps) {
   const [allSelectedFiles, setAllSelectedFiles] = useState<FileType[]>([]);
   const formRef = useRef<HTMLInputElement>(null);
@@ -48,6 +50,10 @@ function FileUpload({
     const newFileList = allSelectedFiles.filter((file) => file.id !== id);
     setAllSelectedFiles(newFileList);
   };
+
+  if (dragging) {
+    return <DragAndDrop getFiles={getFiles} multiple />;
+  }
 
   return (
     <div className={styles["file-upload"]}>

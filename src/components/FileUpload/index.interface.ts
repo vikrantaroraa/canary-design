@@ -11,4 +11,5 @@ export interface FileUploadProps {
   getFiles: (allSelectedFiles: FileType[]) => void;
   showImageWall?: boolean;
   showDeleteIcon?: boolean;
+  dragging?: boolean;
 }
