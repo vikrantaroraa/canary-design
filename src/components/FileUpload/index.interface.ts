@@ -18,3 +18,10 @@ export interface DragAndDropProps {
   multiple: boolean;
   getFiles: (allSelectedFiles: FileType[]) => void;
 }
+
+export interface SelectFileProps {
+  multiple: boolean;
+  getFiles: (allSelectedFiles: FileType[]) => void;
+  showImageWall?: boolean;
+  showDeleteIcon?: boolean;
+}

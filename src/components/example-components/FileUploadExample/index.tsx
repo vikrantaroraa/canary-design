@@ -11,8 +11,8 @@ function FileUploadExample() {
         getFiles={(files: unknown) => {
           console.log("files from getFiles: ", files);
         }}
-        showImageWall={false}
-        showDeleteIcon={false}
+        // showImageWall={false}
+        // showDeleteIcon={false}
         dragging
       />
     </div>

@@ -15,7 +15,7 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
 
   const fileHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    // console.log("all files selected: ", files);
+    // console.log("all files selected on file selection: ", files);
     let update = allSelectedFiles;
     for (const file of files) {
       const { name, size, type } = file;
@@ -49,7 +49,7 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const files = event.dataTransfer?.files;
-    console.log(files);
+    // console.log("all files selected on drag and drop: ", files);
     let update = allSelectedFiles;
     for (const file of files) {
       const { name, size, type } = file;
@@ -82,7 +82,7 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
         {allSelectedFiles.length !== 0 ? (
           <div className={styles["all-images-container"]}>
             {allSelectedFiles.map((file) => (
-              <div className={styles["image-container"]}>
+              <div className={styles["image-container"]} key={file.id}>
                 <img src={file.url} alt={file.name} />
                 <p
                   className={styles["close-image-icon"]}

@@ -27,5 +27,6 @@ export const ExampleFileUpload: Story = {
     getFiles: getFiles,
     showImageWall: true,
     showDeleteIcon: true,
+    dragging: true,
   },
 };
