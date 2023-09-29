@@ -38,7 +38,7 @@ function SelectFile({
       }
     }
     // storing the value of "update" array variable in another array "_allFilesSelected" because react does not re-render on
-    // updating the array even if it is a state variable because it is reference by address.
+    // updating the array even if it is a state variable because it is referenced by address.
     const _allFilesSelected = [...update];
     setAllSelectedFiles(_allFilesSelected);
     getFiles(update);
@@ -50,8 +50,8 @@ function SelectFile({
   };
 
   return (
-    <div className={styles["file-upload"]}>
-      <div className={styles["upload-and-delete-file"]}>
+    <div className={styles["select-file-container"]}>
+      <div className={styles["upload-and-delete-all-files"]}>
         <div
           onClick={() => formRef.current?.click()}
           className={styles["upload-file"]}
@@ -78,6 +78,7 @@ function SelectFile({
           </span>
         )}
       </div>
+      {/* the div with class "uploaded-image-and-message" is the image wall */}
       {showImageWall && (
         <div className={styles["uploaded-image-and-message"]}>
           {allSelectedFiles.length !== 0 ? (

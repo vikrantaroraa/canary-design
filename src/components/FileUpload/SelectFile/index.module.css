@@ -1,10 +1,10 @@
-.file-upload {
+.select-file-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.upload-and-delete-file {
+.upload-and-delete-all-files {
   display: flex;
   justify-content: space-between;
   align-items: center;

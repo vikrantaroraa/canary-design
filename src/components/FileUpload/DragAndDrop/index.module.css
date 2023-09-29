@@ -1,4 +1,4 @@
-form {
+.drag-and-drop-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,9 +12,9 @@ form {
 .all-images-container {
   display: flex;
   flex-wrap: wrap;
+  height: 100%;
   width: 100%;
   gap: 10px;
-  height: 100%;
   overflow-y: scroll;
   padding: 5px;
   /* background-color: lightgreen; */
@@ -65,33 +65,12 @@ form {
 }
 
 /* may later need this css when improving design and functionality */
-.upload-button:hover {
-  /* background-color: #d9e2f5; */
-  /* background-color: #f2f7ff; */
-}
+/* .upload-button:hover {
+  background-color: #d9e2f5;
+  background-color: #f2f7ff;
+} */
 
 .browse-or-drop-message {
   font-size: 18px;
   color: #666666;
 }
-
-/* not needed as of now, may later need this css when implementing section, if implemented it at all */
-/* section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 12px;
-  margin-top: 20px;
-  background-color: #e9f0ff;
-  border-radius: 5px;
-}
-
-section .filename-and-delete-icon {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.delete-icon {
-  cursor: pointer;
-} */

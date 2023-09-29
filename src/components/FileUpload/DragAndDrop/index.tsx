@@ -74,56 +74,43 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
 
   return (
     <div
-      className={styles["file-upload"]}
+      className={styles["drag-and-drop-container"]}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      <form>
-        {allSelectedFiles.length !== 0 ? (
-          <div className={styles["all-images-container"]}>
-            {allSelectedFiles.map((file) => (
-              <div className={styles["image-container"]} key={file.id}>
-                <img src={file.url} alt={file.name} />
-                <p
-                  className={styles["close-image-icon"]}
-                  onClick={() => removeFile(file.id)}
-                >
-                  x
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div
-            className={styles["upload-button"]}
-            onClick={() => formRef.current?.click()}
-          >
-            <input
-              ref={formRef}
-              type="file"
-              accept="image/*"
-              hidden
-              multiple={multiple}
-              onChange={fileHandler}
-            />
-            <img src={imageIcon} height={40} width={40} />
-            <p className={styles["browse-or-drop-message"]}>
-              Browse or drop files
-            </p>
-          </div>
-        )}
-      </form>
-      {/* <section>
-        <img src={deleteFile} height={30} width={30} />
-        <span className={styles["filename-and-delete-icon"]}>
-          <img
-            className={styles["delete-icon"]}
-            src={deleteFile}
-            height={30}
-            width={30}
+      {allSelectedFiles.length !== 0 ? (
+        <div className={styles["all-images-container"]}>
+          {allSelectedFiles.map((file) => (
+            <div className={styles["image-container"]} key={file.id}>
+              <img src={file.url} alt={file.name} />
+              <p
+                className={styles["close-image-icon"]}
+                onClick={() => removeFile(file.id)}
+              >
+                x
+              </p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div
+          className={styles["upload-button"]}
+          onClick={() => formRef.current?.click()}
+        >
+          <input
+            ref={formRef}
+            type="file"
+            accept="image/*"
+            hidden
+            multiple={multiple}
+            onChange={fileHandler}
           />
-        </span>
-      </section> */}
+          <img src={imageIcon} height={40} width={40} />
+          <p className={styles["browse-or-drop-message"]}>
+            Browse or drop files
+          </p>
+        </div>
+      )}
     </div>
   );
 }
