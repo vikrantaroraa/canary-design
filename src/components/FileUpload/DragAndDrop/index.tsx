@@ -13,10 +13,24 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
   // might later use this function
   // const generateId = () => Math.ceil(Math.random() * 1000000);
 
-  const fileHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    // console.log("all files selected on file selection: ", files);
+  // Note:- Here we do not need to use any boolean variable like "isDragAndDropUsed" to check whether drag-and-drop
+  // was used or not because we can find that from the type of event itself
+  const fileHandler = (
+    event: ChangeEvent<HTMLInputElement> | React.DragEvent<HTMLDivElement>
+  ) => {
     let update = allSelectedFiles;
+    let files;
+    console.log("event ka type:", event.type);
+    console.log({ event });
+
+    if (event.type === "drop") {
+      files = event.dataTransfer.files;
+      // console.log("all files selected on drag and drop: ", files);
+    } else {
+      files = event.target.files;
+      // console.log("all files selected on file selection: ", files);
+    }
+
     for (const file of files) {
       const { name, size, type } = file;
       const fileData: FileType = {
@@ -32,9 +46,9 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
         update = [fileData];
       }
     }
+    // console.log("new Files data: ", update);
     const _allFilesSelected = [...update];
     setAllSelectedFiles(_allFilesSelected);
-    // console.log("new Files data: ", update);
     getFiles(update);
   };
 
@@ -48,28 +62,7 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
   };
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    const files = event.dataTransfer?.files;
-    // console.log("all files selected on drag and drop: ", files);
-    let update = allSelectedFiles;
-    for (const file of files) {
-      const { name, size, type } = file;
-      const fileData: FileType = {
-        url: URL.createObjectURL(file),
-        name: name,
-        id: name,
-        size: size / 1024,
-        type: type,
-      };
-      if (multiple) {
-        update.push(fileData);
-      } else {
-        update = [fileData];
-      }
-    }
-    const _allFilesSelected = [...update];
-    setAllSelectedFiles(_allFilesSelected);
-    // console.log("new Files data: ", update);
-    getFiles(update);
+    fileHandler(event);
   };
 
   return (
