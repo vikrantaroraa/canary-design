@@ -48,11 +48,18 @@
   align-items: center;
   position: absolute;
   top: 0px;
-  right: 2px;
+  left: 0px;
   height: 15px;
   width: 15px;
   cursor: pointer;
-  /* background-color: lightblue; */
+  background-color: #f3f0e8;
+  /* background-color: #fcdada; */
+}
+
+.close-file-icon span {
+  position: absolute;
+  top: -40%;
+  /* background-color: red; */
 }
 
 .upload-button {

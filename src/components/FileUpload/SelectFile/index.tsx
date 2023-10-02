@@ -6,6 +6,7 @@ import {
   FileType,
   SelectFileProps,
 } from "src/components/FileUpload/index.interface";
+import { FileComponent } from "src/components/FileUpload/DragAndDrop";
 
 function SelectFile({
   multiple,
@@ -81,17 +82,13 @@ function SelectFile({
       {showImageWall && (
         <div className={styles["uploaded-image-and-message"]}>
           {allSelectedFiles.length !== 0 ? (
-            <div className={styles["all-images-container"]}>
+            <div className={styles["all-files-container"]}>
               {allSelectedFiles.map((file) => (
-                <div className={styles["image-container"]} key={file.id}>
-                  <img src={file.url} alt={file.name} />
-                  <p
-                    className={styles["close-image-icon"]}
-                    onClick={() => removeFile(file.id)}
-                  >
-                    x
-                  </p>
-                </div>
+                <FileComponent
+                  file={file}
+                  key={file.id}
+                  removeFile={removeFile}
+                />
               ))}
             </div>
           ) : (

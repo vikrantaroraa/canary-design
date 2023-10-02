@@ -99,7 +99,7 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
   );
 }
 
-export { DragAndDrop };
+export { DragAndDrop, FileComponent };
 
 const FileComponent = ({
   file,
@@ -148,7 +148,7 @@ const FileComponent = ({
         className={styles["close-file-icon"]}
         onClick={() => removeFile(file.id)}
       >
-        x
+        <span>x</span>
       </p>
     </div>
   );
