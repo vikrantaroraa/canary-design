@@ -72,17 +72,9 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
       onDrop={handleDrop}
     >
       {allSelectedFiles.length !== 0 ? (
-        <div className={styles["all-images-container"]}>
+        <div className={styles["all-files-container"]}>
           {allSelectedFiles.map((file) => (
-            <div className={styles["image-container"]} key={file.id}>
-              <img src={file.url} alt={file.name} />
-              <p
-                className={styles["close-image-icon"]}
-                onClick={() => removeFile(file.id)}
-              >
-                x
-              </p>
-            </div>
+            <FileComponent file={file} key={file.id} removeFile={removeFile} />
           ))}
         </div>
       ) : (
@@ -93,7 +85,6 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
           <input
             ref={formRef}
             type="file"
-            accept="image/*"
             hidden
             multiple={multiple}
             onChange={fileHandler}
@@ -109,3 +100,56 @@ function DragAndDrop({ multiple, getFiles }: DragAndDropProps) {
 }
 
 export { DragAndDrop };
+
+const FileComponent = ({
+  file,
+  removeFile,
+}: {
+  file: FileType;
+  removeFile: (id: string) => void;
+}) => {
+  let FILE: JSX.Element;
+  switch (file.type) {
+    case "application/pdf":
+    case "text/plain":
+      FILE = () => {
+        return <iframe src={file.url}></iframe>;
+      };
+      break;
+    case "image/png":
+    case "image/jpeg":
+    case "image/jpg":
+    case "image/webp":
+    case "image/svg":
+    case "image/avif":
+      FILE = () => {
+        return <img src={file.url} alt={file.name}></img>;
+      };
+      break;
+    case "video/mp4":
+      FILE = () => {
+        return (
+          <video width="100%" height="100%" controls>
+            <source src={file.url} type="video/mp4" />
+          </video>
+        );
+      };
+      break;
+    default:
+      FILE = () => {
+        return <iframe src={file.url}></iframe>;
+      };
+      break;
+  }
+  return (
+    <div className={styles["file-container"]}>
+      <FILE />
+      <p
+        className={styles["close-file-icon"]}
+        onClick={() => removeFile(file.id)}
+      >
+        x
+      </p>
+    </div>
+  );
+};

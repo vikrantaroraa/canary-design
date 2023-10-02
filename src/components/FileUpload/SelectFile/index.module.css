@@ -70,8 +70,8 @@
 .image-container img {
   height: 100%;
   width: 100%;
-  object-fit: "cover";
-  border: "1px solid #f6f6f6";
+  object-fit: cover;
+  /* border: 1px solid #f6f6f6; */
 }
 
 .image-container .close-image-icon {

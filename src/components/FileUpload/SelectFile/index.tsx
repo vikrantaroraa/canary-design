@@ -59,7 +59,6 @@ function SelectFile({
           <input
             ref={formRef}
             type="file"
-            accept="image/*"
             hidden
             multiple={multiple}
             onChange={fileHandler}
@@ -84,13 +83,14 @@ function SelectFile({
           {allSelectedFiles.length !== 0 ? (
             <div className={styles["all-images-container"]}>
               {allSelectedFiles.map((file) => (
-                <div
-                  className={styles["image-container"]}
-                  onClick={() => removeFile(file.id)}
-                  key={file.id}
-                >
+                <div className={styles["image-container"]} key={file.id}>
                   <img src={file.url} alt={file.name} />
-                  <p className={styles["close-image-icon"]}>x</p>
+                  <p
+                    className={styles["close-image-icon"]}
+                    onClick={() => removeFile(file.id)}
+                  >
+                    x
+                  </p>
                 </div>
               ))}
             </div>
