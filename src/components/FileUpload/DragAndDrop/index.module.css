@@ -17,6 +17,7 @@
   gap: 10px;
   overflow-y: scroll;
   padding: 5px;
+  box-sizing: border-box;
   /* background-color: lightgreen; */
 }
 
@@ -56,11 +57,11 @@
   /* background-color: #fcdada; */
 }
 
-.close-file-icon span {
+/* .close-file-icon span {
   position: absolute;
-  top: -40%;
-  /* background-color: red; */
-}
+  height: 100%;
+  bottom: 35%;
+} */
 
 .upload-button {
   display: flex;

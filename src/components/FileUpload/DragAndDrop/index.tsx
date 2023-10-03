@@ -144,12 +144,12 @@ const FileComponent = ({
   return (
     <div className={styles["file-container"]}>
       <FILE />
-      <p
+      <span
         className={styles["close-file-icon"]}
         onClick={() => removeFile(file.id)}
       >
         <span>x</span>
-      </p>
+      </span>
     </div>
   );
 };
