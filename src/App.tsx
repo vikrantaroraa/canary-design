@@ -6,6 +6,7 @@ import { FormExample } from "src/components/example-components/FormExample";
 import { Button } from "src/components/Button";
 import { ExampleSteps } from "src/components/example-components/StepsExample";
 import FileUploadExample from "src/components/example-components/FileUploadExample";
+import ExampleCarousel from "src/components/example-components/CarouselExample";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       <MultiStepForm /> */}
       {/* <FormExample /> */}
       {/* <ExampleSteps /> */}
-      <FileUploadExample />
+      <ExampleCarousel />
+      {/* <FileUploadExample /> */}
       {/* <Button type="fill" onClick={() => console.log("hi")}>
         Hello
       </Button>
