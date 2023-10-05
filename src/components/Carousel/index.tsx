@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 import styles from "src/components/Carousel/index.module.css";
 
-const Carousel = ({ images }: { images: string[] }) => {
+const Carousel = ({
+  images,
+  rotate = false,
+}: {
+  images: string[];
+  rotate?: boolean;
+}) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const slideLeft = () => {
-    if (activeIndex === 0) return;
+    if (activeIndex === 0 && rotate) {
+      setActiveIndex(images.length - 1);
+      return;
+    } else if (activeIndex === 0 && !rotate) return;
     setActiveIndex((index) => index - 1);
   };
 
   const slideRight = () => {
-    if (activeIndex === images.length - 1) return;
+    if (activeIndex === images.length - 1 && rotate) {
+      setActiveIndex(0);
+      return;
+    } else if (activeIndex === images.length - 1 && !rotate) return;
     setActiveIndex((index) => index + 1);
   };
 
@@ -32,6 +44,7 @@ const Carousel = ({ images }: { images: string[] }) => {
         {images.map((image, index) => {
           return (
             <div
+              key={index}
               className={styles["dot"]}
               onClick={() => setActiveIndex(index)}
             >
