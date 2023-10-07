@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import styles from "src/components/Carousel/index.module.css";
+import styles from "src/components/CarouselTypeA/index.module.css";
+import { CarouselTypeAProps } from "src/components/CarouselTypeA/index.interface";
 
-const Carousel = ({
-  images,
-  rotate = false,
-}: {
-  images: string[];
-  rotate?: boolean;
-}) => {
+const CarouselTypeA = ({ images, rotate = false }: CarouselTypeAProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const slideLeft = () => {
@@ -59,4 +54,4 @@ const Carousel = ({
   );
 };
 
-export { Carousel };
+export { CarouselTypeA };
