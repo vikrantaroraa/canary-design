@@ -1,0 +1,30 @@
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 8px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  /* background-color: red; */
+}
+
+.nav-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: lightcoral; */
+  cursor: pointer;
+}
+
+.icon-container {
+  height: 24px;
+  width: 24px;
+}
+
+.icon-container img {
+  height: 100%;
+  width: 100%;
+}

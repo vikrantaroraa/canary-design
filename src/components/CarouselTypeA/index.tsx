@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import styles from "src/components/CarouselTypeA/index.module.css";
 import { CarouselTypeAProps } from "src/components/CarouselTypeA/index.interface";
 
-const CarouselTypeA = ({ images, rotate = false }: CarouselTypeAProps) => {
+const CarouselTypeA = ({
+  images,
+  rotate = false,
+  UserIndicatorComponent,
+  UserNavigationButtons,
+}: CarouselTypeAProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const slideLeft = () => {
@@ -27,29 +32,52 @@ const CarouselTypeA = ({ images, rotate = false }: CarouselTypeAProps) => {
         <img src={images[activeIndex]} alt="" />
       </div>
       {/* left and right navigation buttons */}
-      <div className={styles["navigation-buttons"]}>
-        <div className={styles["nav-button"]} onClick={slideLeft}>
-          Left
+      {UserNavigationButtons ? (
+        <UserNavigationButtons
+          slideLeft={slideLeft}
+          slideRight={slideRight}
+          showDarkIcons={false}
+        />
+      ) : (
+        <div className={styles["navigation-buttons"]}>
+          <div className={styles["nav-button"]} onClick={slideLeft}>
+            Left
+          </div>
+          <div className={styles["nav-button"]} onClick={slideRight}>
+            Right
+          </div>
         </div>
-        <div className={styles["nav-button"]} onClick={slideRight}>
-          Right
+      )}
+      {UserIndicatorComponent ? (
+        <div className={styles["dots-container"]}>
+          {images.map((image, index) => {
+            return (
+              <UserIndicatorComponent
+                key={index}
+                index={index}
+                activeIndex={activeIndex}
+                changeImage={() => setActiveIndex(index)}
+              />
+            );
+          })}
         </div>
-      </div>
-      <div className={styles["dots-container"]}>
-        {images.map((image, index) => {
-          return (
-            <div
-              key={index}
-              className={styles["dot"]}
-              onClick={() => setActiveIndex(index)}
-            >
-              {index === activeIndex && (
-                <div className={styles["inner-dot"]}></div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+      ) : (
+        <div className={styles["dots-container"]}>
+          {images.map((image, index) => {
+            return (
+              <div
+                key={index}
+                className={styles["dot"]}
+                onClick={() => setActiveIndex(index)}
+              >
+                {index === activeIndex && (
+                  <div className={styles["inner-dot"]}></div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

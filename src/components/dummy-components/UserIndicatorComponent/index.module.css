@@ -1,0 +1,15 @@
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: #efefef;
+  border-radius: 20%;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.inner-dot {
+  height: 100%;
+  width: 100%;
+  border-radius: 20%;
+  background-color: grey;
+}
