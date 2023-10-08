@@ -13,7 +13,9 @@ const images = [Image1, Image2, Image3, Image4, Image5];
 
 function ExampleCarouselTypeA() {
   return (
-    <div style={{ width: "360px" }}>
+    <div
+    // style={{ width: "500px" }}
+    >
       <CarouselTypeA
         images={images}
         rotate

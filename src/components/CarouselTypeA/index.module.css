@@ -1,7 +1,7 @@
 .carousel {
   height: 240px;
   position: relative;
-  background-color: lightgreen;
+  background-color: #f1f1f1;
 }
 
 .images-container {
@@ -13,7 +13,7 @@
 .images-container img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .navigation-buttons {
@@ -26,6 +26,7 @@
   font-weight: 600;
   color: #fff;
   cursor: pointer;
+  box-sizing: border-box;
   /* background-color: red; */
 }
 

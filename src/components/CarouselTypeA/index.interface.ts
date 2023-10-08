@@ -1,8 +1,8 @@
 export interface CarouselTypeAProps {
   images: string[];
   rotate?: boolean;
-  UserIndicatorComponent: React.FC<UserIndicatorComponentProps>;
-  UserNavigationButtons: React.FC<UserNavigationButtonsProps>;
+  UserIndicatorComponent?: React.FC<UserIndicatorComponentProps>;
+  UserNavigationButtons?: React.FC<UserNavigationButtonsProps>;
 }
 
 interface UserIndicatorComponentProps {

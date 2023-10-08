@@ -8,6 +8,7 @@
   font-weight: 600;
   color: #fff;
   cursor: pointer;
+  box-sizing: border-box;
   /* background-color: red; */
 }
 
