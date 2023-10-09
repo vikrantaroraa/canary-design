@@ -1,5 +1,5 @@
 // import ExampleTabs from "src/components/example-components/TabsTypeAExample";
-import "./App.css";
+import ExampleCarouselTypeB from "src/components/example-components/CarouselTypeBExample";
 // import { ExampleTabsTypeB } from "src/components/example-components/TabsTypeBExample";
 // import { MultiStepForm } from "src/components/MultiStepForm";
 // import { FormExample } from "src/components/example-components/FormExample";
@@ -7,6 +7,7 @@ import "./App.css";
 // import { ExampleSteps } from "src/components/example-components/StepsExample";
 // import FileUploadExample from "src/components/example-components/FileUploadExample";
 import ExampleCarouselTypeA from "src/components/example-components/CarouselTypeAExample";
+import "./App.css";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       {/* <FormExample /> */}
       {/* <ExampleSteps /> */}
       <ExampleCarouselTypeA />
+      <ExampleCarouselTypeB />
       {/* <FileUploadExample /> */}
       {/* <Button type="fill" onClick={() => console.log("hi")}>
         Hello
