@@ -17,14 +17,24 @@ function ExampleCarouselTypeB() {
     // style={{ width: "500px" }}
     >
       <CarouselTypeB
-        images={images}
         rotate
         UserIndicatorComponent={(props) => (
           <UserIndicatorComponent {...props} />
         )}
         UserNavigationButtons={(props) => <UserNavigationButtons {...props} />}
       >
-        <ImagePanel>
+        {images.map((image, index) => (
+          <ImagePanel key={index}>
+            <img src={image} alt="" />
+          </ImagePanel>
+        ))}
+
+        {/* Note:-  We can either map over the images array to render images using <ImagePanel> component or 
+        we can write all <ImagePanel> components manually passing them the <img> tag and image index, both 
+        works fine. However, using map is a better approach as it ensures that we do not add any extra or any 
+        less <ImagePanel> components  */}
+
+        {/* <ImagePanel>
           <img src={images[0]} alt="" />
         </ImagePanel>
         <ImagePanel>
@@ -38,7 +48,7 @@ function ExampleCarouselTypeB() {
         </ImagePanel>
         <ImagePanel>
           <img src={images[4]} alt="" />
-        </ImagePanel>
+        </ImagePanel> */}
       </CarouselTypeB>
     </div>
   );

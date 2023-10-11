@@ -2,8 +2,11 @@ import React, { JSX, useState } from "react";
 import styles from "src/components/CarouselTypeB/index.module.css";
 import { CarouselTypeBProps } from "src/components/CarouselTypeB/index.interface";
 
+// Note:- since children array length will always be equal to images array length and since we are rendering
+// the images outside the CarouselTypeB component i.e., as children of CarouselTypeB component, hence, we do
+// not need images as a prop in the CarouselTypeB component.
+
 const CarouselTypeB = ({
-  images,
   rotate = false,
   UserIndicatorComponent,
   UserNavigationButtons,
@@ -13,17 +16,17 @@ const CarouselTypeB = ({
 
   const slideLeft = () => {
     if (activeIndex === 0 && rotate) {
-      setActiveIndex(images.length - 1);
+      setActiveIndex(children.length - 1);
       return;
     } else if (activeIndex === 0 && !rotate) return;
     setActiveIndex((index) => index - 1);
   };
 
   const slideRight = () => {
-    if (activeIndex === images.length - 1 && rotate) {
+    if (activeIndex === children.length - 1 && rotate) {
       setActiveIndex(0);
       return;
-    } else if (activeIndex === images.length - 1 && !rotate) return;
+    } else if (activeIndex === children.length - 1 && !rotate) return;
     setActiveIndex((index) => index + 1);
   };
 
@@ -49,7 +52,7 @@ const CarouselTypeB = ({
       )}
       {UserIndicatorComponent ? (
         <div className={styles["dots-container"]}>
-          {images.map((image, index) => {
+          {children.map((image, index) => {
             return (
               <UserIndicatorComponent
                 key={index}
@@ -62,7 +65,7 @@ const CarouselTypeB = ({
         </div>
       ) : (
         <div className={styles["dots-container"]}>
-          {images.map((image, index) => {
+          {children.map((image, index) => {
             return (
               <div
                 key={index}
