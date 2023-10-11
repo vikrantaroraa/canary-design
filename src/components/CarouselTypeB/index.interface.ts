@@ -3,6 +3,7 @@ export interface CarouselTypeBProps {
   rotate?: boolean;
   UserIndicatorComponent?: React.FC<UserIndicatorComponentProps>;
   UserNavigationButtons?: React.FC<UserNavigationButtonsProps>;
+  children: JSX.Element[];
 }
 
 interface UserIndicatorComponentProps {

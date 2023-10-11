@@ -1,5 +1,5 @@
 import React from "react";
-import { CarouselTypeB } from "src/components/CarouselTypeB";
+import { CarouselTypeB, ImagePanel } from "src/components/CarouselTypeB";
 
 import Image1 from "src/assets/carousel-image-1.jpg";
 import Image2 from "src/assets/carousel-image-2.jpg";
@@ -23,7 +23,23 @@ function ExampleCarouselTypeB() {
           <UserIndicatorComponent {...props} />
         )}
         UserNavigationButtons={(props) => <UserNavigationButtons {...props} />}
-      />
+      >
+        <ImagePanel>
+          <img src={images[0]} alt="" />
+        </ImagePanel>
+        <ImagePanel>
+          <img src={images[1]} alt="" />
+        </ImagePanel>
+        <ImagePanel>
+          <img src={images[2]} alt="" />
+        </ImagePanel>
+        <ImagePanel>
+          <img src={images[3]} alt="" />
+        </ImagePanel>
+        <ImagePanel>
+          <img src={images[4]} alt="" />
+        </ImagePanel>
+      </CarouselTypeB>
     </div>
   );
 }

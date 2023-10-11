@@ -6,7 +6,7 @@ import ExampleCarouselTypeB from "src/components/example-components/CarouselType
 // import { Button } from "src/components/Button";
 // import { ExampleSteps } from "src/components/example-components/StepsExample";
 // import FileUploadExample from "src/components/example-components/FileUploadExample";
-import ExampleCarouselTypeA from "src/components/example-components/CarouselTypeAExample";
+// import ExampleCarouselTypeA from "src/components/example-components/CarouselTypeAExample";
 import "./App.css";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
       <MultiStepForm /> */}
       {/* <FormExample /> */}
       {/* <ExampleSteps /> */}
-      <ExampleCarouselTypeA />
+      {/* <ExampleCarouselTypeA /> */}
       <ExampleCarouselTypeB />
       {/* <FileUploadExample /> */}
       {/* <Button type="fill" onClick={() => console.log("hi")}>

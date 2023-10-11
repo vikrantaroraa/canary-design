@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { JSX, useState } from "react";
 import styles from "src/components/CarouselTypeB/index.module.css";
 import { CarouselTypeBProps } from "src/components/CarouselTypeB/index.interface";
 
@@ -7,6 +7,7 @@ const CarouselTypeB = ({
   rotate = false,
   UserIndicatorComponent,
   UserNavigationButtons,
+  children,
 }: CarouselTypeBProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -28,9 +29,7 @@ const CarouselTypeB = ({
 
   return (
     <div className={styles["carousel"]}>
-      <div className={styles["images-container"]}>
-        <img src={images[activeIndex]} alt="" />
-      </div>
+      <>{children[activeIndex]}</>
       {/* left and right navigation buttons */}
       {UserNavigationButtons ? (
         <UserNavigationButtons
@@ -82,4 +81,13 @@ const CarouselTypeB = ({
   );
 };
 
-export { CarouselTypeB };
+const ImagePanel = ({ children }: { children: JSX.Element }) => {
+  return (
+    <div className={styles["images-container"]}>
+      {/* <img src={images[activeIndex]} alt="" /> */}
+      {children}
+    </div>
+  );
+};
+
+export { CarouselTypeB, ImagePanel };
