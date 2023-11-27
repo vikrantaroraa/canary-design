@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { Drawer } from "src/components/Drawer";
+import cartIcon from "src/assets/cart.svg";
+import wishListIcon from "src/assets/heart.svg";
+import userIcon from "src/assets/user.svg";
+import closeIcon from "src/assets/close-icon.svg";
+import menuIcon from "src/assets/menu-icon.svg";
 
 const ExampleDrawer = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -24,6 +29,16 @@ const ExampleDrawer = () => {
     gap: "65px",
   };
 
+  const imageContainerStyle: React.CSSProperties = {
+    height: 26,
+    width: 26,
+  };
+
+  const imageStyle: React.CSSProperties = {
+    height: "100%",
+    width: "100%",
+  };
+
   const logoAndCloseIconStyle: React.CSSProperties = {
     display: "flex",
     justifyContent: "space-between",
@@ -40,18 +55,30 @@ const ExampleDrawer = () => {
     <div>
       <div style={appHeaderStyle}>
         <span onClick={toggleShowSidebar} title="Click to open menu drawer">
-          Open Menu
+          <span style={imageContainerStyle}>
+            <img src={menuIcon} style={imageStyle} />
+          </span>
         </span>
         <div style={navMenuStyle}>
-          <span>Wishlist</span>
-          <span>Cart</span>
-          <span>User</span>
+          <span style={imageContainerStyle} title="dummy icon">
+            <img src={wishListIcon} style={imageStyle} />
+          </span>
+          <span style={imageContainerStyle} title="dummy icon">
+            <img src={cartIcon} style={imageStyle} />
+          </span>
+          <span style={imageContainerStyle} title="dummy icon">
+            <img src={userIcon} style={imageStyle} />
+          </span>
         </div>
       </div>
       <Drawer showSidebar={showSidebar} slideFrom={"left"}>
         <div style={logoAndCloseIconStyle}>
           <span>Flipkart</span>
-          <span onClick={toggleShowSidebar}>X</span>
+          <span onClick={toggleShowSidebar} title="Click to close menu drawer">
+            <span style={imageContainerStyle}>
+              <img src={closeIcon} style={imageStyle} />
+            </span>
+          </span>
         </div>
       </Drawer>
     </div>
