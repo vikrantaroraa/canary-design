@@ -8,6 +8,7 @@ import ExampleCarouselTypeB from "src/components/example-components/CarouselType
 // import FileUploadExample from "src/components/example-components/FileUploadExample";
 // import ExampleCarouselTypeA from "src/components/example-components/CarouselTypeAExample";
 import "./App.css";
+import { ExampleDrawer } from "src/components/example-components/DrawerExample";
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
       {/* <FormExample /> */}
       {/* <ExampleSteps /> */}
       {/* <ExampleCarouselTypeA /> */}
-      <ExampleCarouselTypeB />
+      {/* <ExampleCarouselTypeB /> */}
       {/* <FileUploadExample /> */}
+      <ExampleDrawer />
       {/* <Button type="fill" onClick={() => console.log("hi")}>
         Hello
       </Button>
