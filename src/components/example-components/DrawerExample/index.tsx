@@ -7,10 +7,10 @@ import closeIcon from "src/assets/close-icon.svg";
 import menuIcon from "src/assets/menu-icon.svg";
 
 const ExampleDrawer = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
 
-  const toggleShowSidebar = () => {
-    setShowSidebar(!showSidebar);
+  const toggleShowDrawer = () => {
+    setShowDrawer(!showDrawer);
   };
 
   const appHeaderStyle: React.CSSProperties = {
@@ -54,7 +54,7 @@ const ExampleDrawer = () => {
   return (
     <div>
       <div style={appHeaderStyle}>
-        <span onClick={toggleShowSidebar} title="Click to open menu drawer">
+        <span onClick={toggleShowDrawer} title="Click to open menu drawer">
           <span style={imageContainerStyle}>
             <img src={menuIcon} style={imageStyle} />
           </span>
@@ -71,10 +71,16 @@ const ExampleDrawer = () => {
           </span>
         </div>
       </div>
-      <Drawer showSidebar={showSidebar} slideFrom={"left"}>
+      <Drawer
+        showDrawer={showDrawer}
+        slideFrom={"left"}
+        style={{
+          backgroundColor: "lightgreen",
+        }}
+      >
         <div style={logoAndCloseIconStyle}>
           <span>Flipkart</span>
-          <span onClick={toggleShowSidebar} title="Click to close menu drawer">
+          <span onClick={toggleShowDrawer} title="Click to close menu drawer">
             <span style={imageContainerStyle}>
               <img src={closeIcon} style={imageStyle} />
             </span>

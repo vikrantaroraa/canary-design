@@ -1,4 +1,4 @@
-.sidebar-filter {
+.drawer {
   height: 100vh;
   overflow-y: scroll;
   position: fixed;
@@ -8,7 +8,7 @@
   /* background-color: #efefee; */
 }
 
-.sidebar-filter.active {
+.drawer .drawer-active {
   /* right: 0; */
   transition: 350ms;
 }
