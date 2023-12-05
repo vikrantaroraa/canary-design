@@ -8,7 +8,7 @@
 // import FileUploadExample from "src/components/example-components/FileUploadExample";
 // import ExampleCarouselTypeA from "src/components/example-components/CarouselTypeAExample";
 // import { ExampleDrawer } from "src/components/example-components/DrawerExample";
-import { ProductTour } from "src/components/Tour";
+import { Tour } from "src/components/Tour";
 import "./App.css";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
       {/* <ExampleCarouselTypeB /> */}
       {/* <FileUploadExample /> */}
       {/* <ExampleDrawer /> */}
-      <ProductTour />
+      <Tour />
       {/* <Button type="fill" onClick={() => console.log("hi")}>
         Hello
       </Button>
