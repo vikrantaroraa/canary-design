@@ -1,0 +1,70 @@
+.main-container {
+  display: flex;
+  /* border: 2px dotted; */
+  /* flex-direction: column; */
+  /* position: relative; */
+}
+
+.main-container span {
+  margin: 12px;
+  /* border: 1px solid #f0f0f0; */
+}
+
+.focusable-element {
+  background-color: transparent;
+}
+
+.info-dialog {
+  display: flex;
+  flex-direction: column;
+  height: 220px;
+  width: 250px;
+  border: 1px solid #f0f0f0;
+  background-color: white;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 75%;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+  /* background-color: lightgreen; */
+}
+.buttons-container {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  height: 25%;
+  /* background-color: lightpink; */
+}
+
+.buttons-container button {
+  padding: 8px 16px;
+  border: 1px solid #bdbdbd;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.start-tour {
+  cursor: pointer;
+}
+
+.popover-arrow {
+  height: 12px;
+  width: 12px;
+  background-color: white;
+  transform: rotate(45deg);
+  position: absolute;
+  top: -6px;
+  left: 25px;
+}
