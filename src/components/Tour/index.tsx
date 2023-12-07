@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
+import { TourProps } from "src/components/Tour/index.interface";
 import styles from "src/components/Tour/index.module.css";
 
-const Tour = () => {
+const TourComponent = ({ data, children }: TourProps, ref: unknown) => {
   const [showDialog, setShowDialog] = useState(false);
   const [popopContent, setPopupContent] = useState("");
   const [idx, setIdx] = useState(-1);
+  const refValues = ref.current;
 
   let tempIdx;
-  const elementIdentitiesArray = [
-    { id: "id1", content: "content-1" },
-    { id: "id2", content: "content-2" },
-    { id: "id3", content: "content-3" },
-    { id: "id4", content: "content-4" },
-  ];
 
   const setFocus = (flag: string) => {
     tempIdx = idx;
@@ -27,16 +23,16 @@ const Tour = () => {
     }
 
     // finding all elements that can have a shadow and removing shadow from all those elements
-    const allFocusableElements = Array.from(
-      document.querySelectorAll(`.${styles["focusable-element"]}`)
+    const allStepElements = Array.from(
+      document.querySelectorAll("[data-step]")
     );
-    allFocusableElements.forEach((element) => {
+    allStepElements.forEach((element) => {
       element.style.boxShadow = "none";
     });
 
     // finding target element and applying box-shadow (and maybe some other css) on it
-    const targetElement = document.getElementById(
-      elementIdentitiesArray[tempIdx].id
+    const targetElement = document.querySelector(
+      `[data-step="${data[tempIdx].step}"]`
     );
     targetElement.style.boxShadow =
       "0px 0px 1px 2px rgba(33, 33, 33, 0.8),  0px 0px 0px 5000px rgba(33, 33, 33, 0.5)";
@@ -56,19 +52,21 @@ const Tour = () => {
     infoDialogDiv.style.transition = "all 0.2s ease-out 0s";
 
     // setting the content of the popup dialog
-    setPopupContent(elementIdentitiesArray[tempIdx].content);
+    setPopupContent(data[tempIdx].content);
 
     // scrolling the page to bring the target element into the view
     targetElement.scrollIntoView({ behavior: "smooth" });
+
+    // updating the index to the latest tempIdx value
     setIdx(tempIdx);
   };
 
   const finishTour = () => {
     // removing the box shadow on finishing the tour
-    const allFocusableElements = Array.from(
-      document.querySelectorAll(`.${styles["focusable-element"]}`)
+    const allStepElements = Array.from(
+      document.querySelectorAll("[data-step]")
     );
-    allFocusableElements.forEach((element) => {
+    allStepElements.forEach((element) => {
       element.style.boxShadow = "none";
     });
     // re-setting the state to original values
@@ -76,45 +74,35 @@ const Tour = () => {
     setPopupContent("");
     setIdx(-1);
     // enabling the start tour button
-    const startTourButton = document.querySelector(`.${styles["start-tour"]}`);
+    const startTourButton = ref.current[0];
     startTourButton.disabled = false;
   };
 
   const startTourAndDisableButton = () => {
     setFocus("next");
-    const startTourButton = document.querySelector(`.${styles["start-tour"]}`);
+    const startTourButton = ref.current[0];
     startTourButton.disabled = true;
   };
 
+  useImperativeHandle(
+    ref,
+    () => {
+      return [...refValues, { startTourAndDisableButton }];
+    },
+    []
+  );
+
   return (
-    <div className={styles["main-container"]}>
-      <span id="id1" className={styles["focusable-element"]}>
-        Hello - 1
-      </span>
-      <span id="id2" className={styles["focusable-element"]}>
-        Hello - 2
-      </span>
-      <span id="id3" className={styles["focusable-element"]}>
-        Hello - 3
-      </span>
-      <span id="id4" className={styles["focusable-element"]}>
-        Hello - 4
-      </span>
-      <button
-        onClick={startTourAndDisableButton}
-        className={styles["start-tour"]}
-      >
-        Start Tour
-      </button>
+    <div className={styles["tour-container"]}>
+      {children}
       <div
         className={styles["info-dialog"]}
         style={{ display: showDialog ? "flex" : "none" }}
       >
-        {/* {console.log("index at the time of btn render: ", idx)} */}
         <div className={styles["content-container"]}>{popopContent}</div>
         <div className={styles["buttons-container"]}>
           {idx > 0 && <button onClick={() => setFocus("back")}>Back</button>}
-          {idx < elementIdentitiesArray.length - 1 ? (
+          {idx < data.length - 1 ? (
             <button onClick={() => setFocus("next")}>Next</button>
           ) : (
             <button onClick={finishTour}>Finish</button>
@@ -125,5 +113,7 @@ const Tour = () => {
     </div>
   );
 };
+
+const Tour = forwardRef(TourComponent);
 
 export { Tour };

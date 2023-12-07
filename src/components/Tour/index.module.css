@@ -1,17 +1,5 @@
-.main-container {
+.tour-container {
   display: flex;
-  /* border: 2px dotted; */
-  /* flex-direction: column; */
-  /* position: relative; */
-}
-
-.main-container span {
-  margin: 12px;
-  /* border: 1px solid #f0f0f0; */
-}
-
-.focusable-element {
-  background-color: transparent;
 }
 
 .info-dialog {
@@ -37,6 +25,7 @@
   position: relative;
   /* background-color: lightgreen; */
 }
+
 .buttons-container {
   box-sizing: border-box;
   display: flex;
@@ -52,10 +41,6 @@
   padding: 8px 16px;
   border: 1px solid #bdbdbd;
   border-radius: 2px;
-  cursor: pointer;
-}
-
-.start-tour {
   cursor: pointer;
 }
 
