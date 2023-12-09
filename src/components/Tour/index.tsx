@@ -10,6 +10,18 @@ const TourComponent = ({ data, children }: TourProps, ref: unknown) => {
 
   let tempIdx;
 
+  const isElementInView = (element: Element) => {
+    const rect = element.getBoundingClientRect();
+
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  };
+
   const setFocus = (flag: string) => {
     tempIdx = idx;
     if (flag == "next") {
@@ -38,27 +50,68 @@ const TourComponent = ({ data, children }: TourProps, ref: unknown) => {
       "0px 0px 1px 2px rgba(33, 33, 33, 0.8),  0px 0px 0px 5000px rgba(33, 33, 33, 0.5)";
     // targetElement.style.transition = "all 0.3s ease-out 0s";
 
-    // finding the co-ordinates of the target element. These co-ordinates will be used to position the popup
-    // that shows information about the focused element.
-    const targetElementCoordinates = targetElement.getBoundingClientRect();
-    const { top, left } = targetElementCoordinates;
-
-    // finding the popup dialog element.
-    const infoDialogDiv = document.querySelector(`.${styles["info-dialog"]}`);
-
-    // setting the position of the popup element and applying extra css (i.e animations etc)
-    infoDialogDiv.style.top = `${top + 40}px`;
-    infoDialogDiv.style.left = `${left - 25}px`;
-    infoDialogDiv.style.transition = "all 0.2s ease-out 0s";
-
-    // setting the content of the popup dialog
-    setPopupContent(data[tempIdx].content);
-
     // scrolling the page to bring the target element into the view
-    targetElement.scrollIntoView({ behavior: "smooth" });
+    if (!isElementInView(targetElement)) {
+      targetElement.scrollIntoView({
+        inline: "center",
+        block: "center",
+        behavior: "smooth",
+      });
 
-    // updating the index to the latest tempIdx value
-    setIdx(tempIdx);
+      document.onscrollend = (event) => {
+        // finding the co-ordinates of the target element. These co-ordinates will be used to position the popup
+        // that shows information about the focused element.
+        const targetElementCoordinates = targetElement.getBoundingClientRect();
+        const { top, left } = targetElementCoordinates;
+
+        // finding the popup dialog element.
+        const infoDialogDiv = document.querySelector(
+          `.${styles["info-dialog"]}`
+        );
+
+        // setting the position of the popup element and applying extra css (i.e animations etc)
+
+        // popup bottom-co-ordinates
+        // infoDialogDiv.style.top = `${top + 40}px`;
+        // infoDialogDiv.style.left = `${left - 25}px`;
+
+        // popup right co-ordinates
+        infoDialogDiv.style.top = `${top - 100}px`;
+        infoDialogDiv.style.left = `${left + 105}px`;
+        infoDialogDiv.style.transition = "all 0.2s ease-out 0s";
+
+        // setting the content of the popup dialog
+        setPopupContent(data[tempIdx].content);
+
+        // updating the index to the latest tempIdx value
+        setIdx(tempIdx);
+      };
+    } else {
+      // finding the co-ordinates of the target element. These co-ordinates will be used to position the popup
+      // that shows information about the focused element.
+      const targetElementCoordinates = targetElement.getBoundingClientRect();
+      const { top, left } = targetElementCoordinates;
+
+      // finding the popup dialog element.
+      const infoDialogDiv = document.querySelector(`.${styles["info-dialog"]}`);
+
+      // setting the position of the popup element and applying extra css (i.e animations etc)
+
+      // popup bottom-co-ordinates
+      // infoDialogDiv.style.top = `${top + 40}px`;
+      // infoDialogDiv.style.left = `${left - 25}px`;
+
+      // popup right co-ordinates
+      infoDialogDiv.style.top = `${top - 100}px`;
+      infoDialogDiv.style.left = `${left + 105}px`;
+      infoDialogDiv.style.transition = "all 0.2s ease-out 0s";
+
+      // setting the content of the popup dialog
+      setPopupContent(data[tempIdx].content);
+
+      // updating the index to the latest tempIdx value
+      setIdx(tempIdx);
+    }
   };
 
   const finishTour = () => {
