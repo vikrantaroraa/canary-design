@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { TourProps } from "src/components/Tour/index.interface";
 import styles from "src/components/Tour/index.module.css";
@@ -23,6 +24,9 @@ const TourComponent = ({ data, children }: TourProps, ref: unknown) => {
   };
 
   const setFocus = (flag: string) => {
+    // remenber to keep popup height and width same as defined in the css file
+    const popupHeight = 175;
+    const popupWidth = 250;
     tempIdx = idx;
     if (flag == "next") {
       tempIdx = tempIdx + 1;
@@ -50,6 +54,22 @@ const TourComponent = ({ data, children }: TourProps, ref: unknown) => {
       "0px 0px 1px 2px rgba(33, 33, 33, 0.8),  0px 0px 0px 5000px rgba(33, 33, 33, 0.5)";
     // targetElement.style.transition = "all 0.3s ease-out 0s";
 
+    // finding popup position for the current target element
+    const popupPosition = data[tempIdx].popupPosition;
+
+    // finding the popup dialog element
+    const popupDiv = document.querySelector(`.${styles["info-dialog"]}`);
+
+    // finding the popop arrow and resetting the previously applied position style
+    const popupArrow = document.querySelector(`.${styles["popover-arrow"]}`);
+    const popupArrowResetStyle = {
+      top: 0,
+      left: 0,
+      right: 0,
+      left: 0,
+    };
+    popupArrow.style = popupArrowResetStyle;
+
     // scrolling the page to bring the target element into the view
     if (!isElementInView(targetElement)) {
       targetElement.scrollIntoView({
@@ -58,27 +78,37 @@ const TourComponent = ({ data, children }: TourProps, ref: unknown) => {
         behavior: "smooth",
       });
 
-      document.onscrollend = (event) => {
+      document.onscrollend = () => {
         // finding the co-ordinates of the target element. These co-ordinates will be used to position the popup
         // that shows information about the focused element.
         const targetElementCoordinates = targetElement.getBoundingClientRect();
-        const { top, left } = targetElementCoordinates;
+        const { top, left, bottom, right } = targetElementCoordinates;
 
-        // finding the popup dialog element.
-        const infoDialogDiv = document.querySelector(
-          `.${styles["info-dialog"]}`
-        );
+        // setting the position of the popup element and pointer arrow and applying extra css (i.e animations etc)
+        if (popupPosition === "bottom") {
+          popupDiv.style.top = `${bottom + 15}px`;
+          popupDiv.style.left = `${left}px`;
+          popupArrow.style.top = "-6px";
+          popupArrow.style.left = "25px";
+        } else if (popupPosition === "right") {
+          popupDiv.style.top = `${top}px`;
+          popupDiv.style.left = `${right + 15}px`;
+          popupArrow.style.top = "25px";
+          popupArrow.style.left = "-6px";
+        } else if (popupPosition === "top") {
+          popupDiv.style.top = `${top - popupHeight + 15}px`;
+          popupDiv.style.left = `${left}px`;
+          popupArrow.style.bottom = "-6px";
+          popupArrow.style.left = "25px";
+        } else if (popupPosition === "left") {
+          popupDiv.style.top = `${top}px`;
+          popupDiv.style.left = `${left - (popupWidth + 15)}px`;
+          popupArrow.style.top = "25px";
+          popupArrow.style.right = "-6px";
+        }
 
-        // setting the position of the popup element and applying extra css (i.e animations etc)
-
-        // popup bottom-co-ordinates
-        // infoDialogDiv.style.top = `${top + 40}px`;
-        // infoDialogDiv.style.left = `${left - 25}px`;
-
-        // popup right co-ordinates
-        infoDialogDiv.style.top = `${top - 100}px`;
-        infoDialogDiv.style.left = `${left + 105}px`;
-        infoDialogDiv.style.transition = "all 0.2s ease-out 0s";
+        // applying some extra css on the popup dialog box
+        popupDiv.style.transition = "all 0.2s ease-out 0s";
 
         // setting the content of the popup dialog
         setPopupContent(data[tempIdx].content);
@@ -90,21 +120,33 @@ const TourComponent = ({ data, children }: TourProps, ref: unknown) => {
       // finding the co-ordinates of the target element. These co-ordinates will be used to position the popup
       // that shows information about the focused element.
       const targetElementCoordinates = targetElement.getBoundingClientRect();
-      const { top, left } = targetElementCoordinates;
+      const { top, left, bottom, right } = targetElementCoordinates;
 
-      // finding the popup dialog element.
-      const infoDialogDiv = document.querySelector(`.${styles["info-dialog"]}`);
+      // setting the position of the popup element and pointer arrow and applying extra css (i.e animations etc)
+      if (popupPosition === "bottom") {
+        popupDiv.style.top = `${bottom + 15}px`;
+        popupDiv.style.left = `${left}px`;
+        popupArrow.style.top = "-6px";
+        popupArrow.style.left = "25px";
+      } else if (popupPosition === "right") {
+        popupDiv.style.top = `${top}px`;
+        popupDiv.style.left = `${right + 15}px`;
+        popupArrow.style.top = "25px";
+        popupArrow.style.left = "-6px";
+      } else if (popupPosition === "top") {
+        popupDiv.style.top = `${top - (popupHeight + 15)}px`;
+        popupDiv.style.left = `${left}px`;
+        popupArrow.style.bottom = "-6px";
+        popupArrow.style.left = "25px";
+      } else if (popupPosition === "left") {
+        popupDiv.style.top = `${top}px`;
+        popupDiv.style.left = `${left - (popupWidth + 15)}px`;
+        popupArrow.style.top = "25px";
+        popupArrow.style.right = "-6px";
+      }
 
-      // setting the position of the popup element and applying extra css (i.e animations etc)
-
-      // popup bottom-co-ordinates
-      // infoDialogDiv.style.top = `${top + 40}px`;
-      // infoDialogDiv.style.left = `${left - 25}px`;
-
-      // popup right co-ordinates
-      infoDialogDiv.style.top = `${top - 100}px`;
-      infoDialogDiv.style.left = `${left + 105}px`;
-      infoDialogDiv.style.transition = "all 0.2s ease-out 0s";
+      // applying some extra css on the popup dialog box
+      popupDiv.style.transition = "all 0.2s ease-out 0s";
 
       // setting the content of the popup dialog
       setPopupContent(data[tempIdx].content);

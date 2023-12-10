@@ -5,8 +5,10 @@
 .info-dialog {
   display: flex;
   flex-direction: column;
-  height: 220px;
-  width: 250px;
+  /* If you are changing the height or width of this popup dialog, be sure to also update it in the setFocus 
+  function because this height and width is used for calculating the position of the popup element */
+  height: 175px; /* <--this height needs to be same as in setFocus function */
+  width: 250px; /* <--this width needs to be same as in setFocus function */
   border: 1px solid #f0f0f0;
   background-color: white;
   border-radius: 5px;
@@ -21,7 +23,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 75%;
+  height: 70%;
   border-bottom: 1px solid #e0e0e0;
   position: relative;
   /* background-color: lightgreen; */
@@ -34,7 +36,7 @@
   align-items: center;
   padding: 10px;
   width: 100%;
-  height: 25%;
+  height: 30%;
   /* background-color: lightpink; */
 }
 
@@ -51,6 +53,20 @@
   background-color: white;
   transform: rotate(45deg);
   position: absolute;
-  top: -6px;
-  left: 25px;
+  /* Do not remove this css - can later be used which making this component separately somewhere else */
+  /* for popup at bottom  */
+  /* top: -6px;
+  left: 25px; */
+
+  /* for popup at right  */
+  /* top: 25px;
+  left: -6px; */
+
+  /* for popup at top  */
+  /* bottom: -6px;
+  left: 25px; */
+
+  /* for popup at left  */
+  /* top: 25px;
+  right: -6px; */
 }
