@@ -26,10 +26,11 @@ const ExampleTour = () => {
       <div
         style={{
           display: "flex",
-          // flexDirection: "column",
+          flexDirection: "column",
           // backgroundColor: "lightgreen",
-          marginLeft: 400,
-          width: "80%",
+          marginLeft: 200,
+          marginRight: 200,
+          width: "50%",
         }}
       >
         <div

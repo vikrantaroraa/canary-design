@@ -66,57 +66,11 @@ const TourComponent = ({ data, children }: TourProps, ref: unknown) => {
       top: 0,
       left: 0,
       right: 0,
-      left: 0,
+      bottom: 0,
     };
     popupArrow.style = popupArrowResetStyle;
 
-    // scrolling the page to bring the target element into the view
-    if (!isElementInView(targetElement)) {
-      targetElement.scrollIntoView({
-        inline: "center",
-        block: "center",
-        behavior: "smooth",
-      });
-
-      document.onscrollend = () => {
-        // finding the co-ordinates of the target element. These co-ordinates will be used to position the popup
-        // that shows information about the focused element.
-        const targetElementCoordinates = targetElement.getBoundingClientRect();
-        const { top, left, bottom, right } = targetElementCoordinates;
-
-        // setting the position of the popup element and pointer arrow and applying extra css (i.e animations etc)
-        if (popupPosition === "bottom") {
-          popupDiv.style.top = `${bottom + 15}px`;
-          popupDiv.style.left = `${left}px`;
-          popupArrow.style.top = "-6px";
-          popupArrow.style.left = "25px";
-        } else if (popupPosition === "right") {
-          popupDiv.style.top = `${top}px`;
-          popupDiv.style.left = `${right + 15}px`;
-          popupArrow.style.top = "25px";
-          popupArrow.style.left = "-6px";
-        } else if (popupPosition === "top") {
-          popupDiv.style.top = `${top - popupHeight + 15}px`;
-          popupDiv.style.left = `${left}px`;
-          popupArrow.style.bottom = "-6px";
-          popupArrow.style.left = "25px";
-        } else if (popupPosition === "left") {
-          popupDiv.style.top = `${top}px`;
-          popupDiv.style.left = `${left - (popupWidth + 15)}px`;
-          popupArrow.style.top = "25px";
-          popupArrow.style.right = "-6px";
-        }
-
-        // applying some extra css on the popup dialog box
-        popupDiv.style.transition = "all 0.2s ease-out 0s";
-
-        // setting the content of the popup dialog
-        setPopupContent(data[tempIdx].content);
-
-        // updating the index to the latest tempIdx value
-        setIdx(tempIdx);
-      };
-    } else {
+    const setPopupAndUpdateIdx = () => {
       // finding the co-ordinates of the target element. These co-ordinates will be used to position the popup
       // that shows information about the focused element.
       const targetElementCoordinates = targetElement.getBoundingClientRect();
@@ -153,6 +107,22 @@ const TourComponent = ({ data, children }: TourProps, ref: unknown) => {
 
       // updating the index to the latest tempIdx value
       setIdx(tempIdx);
+
+      // removing the event listener
+      document.removeEventListener("scrollend", setPopupAndUpdateIdx);
+    };
+
+    // scrolling the page to bring the target element into the view
+    if (!isElementInView(targetElement)) {
+      targetElement.scrollIntoView({
+        inline: "center",
+        block: "center",
+        behavior: "smooth",
+      });
+
+      document.addEventListener("scrollend", setPopupAndUpdateIdx);
+    } else {
+      setPopupAndUpdateIdx();
     }
   };
 
@@ -196,6 +166,7 @@ const TourComponent = ({ data, children }: TourProps, ref: unknown) => {
       >
         <div className={styles["content-container"]}>{popopContent}</div>
         <div className={styles["buttons-container"]}>
+          {/* {console.log("idx at this render: ", idx)} */}
           {idx > 0 && <button onClick={() => setFocus("back")}>Back</button>}
           {idx < data.length - 1 ? (
             <button onClick={() => setFocus("next")}>Next</button>
