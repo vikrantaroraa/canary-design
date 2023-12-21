@@ -13,12 +13,16 @@ const tourData = [
 const ExampleTour = () => {
   const tourRefAndStartButtonRef = useRef([]);
   const spanStyle: React.CSSProperties = {
-    margin: "12px",
-    marginBottom: "30vh",
+    width: "fit-content",
   };
 
   const startTourButtonStyle: React.CSSProperties = {
     cursor: "pointer",
+    width: "fit-content",
+    padding: "8px 10px",
+    borderRadius: "3px",
+    border: "1px solid",
+    margin: "auto",
   };
 
   return (
@@ -27,63 +31,77 @@ const ExampleTour = () => {
         style={{
           display: "flex",
           flexDirection: "column",
-          // backgroundColor: "lightgreen",
-          marginLeft: 200,
-          marginRight: 200,
-          width: "50%",
+          width: "100%",
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            flex: 1,
           }}
         >
-          <span id="id1" style={spanStyle} data-step="1">
-            Hello - 1
-          </span>
-          <span id="id2" style={spanStyle} data-step="2">
-            Hello - 2
-          </span>
-          <span id="id3" style={spanStyle} data-step="3">
-            Hello - 3
-          </span>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              flex: 1,
+              gap: "50vh",
+            }}
+          >
+            <span id="id1" style={spanStyle} data-step="1">
+              Hello - 1
+            </span>
+            <span id="id2" style={spanStyle} data-step="2">
+              Hello - 2
+            </span>
+            <span id="id3" style={spanStyle} data-step="3">
+              Hello - 3
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              flex: 1,
+              gap: "50vh",
+            }}
+          >
+            <span id="id4" style={spanStyle} data-step="4">
+              Hello - 4
+            </span>
+            <span id="id4" style={spanStyle} data-step="5">
+              5 to ye hai
+            </span>
+            <span id="id4" style={spanStyle} data-step="6">
+              mai hoon - 6
+            </span>
+          </div>
         </div>
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            flex: 1,
+            justifyContent: "center",
           }}
         >
-          <span id="id4" style={spanStyle} data-step="4">
-            Hello - 4
-          </span>
-          <span id="id4" style={spanStyle} data-step="5">
-            5 to ye hai
-          </span>
-          <span id="id4" style={spanStyle} data-step="6">
-            mai hoon - 6
-          </span>
+          <button
+            style={startTourButtonStyle}
+            // here we are getting the current property of ref which is an array i.e tourRefAndStartButtonRef.current
+            // is an array and then with "tourRefAndStartButtonRef?.current.length - 1" we are selecting the last
+            // element of that array which is an object which has the "startTourAndDisableButton" function exposed
+            // by the useImperativeHandle hook.
+            onClick={() => {
+              tourRefAndStartButtonRef?.current[
+                tourRefAndStartButtonRef?.current.length - 1
+              ].startTourAndDisableButton();
+            }}
+            ref={(thisElement) =>
+              (tourRefAndStartButtonRef.current[0] = thisElement)
+            }
+          >
+            Start Tour
+          </button>
         </div>
-        <button
-          style={startTourButtonStyle}
-          // here we are getting the current property of ref which is an array i.e tourRefAndStartButtonRef.current
-          // is an array and then with "tourRefAndStartButtonRef?.current.length - 1" we are selecting the last
-          // element of that array which is an object which has the "startTourAndDisableButton" function exposed
-          // by the useImperativeHandle hook.
-          onClick={() => {
-            tourRefAndStartButtonRef?.current[
-              tourRefAndStartButtonRef?.current.length - 1
-            ].startTourAndDisableButton();
-          }}
-          ref={(thisElement) =>
-            (tourRefAndStartButtonRef.current[0] = thisElement)
-          }
-        >
-          Start Tour
-        </button>
       </div>
     </Tour>
   );

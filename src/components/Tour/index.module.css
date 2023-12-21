@@ -1,5 +1,6 @@
 .tour-container {
   display: flex;
+  width: 100%;
 }
 
 .info-dialog {
@@ -53,7 +54,7 @@
   background-color: white;
   transform: rotate(45deg);
   position: absolute;
-  /* Do not remove this css - can later be used which making this component separately somewhere else */
+  /* Do not remove this css - can later be used when making this component separately somewhere else */
   /* for popup at bottom  */
   /* top: -6px;
   left: 25px; */
