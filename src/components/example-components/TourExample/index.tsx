@@ -6,8 +6,8 @@ const tourData = [
   { step: "2", content: "content-2", popupPosition: "bottom" },
   { step: "3", content: "content-3", popupPosition: "top" },
   { step: "4", content: "content-4", popupPosition: "left" },
-  { step: "5", content: "5 ka content", popupPosition: "top" },
-  { step: "6", content: "ye hai 6th ka content", popupPosition: "left" },
+  { step: "5", content: "5 ka content", popupPosition: "right" },
+  { step: "6", content: "ye hai 6th ka content", popupPosition: "top" },
 ];
 
 const ExampleTour = () => {
@@ -25,29 +25,34 @@ const ExampleTour = () => {
     margin: "auto",
   };
 
+  const mainContainerStyle: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+  };
+
+  const allFocusableSpansContainerStyle: React.CSSProperties = {
+    display: "flex",
+  };
+
+  const spanContainerStyle: React.CSSProperties = {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "50vh",
+  };
+
+  const buttonContainerStyle: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+  };
+
   return (
     <Tour data={tourData} ref={tourRefAndStartButtonRef}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              flex: 1,
-              gap: "50vh",
-            }}
-          >
+      <div style={mainContainerStyle}>
+        <div style={allFocusableSpansContainerStyle}>
+          <div style={spanContainerStyle}>
             <span id="id1" style={spanStyle} data-step="1">
               Hello - 1
             </span>
@@ -58,15 +63,7 @@ const ExampleTour = () => {
               Hello - 3
             </span>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              flex: 1,
-              gap: "50vh",
-            }}
-          >
+          <div style={spanContainerStyle}>
             <span id="id4" style={spanStyle} data-step="4">
               Hello - 4
             </span>
@@ -78,12 +75,7 @@ const ExampleTour = () => {
             </span>
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <div style={buttonContainerStyle}>
           <button
             style={startTourButtonStyle}
             // here we are getting the current property of ref which is an array i.e tourRefAndStartButtonRef.current
