@@ -18,17 +18,19 @@
 .timeline-entry {
   display: flex;
   gap: 20px;
-  /* background-color: lightblue; */
+  width: 100%;
+  background-color: lightblue;
 }
 
 .image-container {
-  width: var(--avatar-size);
+  /* this will be removed after finalizing all props */
+  /* width: var(--avatar-size); */
   position: relative;
-  /* background-color: lightgreen; */
+  background-color: lightgreen;
 }
 
 .image-container img {
-  /* not giving height so that it takes entire height of card */
+  /* not giving height: 100% so that the image does not take entire height of the image container  */
   width: 100%;
   border-radius: 50%;
   border: 2px solid #fff;
@@ -67,6 +69,7 @@
   gap: 8px;
   background-color: white;
   position: relative;
+  background-color: lightyellow;
 }
 
 .timeline-card .header {

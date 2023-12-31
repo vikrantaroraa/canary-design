@@ -25,7 +25,7 @@ function App() {
       {/* <FileUploadExample /> */}
       {/* <ExampleDrawer /> */}
       {/* <ExampleTour /> */}
-      <Timeline />
+      <Timeline dotSize={50} />
       {/* <Button type="fill" onClick={() => console.log("hi")}>
         Hello
       </Button>
