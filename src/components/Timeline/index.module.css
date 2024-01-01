@@ -5,14 +5,14 @@
 }
 
 :root {
-  --avatar-size: 50px;
-  --timeline-gap: 16px;
+  /* --avatar-size: 50px; */
+  /* --timeline-gap: 16px; */
 }
 
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: var(--timeline-gap);
+  /* gap: var(--timeline-gap); */
 }
 
 .timeline-entry {
@@ -36,8 +36,8 @@
   border: 2px solid #fff;
 }
 
-.image-container::after {
-  content: "";
+.line {
+  /* copied css */
   position: absolute;
   flex: 1;
   width: 2px;
@@ -46,16 +46,12 @@
   right: 0;
   background-color: #777777;
   z-index: 999999;
-  /* not giving the height so that insted of timeline-line taking entire height of the image-container, its height is calculated dynamically */
+  /* not giving the below height so that insted of timeline-line taking entire height of the image-container, its height is calculated dynamically */
   /* height: 100%; */
   /* the value of top is the height of image, so that the line starts where the image ends */
-  top: var(--avatar-size);
+  /* top: var(--avatar-size); */
   /* we go as low in bottom as the --timeline-gap so that the timeline-line fills the entire gap upto the next avatar */
-  bottom: calc(var(--timeline-gap) * -1);
-}
-
-.timeline-entry:last-child .image-container::after {
-  display: none;
+  /* bottom: calc(var(--timeline-gap) * -1); */
 }
 
 .timeline-card {
