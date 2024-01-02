@@ -19,14 +19,14 @@
   display: flex;
   gap: 20px;
   width: 100%;
-  background-color: lightblue;
+  /* background-color: lightblue; */
 }
 
 .image-container {
   /* this will be removed after finalizing all props */
   /* width: var(--avatar-size); */
   position: relative;
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
 }
 
 .image-container img {
@@ -65,7 +65,7 @@
   gap: 8px;
   background-color: white;
   position: relative;
-  background-color: lightyellow;
+  /* background-color: lightyellow; */
 }
 
 .timeline-card .header {
