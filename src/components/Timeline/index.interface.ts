@@ -2,7 +2,7 @@ export interface TimelineProps {
   /**
    * The size of the dot. This size will also apply to the image that you can pass to replace the dot.
    */
-  dotSize?: number;
+  milestoneIconSize?: number;
   /**
    * The gap between two timeline entries.
    */
@@ -15,4 +15,5 @@ export interface TimelineProps {
   // Since we don't know what kind of the component the user will want to render on the timeline, we will use
   // the unknown type for the UserTimelineComponent
   UserTimelineComponent?: React.FC<unknown>;
+  showSameMilestoneIcon?: boolean;
 }

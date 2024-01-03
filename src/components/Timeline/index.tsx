@@ -1,38 +1,53 @@
 import React from "react";
 import { TimelineProps } from "src/components/Timeline/index.interface";
+import defaultUserIcon from "src/assets/timeline-default-user.svg";
 import styles from "src/components/Timeline/index.module.css";
 
 const Timeline = ({
-  dotSize = 50,
-  timelineGap = 16,
   data,
+  timelineGap = 16,
+  milestoneIconSize = 50,
   UserTimelineComponent,
+  showSameMilestoneIcon = false,
 }: TimelineProps) => {
   return (
     <div className={styles["timeline"]} style={{ gap: timelineGap }}>
       {/* the timelineData extracted inside map is the prop object to be passed to the <UserTimelineComponent />  */}
       {UserTimelineComponent &&
         data &&
-        data?.map((timelineData, index) => {
+        data.map((timelineData, index) => {
+          const { milestoneIcon, componentData } = timelineData;
           return (
             <div className={styles["timeline-entry"]} key={index}>
               <div
-                className={styles["image-container"]}
-                style={{ width: dotSize }}
+                className={styles["image-and-line-container"]}
+                style={{ width: milestoneIconSize }}
               >
-                <img src="https://source.unsplash.com/iEEBWgY_6lA" />
+                <div
+                  className={styles["image-container"]}
+                  style={{
+                    width: milestoneIconSize,
+                    height: milestoneIconSize,
+                  }}
+                >
+                  {showSameMilestoneIcon ? (
+                    <img src={defaultUserIcon} />
+                  ) : (
+                    <img src={milestoneIcon} />
+                  )}
+                </div>
                 {index !== data.length - 1 && (
                   <div
                     className={styles["line"]}
                     style={{
-                      top: dotSize,
+                      top: milestoneIconSize,
                       bottom: `-${timelineGap}px`,
                     }}
                   ></div>
                 )}
               </div>
               {/* The data array received as prop contains the objects that are passed as prop objects to the UserTimelineComponent  */}
-              <UserTimelineComponent {...timelineData} />
+              <UserTimelineComponent {...componentData} />
             </div>
           );
         })}
