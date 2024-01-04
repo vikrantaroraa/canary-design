@@ -1,6 +1,5 @@
 import React from "react";
 import { TimelineProps } from "src/components/Timeline/index.interface";
-import defaultUserIcon from "src/assets/timeline-default-user.svg";
 import styles from "src/components/Timeline/index.module.css";
 
 const Timeline = ({
@@ -9,10 +8,11 @@ const Timeline = ({
   milestoneIconSize = 50,
   UserTimelineComponent,
   showSameMilestoneIcon = false,
+  userMilestoneIcon = null,
 }: TimelineProps) => {
   return (
     <div className={styles["timeline"]} style={{ gap: timelineGap }}>
-      {/* the timelineData extracted inside map is the prop object to be passed to the <UserTimelineComponent />  */}
+      {/* the componentData extracted inside map is the prop object to be passed to the <UserTimelineComponent />  */}
       {UserTimelineComponent &&
         data &&
         data.map((timelineData, index) => {
@@ -30,8 +30,8 @@ const Timeline = ({
                     height: milestoneIconSize,
                   }}
                 >
-                  {showSameMilestoneIcon ? (
-                    <img src={defaultUserIcon} />
+                  {showSameMilestoneIcon && userMilestoneIcon ? (
+                    <img src={userMilestoneIcon} />
                   ) : (
                     <img src={milestoneIcon} />
                   )}

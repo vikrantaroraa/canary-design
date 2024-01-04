@@ -1,6 +1,7 @@
 import React from "react";
 import { Timeline } from "src/components/Timeline";
 import UserTimelineComponent from "src/components/dummy-components/UserTimelineComponent";
+import defaultUserIcon from "src/assets/timeline-default-user.svg";
 
 {
   // <img src="https://source.unsplash.com/2crxTr4jCkc" />
@@ -53,6 +54,7 @@ const ExampleTimeline = () => {
       timelineGap={16}
       showSameMilestoneIcon={false}
       UserTimelineComponent={(props) => <UserTimelineComponent {...props} />}
+      userMilestoneIcon={defaultUserIcon}
     />
   );
 };
