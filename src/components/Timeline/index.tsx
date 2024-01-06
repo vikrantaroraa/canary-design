@@ -12,11 +12,11 @@ const Timeline = ({
 }: TimelineProps) => {
   return (
     <div className={styles["timeline"]} style={{ gap: timelineGap }}>
-      {/* the componentData extracted inside map is the prop object to be passed to the <UserTimelineComponent />  */}
+      {/* the componentPropsData extracted inside map is the prop object to be passed to the <UserTimelineComponent />  */}
       {UserTimelineComponent &&
         data &&
         data.map((timelineData, index) => {
-          const { milestoneIcon, componentData } = timelineData;
+          const { milestoneIcon, componentPropsData } = timelineData;
           return (
             <div className={styles["timeline-entry"]} key={index}>
               <div
@@ -47,7 +47,7 @@ const Timeline = ({
                 )}
               </div>
               {/* The data array received as prop contains the objects that are passed as prop objects to the UserTimelineComponent  */}
-              <UserTimelineComponent {...componentData} />
+              <UserTimelineComponent {...componentPropsData} />
             </div>
           );
         })}

@@ -8,10 +8,11 @@ export interface TimelineProps {
    */
   timelineGap?: number;
   /**
-   * In addition to containing the "milestoneIcon" url, each object of this array will also have a key called
-   * "componentData". The value of this key will also be an object that will be used as a prop object for
-   * UserTimelineComponent while mapping the timeline. So type of each object in this array should be same as
-   * the type of prop object that UserTimelineComponent receives.
+   * The data prop is an array of objects. Each object contains 2 key-value pairs. The first key is "milestoneIcon".
+   * Its value is the url of the the icon which you want to show for that particular milestone.
+   *
+   * The second key is "componentData". Its value will be an object that will be used as a prop object for
+   * UserTimelineComponent while mapping the timeline.
    */
   data: Array<object>;
   // Since we don't know what kind of the component the user will want to render on the timeline, we will use the

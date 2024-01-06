@@ -1,15 +1,20 @@
-import React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Timeline } from "src/components/Timeline";
 import UserTimelineComponent from "src/components/dummy-components/UserTimelineComponent";
 import defaultUserIcon from "src/assets/timeline-default-user.svg";
 
-{
-  // <img src="https://source.unsplash.com/2crxTr4jCkc" />
-  // <img src="https://source.unsplash.com/dNNfMegXUi4" />
-  // <img src="https://source.unsplash.com/XHVpWcr5grQ" />
-  // <img src="https://source.unsplash.com/mynsNaNwVDc" />
-  // <img src="https://source.unsplash.com/MSepzbKFz10" />
-}
+/**
+ The timeline displays a list of events in chronological order.
+ */
+const meta = {
+  title: "Example/Timeline",
+  component: Timeline,
+  tags: ["autodocs"],
+  // argTypes: {},
+} satisfies Meta<typeof Timeline>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const timelineDataArray = [
   {
@@ -46,17 +51,18 @@ const timelineDataArray = [
   },
 ];
 
-const ExampleTimeline = () => {
-  return (
-    <Timeline
-      data={timelineDataArray}
-      milestoneIconSize={40}
-      timelineGap={16}
-      showSameMilestoneIcon={false}
-      UserTimelineComponent={(props) => <UserTimelineComponent {...props} />}
-      userMilestoneIcon={defaultUserIcon}
-    />
-  );
+export const ExampleTimeline: Story = {
+  render: () => {
+    // Copy all the code inside render function
+    return (
+      <Timeline
+        data={timelineDataArray}
+        milestoneIconSize={40}
+        timelineGap={16}
+        showSameMilestoneIcon={false}
+        UserTimelineComponent={(props) => <UserTimelineComponent {...props} />}
+        userMilestoneIcon={defaultUserIcon}
+      />
+    );
+  },
 };
-
-export default ExampleTimeline;
