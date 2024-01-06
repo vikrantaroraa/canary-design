@@ -2,12 +2,36 @@ import React, { useRef } from "react";
 import { Tour } from "src/components/Tour";
 
 const tourData = [
-  { step: "1", content: "content-1", popupPosition: "right" },
-  { step: "2", content: "content-2", popupPosition: "bottom" },
-  { step: "3", content: "content-3", popupPosition: "top" },
-  { step: "4", content: "content-4", popupPosition: "left" },
-  { step: "5", content: "5 ka content", popupPosition: "right" },
-  { step: "6", content: "ye hai 6th ka content", popupPosition: "top" },
+  {
+    step: "1",
+    content: "Hey, this is a span tag.",
+    popupPosition: "right",
+  },
+  {
+    step: "2",
+    content: "I am the content for this span.",
+    popupPosition: "bottom",
+  },
+  {
+    step: "3",
+    content: "And now, we are at the bottom of the page.",
+    popupPosition: "top",
+  },
+  {
+    step: "4",
+    content: "Yayy! we are again at the top!",
+    popupPosition: "left",
+  },
+  {
+    step: "5",
+    content: "This is the content of span 5.",
+    popupPosition: "right",
+  },
+  {
+    step: "6",
+    content: "And i explain more about this span.",
+    popupPosition: "top",
+  },
 ];
 
 const ExampleTour = () => {
@@ -68,10 +92,10 @@ const ExampleTour = () => {
               Hello - 4
             </span>
             <span id="id4" style={spanStyle} data-step="5">
-              5 to ye hai
+              Hello - 5
             </span>
             <span id="id4" style={spanStyle} data-step="6">
-              mai hoon - 6
+              Hello - 6
             </span>
           </div>
         </div>
