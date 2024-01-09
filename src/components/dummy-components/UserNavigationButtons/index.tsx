@@ -8,23 +8,24 @@ import rightIconWhite from "src/assets/caret-right-white.png";
 interface UserNavigationButtonsProps {
   slideLeft: () => void;
   slideRight: () => void;
-  showDarkIcons: boolean;
+  // showDarkIcons: boolean;
 }
 
 function UserNavigationButtons({
   slideLeft,
   slideRight,
-  showDarkIcons,
-}: UserNavigationButtonsProps) {
+}: // showDarkIcons,
+UserNavigationButtonsProps) {
   return (
     <div className={styles["navigation-buttons"]}>
       <div className={styles["nav-button"]} onClick={slideLeft}>
         <div className={styles["icon-container"]}>
-          {showDarkIcons ? (
+          {/* {showDarkIcons ? (
             <img src={leftIconBlack} />
           ) : (
             <img src={leftIconWhite} />
-          )}
+          )} */}
+          <img src={leftIconWhite} />
         </div>
         {/* may use svg for left & right icons later if we want */}
         {/* <svg
@@ -42,11 +43,12 @@ function UserNavigationButtons({
       </div>
       <div className={styles["nav-button"]} onClick={slideRight}>
         <div className={styles["icon-container"]}>
-          {showDarkIcons ? (
+          {/* {showDarkIcons ? (
             <img src={rightIconBlack} />
           ) : (
             <img src={rightIconWhite} />
-          )}
+          )} */}
+          <img src={rightIconWhite} />
         </div>
         {/* <svg
           width="24"

@@ -14,5 +14,8 @@ interface UserIndicatorComponentProps {
 interface UserNavigationButtonsProps {
   slideLeft: () => void;
   slideRight: () => void;
-  showDarkIcons: boolean;
+  // since the user does not have any control over passing this prop by himself i.e. this prop is being passed from
+  // inside the CarouselTypeA component, so user can not set this from outside when passing props to the CarouselTypeA
+  // component, so we are commenting it for now.
+  // showDarkIcons: boolean;
 }

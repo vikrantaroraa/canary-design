@@ -36,7 +36,7 @@ const CarouselTypeA = ({
         <UserNavigationButtons
           slideLeft={slideLeft}
           slideRight={slideRight}
-          showDarkIcons={false}
+          // showDarkIcons={false}
         />
       ) : (
         <div className={styles["navigation-buttons"]}>
