@@ -99,7 +99,7 @@ export const ExampleDrawer: Story = {
         </div>
         <Drawer
           showDrawer={showDrawer}
-          slideFrom={"right"}
+          slideFrom={"left"}
           style={{
             position: "absolute",
           }}

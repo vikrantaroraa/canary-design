@@ -50,9 +50,22 @@ const ExampleDrawer = () => {
     borderBottom: "1px solid #ddd",
     cursor: "pointer",
   };
+  // Note:- Here, We have commented the styles in line 57 (for the top-level container) and in line 90 (for the Drawer component)
+  // because the top level container by default does not have any margin from the top (or any other direction), and since the drawer
+  // is positioned w.r.t. the viewport by default, hence, the Drawer will also not have any margin from the top.
 
+  // But if you un-comment the styles for the top-level container, then it will have a margin-top of 100px, then to
+  // adjust the Drawer according to the Parent i.e. the top-level container, we will also have to give position: "absolute"
+  // to the Drawer.
   return (
-    <div>
+    <div
+    // style={{
+    //   marginTop: 100,
+    //   border: "2px dotted",
+    //   height: "100vh",
+    //   position: "relative",
+    // }}
+    >
       <div style={appHeaderStyle}>
         <span onClick={toggleShowDrawer} title="Click to open menu drawer">
           <span style={imageContainerStyle}>
@@ -74,9 +87,9 @@ const ExampleDrawer = () => {
       <Drawer
         showDrawer={showDrawer}
         slideFrom={"left"}
-        style={{
-          backgroundColor: "lightgreen",
-        }}
+        // style={{
+        //   position: "absolute",
+        // }}
       >
         <div style={logoAndCloseIconStyle}>
           <span>Flipkart</span>
