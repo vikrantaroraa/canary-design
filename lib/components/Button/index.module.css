@@ -1,0 +1,40 @@
+.container {
+  width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: transparent;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #3b7ded;
+  border: 1px solid #3b7ded;
+  text-align: center;
+}
+
+.container:hover {
+  opacity: 0.8;
+  cursor: pointer;
+  background-color: #ece8e8;
+}
+
+.fill-container {
+  width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #3b7ded;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #fff;
+  border: none;
+  text-align: center;
+}
+
+.fill-container:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
