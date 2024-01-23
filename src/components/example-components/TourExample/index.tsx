@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
 import { Tour } from "src/components/Tour";
+import { TourData } from "src/components/Tour/index.interface";
 
-const tourData = [
+const tourData: TourData[] = [
   {
     step: "1",
     content: "Hey, this is a span tag.",

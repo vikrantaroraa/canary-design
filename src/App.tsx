@@ -24,8 +24,8 @@ function App() {
       {/* <ExampleCarouselTypeB /> */}
       {/* <FileUploadExample /> */}
       {/* <ExampleDrawer /> */}
-      {/* <ExampleTour /> */}
-      <ExampleTimeline />
+      <ExampleTour />
+      {/* <ExampleTimeline /> */}
       {/* <Button type="fill" onClick={() => console.log("hi")}>
         Hello
       </Button>

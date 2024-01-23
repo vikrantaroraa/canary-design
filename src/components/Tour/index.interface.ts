@@ -1,4 +1,4 @@
-interface TourData {
+export interface TourData {
   step: string;
   content: string;
   popupPosition: "top" | "left" | "bottom" | "right";

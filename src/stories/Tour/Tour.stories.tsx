@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useRef } from "react";
 import { Tour } from "src/components/Tour";
+import { TourData } from "src/components/Tour/index.interface";
 
 /**
  * Tour is a popup component that can be used for guiding users through a product.
@@ -19,7 +20,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const tourData = [
+const tourData: TourData[] = [
   {
     step: "1",
     content: "Hey, this is a span tag.",
