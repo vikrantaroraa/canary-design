@@ -1,0 +1,119 @@
+.steps {
+  /* this padding may very well be given by the parent component consuming the Steps component */
+  /* padding: 5px; */
+  width: 100%;
+}
+.steps-container {
+  display: flex;
+  gap: 15px;
+  /* background-color: lightblue; */
+}
+/* The line gets stretched to the next element which can be seen by giving the border and background color. 
+See why the line gets stretched out of its parent component i.e "steps-and-line" */
+.steps-and-line {
+  display: flex;
+  gap: 15px;
+  /* background-color: lightyellow; */
+}
+
+.steps-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  white-space: nowrap;
+  width: auto;
+}
+
+.line-container {
+  position: relative;
+  flex: 2;
+  text-align: center;
+}
+
+.line {
+  border: 1px solid;
+  position: absolute;
+  top: calc(50%);
+  width: 100%;
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  border-radius: 100%;
+}
+
+.circle-done {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  border-radius: 100%;
+  background-color: #e6f4ff;
+  border-color: #e6f4ff;
+}
+
+/* step-inactive css */
+.step-inactive .circle {
+  background-color: #bbb;
+  background-color: rgba(0, 0, 0, 0.06);
+  color: #000;
+}
+
+.step-inactive .label {
+  color: #888;
+}
+
+/* If a step is active then the line before it, which is coming towards it, is blue. But the line next to 
+it which is essentially its corresponding line, should be greyed out as well because it will be blued 
+when we move to the next step*/
+.step-inactive .line,
+.step-active .line {
+  border-color: #eee;
+}
+
+/* step-active css */
+.step-active .circle {
+  background: #3d84f5;
+  color: #fff;
+}
+
+.step-active .label {
+  color: #000;
+}
+
+/* step-done css */
+.step-done .circle {
+  background: #236ee8;
+  color: #eee;
+}
+
+.step-done .label {
+  color: #222;
+}
+
+.step-done .line {
+  border-color: #3d84f5;
+}
+
+/* DO NOT DELETE THIS COMMENTED CSS - SEE STEPS COMPONENT FOR MORE DETAILS */
+/* .navigation-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+} */
+
+/* .steps-content {
+  border-radius: 8px;
+  margin-top: 1rem;
+  padding: 10px;
+  border: 1px dotted;
+  background-color: rgba(0, 0, 0, 0.02);
+  min-height: 300px;
+} */
