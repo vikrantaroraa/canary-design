@@ -53,7 +53,7 @@ export const ExampleSteps = () => {
           onClick={() => {
             if (activeStep !== steps.length - 1)
               return setActiveStep(activeStep + 1);
-            alert("Do Something Magical!");
+            alert("Canary Design is awesome!");
           }}
         >
           {activeStep === steps.length - 1 ? "Finish" : "Next"}
