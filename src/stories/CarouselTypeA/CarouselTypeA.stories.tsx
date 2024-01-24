@@ -9,9 +9,9 @@ import UserIndicatorComponent from "src/components/dummy-components/UserIndicato
 import UserNavigationButtons from "src/components/dummy-components/UserNavigationButtons";
 
 /**
- * This is a Carousel component. Tabs make it easy to show multiple images in the same space.
- * - When there is a group of content on the same level.
- * - When there is insufficient content space, it can be used to save space in the form of a revolving door.
+ * This is a Carousel component. Carousel allows us to show multiple images in the same space. Its can be used when:-
+ * - There is a group of content on the same level.
+ * - There is insufficient content space, it can be used to save space.
  * - Commonly used for a group of pictures/cards.
  */
 const meta = {

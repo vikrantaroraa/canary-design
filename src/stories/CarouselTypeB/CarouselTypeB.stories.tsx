@@ -8,6 +8,16 @@ import Image5 from "src/assets/carousel-image-5.jpg";
 import UserIndicatorComponent from "src/components/dummy-components/UserIndicatorComponent";
 import UserNavigationButtons from "src/components/dummy-components/UserNavigationButtons";
 
+/**
+ * This is another Carousel component. Carousel allows us to show multiple images in the same space. Its can be used when:-
+ * - There is a group of content on the same level.
+ * - There is insufficient content space, it can be used to save space.
+ * - Commonly used for a group of pictures/cards.
+ *
+ *It differs from the CarouselTypeA component in terms of props and the boilerplate code. Whereas, the CarouselTypeA
+  receives an array of image addresses, the CarouselTypeB component receives the children prop. It wraps
+  each image inside an ImagePanel component and shows the ImagePanel child element corresponding to the active index.
+ */
 const meta = {
   title: "Example/CarouselTypeB",
   component: CarouselTypeB,
