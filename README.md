@@ -28,4 +28,4 @@ If you are developing a production application, we recommend updating the config
 
 ## Canary Design
 
-Canary design is a component library built in React + Vite + TypeScript using Vite's library mode. To find out about all the available components and how to use them, read the [Documentation](https://github.com/vikrantaroraa/canary-design).
+Canary design is a component library built in React + Vite + TypeScript using Vite's library mode. To find out about all the available components and how to use them, read the [Documentation](https://canary-design.netlify.app/).

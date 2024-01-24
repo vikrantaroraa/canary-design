@@ -6,7 +6,7 @@ import DummyComponent1 from "src/components/dummy-components/Component1";
 import DummyComponent2 from "src/components/dummy-components/Component2";
 import DummyComponent3 from "src/components/dummy-components/Component3";
 
-export const steps: StepsDataProps[] = [
+const steps: StepsDataProps[] = [
   {
     title: "User details",
     content: <DummyComponent1 />,
