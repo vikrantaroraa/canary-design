@@ -1,7 +1,6 @@
-import React from "react";
-import styles from "src/components/dummy-components/UserTimelineComponent/index.module.css";
+import styles from "./index.module.css";
 
-interface UserTimelineComponentProps {
+export interface UserTimelineComponentProps {
   notificationTitle: string;
   time: string;
   content: string;
@@ -22,4 +21,4 @@ const UserTimelineComponent = ({
   );
 };
 
-export default UserTimelineComponent;
+export { UserTimelineComponent };
