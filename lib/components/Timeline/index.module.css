@@ -45,7 +45,6 @@
   left: 0;
   right: 0;
   background-color: #777777;
-  z-index: 999999;
   /* not giving the below height so that insted of timeline-line taking entire height of the image-and-line-container, its height is calculated dynamically */
   /* height: 100%; */
   /* the value of top is the height of image, so that the line starts where the image ends */
