@@ -10,6 +10,7 @@ export type { StepsDataProps } from "./components/Steps";
 export { Timeline } from "./components/Timeline";
 export { UserTimelineComponent } from "./components/UserTimelineComponent";
 export { TabsTypeA } from "./components/TabsTypeA";
+export type { TabsDataProps } from "./components/TabsTypeA";
 export {
   TabsTypeB,
   Tab,

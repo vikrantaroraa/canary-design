@@ -34,4 +34,8 @@
 
 .tab-content {
   padding: 18px 0;
+  text-align: left;
+  /* We will decide after real world use case whether we should give min height or not (Note:- if you uncomment
+   "min-height" here then aslo add it to index.module.css file of TabsTypeB component in lib folder) */
+  /* min-height: 210px; */
 }
