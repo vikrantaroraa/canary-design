@@ -17,3 +17,6 @@ export {
   TabPanel,
   PanelContainer,
 } from "./components/TabsTypeB";
+export { CarouselTypeA } from "./components/CarouselTypeA";
+export { UserIndicatorComponent } from "./components/UserIndicatorComponent";
+export { UserNavigationButtons } from "./components/UserNavigationButtons";
