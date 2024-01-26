@@ -1,6 +1,4 @@
-// Note: We do not need the "images" prop anymore in the CarouselTypeB component since we are using the "children" prop.
 export interface CarouselTypeBProps {
-  // images: string[];
   rotate?: boolean;
   UserIndicatorComponent?: React.FC<UserIndicatorComponentProps>;
   UserNavigationButtons?: React.FC<UserNavigationButtonsProps>;
