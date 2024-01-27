@@ -1,15 +1,8 @@
 import React from "react";
 import { CarouselTypeA } from "src/components/CarouselTypeA";
-
-// import Image1 from "src/assets/carousel-image-1.jpg";
-// import Image2 from "src/assets/carousel-image-2.jpg";
-// import Image3 from "src/assets/carousel-image-3.jpg";
-// import Image4 from "src/assets/carousel-image-4.jpg";
-// import Image5 from "src/assets/carousel-image-5.jpg";
 import UserIndicatorComponent from "src/components/dummy-components/UserIndicatorComponent";
 import UserNavigationButtons from "src/components/dummy-components/UserNavigationButtons";
 
-// const images = [Image1, Image2, Image3, Image4, Image5];
 const images = [
   "https://images.squarespace-cdn.com/content/v1/57afe07729687fbd6a7971ad/1471718394640-AYK8C3POPTKL2GU5DGRM/Glacier.National.Park.original.494.jpg?format=2500w",
   "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/f3/ba/50/royal-arches-on-the-left.jpg?w=1100&h=-1&s=1",
