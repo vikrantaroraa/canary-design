@@ -1,5 +1,6 @@
 .carousel {
-  height: 240px;
+  height: 100%;
+  width: 100%;
   position: relative;
   background-color: #f1f1f1;
 }
@@ -7,13 +8,13 @@
 .images-container {
   height: 100%;
   width: 100%;
-  /* background-color: lightpink; */
 }
 
+/* When only a single image is being passed to ImagePanel, it is then the immediate img child of IamgePanel AND When ImagePanel is given a div with multiple images that are to be shown in a single frame, in both the cases we will use object-fit: cover for best view. */
 .images-container img {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .navigation-buttons {
@@ -27,11 +28,9 @@
   color: #fff;
   cursor: pointer;
   box-sizing: border-box;
-  /* background-color: red; */
 }
 
 .nav-button {
-  /* background-color: lightcoral; */
   cursor: pointer;
 }
 
