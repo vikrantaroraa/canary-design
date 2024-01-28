@@ -25,13 +25,13 @@ const Drawer = ({ showDrawer, slideFrom, children, style }: DrawerProps) => {
           slideFrom === "right"
             ? showDrawer === true
               ? 0
-              : "-100%"
+              : "-1000%"
             : undefined,
         left:
           slideFrom === "left"
             ? showDrawer === true
               ? 0
-              : "-100%"
+              : "-1000%"
             : undefined,
       }}
     >
