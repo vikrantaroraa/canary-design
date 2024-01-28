@@ -21,3 +21,4 @@ export { CarouselTypeA } from "./components/CarouselTypeA";
 export { UserIndicatorComponent } from "./components/UserIndicatorComponent";
 export { UserNavigationButtons } from "./components/UserNavigationButtons";
 export { CarouselTypeB, ImagePanel } from "./components/CarouselTypeB";
+export { Drawer } from "./components/Drawer";

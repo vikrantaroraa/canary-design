@@ -102,6 +102,7 @@ export const ExampleDrawer: Story = {
           slideFrom={"left"}
           style={{
             position: "absolute",
+            width: "100%",
           }}
         >
           <div style={logoAndCloseIconStyle}>

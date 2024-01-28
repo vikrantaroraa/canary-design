@@ -1,0 +1,14 @@
+.drawer {
+  height: 100vh;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  transition: 850ms;
+  /* right: -100%; */
+  /* background-color: #efefee; */
+}
+
+.drawer .drawer-active {
+  /* right: 0; */
+  transition: 350ms;
+}

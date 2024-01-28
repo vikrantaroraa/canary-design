@@ -59,12 +59,12 @@ const ExampleDrawer = () => {
   // to the Drawer.
   return (
     <div
-    // style={{
-    //   marginTop: 100,
-    //   border: "2px dotted",
-    //   height: "100vh",
-    //   position: "relative",
-    // }}
+      style={{
+        marginTop: 100,
+        border: "2px dotted",
+        height: "100vh",
+        position: "relative",
+      }}
     >
       <div style={appHeaderStyle}>
         <span onClick={toggleShowDrawer} title="Click to open menu drawer">
@@ -87,9 +87,9 @@ const ExampleDrawer = () => {
       <Drawer
         showDrawer={showDrawer}
         slideFrom={"left"}
-        // style={{
-        //   position: "absolute",
-        // }}
+        style={{
+          position: "absolute",
+        }}
       >
         <div style={logoAndCloseIconStyle}>
           <span>Flipkart</span>
