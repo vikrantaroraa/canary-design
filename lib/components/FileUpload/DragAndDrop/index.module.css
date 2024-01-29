@@ -1,0 +1,93 @@
+.drag-and-drop-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #3d3d3d;
+  height: 300px;
+  /* width: 500px; */
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.all-files-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+  gap: 10px;
+  overflow-y: scroll;
+  padding: 5px;
+  box-sizing: border-box;
+  /* background-color: lightgreen; */
+}
+
+.file-container {
+  position: relative;
+  height: 100px;
+  width: 110px;
+  border: 1px solid;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.file-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  /* border: 1px solid #f6f6f6; */
+}
+
+.file-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.file-container .close-file-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+  background-color: #f3f0e8;
+  /* background-color: #fcdada; */
+}
+
+/* .close-file-icon span {
+  position: absolute;
+  height: 100%;
+  bottom: 35%;
+} */
+
+.upload-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+
+  /* may later need this css when improving design and functionality */
+  /* border: 2px dashed; */
+  /* background-color: #f4f4f4; */
+  /* height: 100px;
+  width: 100px; */
+}
+
+/* may later need this css when improving design and functionality */
+/* .upload-button:hover {
+  background-color: #d9e2f5;
+  background-color: #f2f7ff;
+} */
+
+.browse-or-drop-message {
+  font-size: 18px;
+  color: #666666;
+}
