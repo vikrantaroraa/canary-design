@@ -99,10 +99,17 @@ export const ExampleDrawer: Story = {
         </div>
         <Drawer
           showDrawer={showDrawer}
-          slideFrom={"left"}
+          slideFrom={"right"}
           style={{
             position: "absolute",
-            width: "100%",
+            // fix only to be shown (or used) when showing Drawer component in storybook or docusaurus i.e. when
+            // Drawer compoent is shown anywhere other than actual Viewport. By setting this below width, we are
+            // basically making that other window the viewport.
+            width: showDrawer
+              ? window.innerWidth > 600
+                ? "500px"
+                : "100%"
+              : 0,
           }}
         >
           <div style={logoAndCloseIconStyle}>
