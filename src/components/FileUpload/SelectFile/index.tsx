@@ -23,26 +23,28 @@ function SelectFile({
   const fileHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     let update = allSelectedFiles;
-    for (const file of files) {
-      const { name, size, type } = file;
-      const fileData: FileType = {
-        url: URL.createObjectURL(file),
-        name: name,
-        id: name,
-        size: size / 1024,
-        type: type,
-      };
-      if (multiple) {
-        update.push(fileData);
-      } else {
-        update = [fileData];
+    if (files) {
+      for (const file of files) {
+        const { name, size, type } = file;
+        const fileData: FileType = {
+          url: URL.createObjectURL(file),
+          name: name,
+          id: name,
+          size: size / 1024,
+          type: type,
+        };
+        if (multiple) {
+          update.push(fileData);
+        } else {
+          update = [fileData];
+        }
       }
+      // storing the value of "update" array variable in another array "_allFilesSelected" because react does not re-render on
+      // updating the array even if it is a state variable because it is referenced by address.
+      const _allFilesSelected = [...update];
+      setAllSelectedFiles(_allFilesSelected);
+      getFiles(update);
     }
-    // storing the value of "update" array variable in another array "_allFilesSelected" because react does not re-render on
-    // updating the array even if it is a state variable because it is referenced by address.
-    const _allFilesSelected = [...update];
-    setAllSelectedFiles(_allFilesSelected);
-    getFiles(update);
   };
 
   const removeFile = (id: string) => {
