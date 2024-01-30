@@ -23,3 +23,5 @@ export { UserNavigationButtons } from "./components/UserNavigationButtons";
 export { CarouselTypeB, ImagePanel } from "./components/CarouselTypeB";
 export { Drawer } from "./components/Drawer";
 export { FileUpload } from "./components/FileUpload";
+export { Tour } from "./components/Tour";
+export type { TourData } from "./components/Tour";
