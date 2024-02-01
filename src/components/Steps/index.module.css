@@ -6,14 +6,13 @@
 .steps-container {
   display: flex;
   gap: 15px;
-  /* background-color: lightblue; */
 }
 /* The line gets stretched to the next element which can be seen by giving the border and background color. 
 See why the line gets stretched out of its parent component i.e "steps-and-line" */
 .steps-and-line {
   display: flex;
   gap: 15px;
-  /* background-color: lightyellow; */
+  /* background-color: lightblue; */
 }
 
 .steps-info {
@@ -24,12 +23,14 @@ See why the line gets stretched out of its parent component i.e "steps-and-line"
   gap: 10px;
   white-space: nowrap;
   width: auto;
+  /* background-color: lightcoral; */
 }
 
 .line-container {
   position: relative;
-  flex: 2;
-  text-align: center;
+  width: 100%;
+  /* border: 2px dotted; */
+  /* background-color: lightpink; */
 }
 
 .line {
@@ -117,3 +118,33 @@ when we move to the next step*/
   background-color: rgba(0, 0, 0, 0.02);
   min-height: 300px;
 } */
+
+/* code for adjusting the steps view on smaller screens */
+
+@media only screen and (max-width: 730px) {
+  .steps-container {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .steps-and-line {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .steps-info {
+    justify-content: flex-start;
+  }
+
+  /* Note:- Make sure the width: 36px of this line-container is always equal to the cirle ( i.e class "circle" 
+    and "circle-done" ) because only when the width of the line-container is equal to the circle then only the line
+    which is at the centre of the line-container will appear to be exactly center aligned with the circle. */
+  .line-container {
+    width: 36px;
+    height: 45px;
+  }
+
+  .line {
+    transform: rotate(90deg);
+  }
+}
