@@ -1,12 +1,28 @@
 {
   "name": "canary-design",
+  "description": "A UI component library built in React, Vite and TypeScript",
   "private": false,
-  "version": "0.0.14",
+  "version": "0.0.15",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "type": "module",
   "files": [
     "dist"
+  ],
+  "author": "Vikrant Arora",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vikrantaroraa/canary-design.git"
+  },
+  "homepage": "https://canary-design.netlify.app/",
+  "bugs": {
+    "url": "https://github.com/vikrantaroraa/canary-design/issues"
+  },
+  "keywords": [
+    "canary",
+    "canary-design",
+    "react",
+    "typescript"
   ],
   "scripts": {
     "dev": "vite",
@@ -50,5 +66,6 @@
   },
   "sideEffects": [
     "**/*.css"
-  ]
+  ],
+  "license": "MIT"
 }
