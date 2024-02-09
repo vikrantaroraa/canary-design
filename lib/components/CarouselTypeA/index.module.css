@@ -8,10 +8,30 @@
 .images-container {
   height: 100%;
   width: 100%;
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  /* removing the unwanted vertical-scrollbar by adding "overflow-y: hidden" below as a fallback safety condition 
+  to keep the vertical scrollbar hidden just in case we remove ".images-container::-webkit-scrollbar" from down 
+  below which hides both horizontal and vertical scrollbars */
+  overflow-y: hidden;
+}
+
+.images-container::-webkit-scrollbar {
+  display: none;
+}
+
+.images-container > div {
+  scroll-snap-align: center;
+}
+
+.image-container {
+  min-height: 100%;
+  min-width: 100%;
 }
 
 /* When only a single image is being passed to ImagePanel, it is then the immediate img child of IamgePanel AND When ImagePanel is given a div with multiple images that are to be shown in a single frame, in both the cases we will use object-fit: cover for best view. */
-.images-container img {
+.images-container .image-container img {
   height: 100%;
   width: 100%;
   object-fit: cover;
