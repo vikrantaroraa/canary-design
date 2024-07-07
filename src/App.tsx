@@ -11,6 +11,7 @@ import ExampleCarouselTypeA from "src/components/example-components/CarouselType
 // import ExampleTour from "src/components/example-components/TourExample";
 // import ExampleTimeline from "src/components/example-components/TimelineExample";
 import "./App.css";
+import ExampleSelect from "src/components/example-components/SelectExample";
 // import {
 //   CarouselTypeA,
 //   UserIndicatorComponent,
@@ -33,10 +34,10 @@ function App() {
       <MultiStepForm /> */}
       {/* <FormExample /> */}
       {/* <ExampleSteps /> */}
-      <ExampleCarouselTypeA />
+      {/* <ExampleCarouselTypeA /> */}
       <br />
       <br />
-      <ExampleCarouselTypeB />
+      {/* <ExampleCarouselTypeB /> */}
       <br />
       <br />
       {/* <ExampleCarouselTypeB /> */}
@@ -48,6 +49,8 @@ function App() {
         Hello
       </Button>
       <Button onClick={() => console.log("hi")}>Hello</Button> */}
+      <br />
+      <ExampleSelect />
     </>
   );
 }
