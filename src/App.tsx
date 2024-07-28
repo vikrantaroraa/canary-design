@@ -12,6 +12,7 @@ import ExampleCarouselTypeA from "src/components/example-components/CarouselType
 // import ExampleTimeline from "src/components/example-components/TimelineExample";
 import "./App.css";
 import ExampleSelect from "src/components/example-components/SelectExample";
+import ExampleRating from "src/components/example-components/ExampleRating";
 // import {
 //   CarouselTypeA,
 //   UserIndicatorComponent,
@@ -50,7 +51,9 @@ function App() {
       </Button>
       <Button onClick={() => console.log("hi")}>Hello</Button> */}
       <br />
-      <ExampleSelect />
+      {/* <ExampleSelect /> */}
+      <br />
+      <ExampleRating />
     </>
   );
 }
