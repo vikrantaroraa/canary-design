@@ -1,0 +1,56 @@
+.review-card {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.review-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.review-number {
+  width: 36px;
+  text-align: center;
+}
+
+.star-svg-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.star-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.star-icon .icon-path {
+  fill: #ffd66c;
+  stroke: #efb153;
+}
+
+.review-bar {
+  flex-grow: 1;
+  height: 9px;
+  background-color: #e0e0e0;
+  margin-right: 8px;
+  position: relative;
+  border-radius: 10px;
+}
+
+.review-bar-fill {
+  height: 100%;
+  background-color: #f8b400;
+  border-radius: 10px;
+  transition: width linear;
+}
+
+.review-count {
+  width: 40px;
+  text-align: right;
+}
