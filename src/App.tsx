@@ -6,7 +6,7 @@ import ExampleCarouselTypeB from "src/components/example-components/CarouselType
 // import { Button } from "src/components/Button";
 // import { ExampleSteps } from "src/components/example-components/StepsExample";
 // import FileUploadExample from "src/components/example-components/FileUploadExample";
-import ExampleCarouselTypeA from "src/components/example-components/CarouselTypeAExample";
+// import ExampleCarouselTypeA from "src/components/example-components/CarouselTypeAExample";
 // import { ExampleDrawer } from "src/components/example-components/DrawerExample";
 // import ExampleTour from "src/components/example-components/TourExample";
 // import ExampleTimeline from "src/components/example-components/TimelineExample";
@@ -36,11 +36,11 @@ function App() {
       {/* <FormExample /> */}
       {/* <ExampleSteps /> */}
       {/* <ExampleCarouselTypeA /> */}
-      <br />
-      <br />
+      {/* <br />
+      <br /> */}
       {/* <ExampleCarouselTypeB /> */}
-      <br />
-      <br />
+      {/* <br />
+      <br /> */}
       {/* <ExampleCarouselTypeB /> */}
       {/* <FileUploadExample /> */}
       {/* <ExampleDrawer /> */}
@@ -50,9 +50,9 @@ function App() {
         Hello
       </Button>
       <Button onClick={() => console.log("hi")}>Hello</Button> */}
-      <br />
+      {/* <br /> */}
       {/* <ExampleSelect /> */}
-      <br />
+      {/* <br /> */}
       <ExampleRating />
     </>
   );
