@@ -1,0 +1,36 @@
+.container {
+  padding: 8px;
+  border: 1px solid black;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.list-item {
+  margin: 6px 0;
+}
+
+.data-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.internal-list {
+  padding-left: 24px;
+}
+
+.rotate-90-deg {
+  transform: rotate(90deg);
+}
+
+.file-icon {
+  margin-left: 18px;
+}
+
+.caret-container {
+  display: flex;
+  align-items: center;
+}

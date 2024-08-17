@@ -14,6 +14,7 @@ import "./App.css";
 import ExampleSelect from "src/components/example-components/SelectExample";
 import ExampleRating from "src/components/example-components/ExampleRating";
 import ReviewCardExample from "src/components/example-components/ReviewCardExample";
+import ExampleFolderStructure from "src/components/example-components/FolderStructureExmple";
 // import {
 //   CarouselTypeA,
 //   UserIndicatorComponent,
@@ -55,7 +56,8 @@ function App() {
       {/* <ExampleSelect /> */}
       {/* <br /> */}
       {/* <ExampleRating /> */}
-      <ReviewCardExample />
+      {/* <ReviewCardExample /> */}
+      <ExampleFolderStructure />
     </>
   );
 }
