@@ -15,7 +15,7 @@ export interface FolderStructureProps {
   folders?: FolderStructureProps[];
 }
 
-const Folder = ({ folder }: { folder: FolderStructureProps }) => {
+const FolderStructure = ({ folder }: { folder: FolderStructureProps }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -53,7 +53,7 @@ const Folder = ({ folder }: { folder: FolderStructureProps }) => {
       {isOpen && (
         <ul className={styles["internal-list"]}>
           {folder.folders?.map((folder, index) => (
-            <Folder folder={folder} key={index} />
+            <FolderStructure folder={folder} key={index} />
           ))}
         </ul>
       )}
@@ -61,4 +61,4 @@ const Folder = ({ folder }: { folder: FolderStructureProps }) => {
   );
 };
 
-export default Folder;
+export default FolderStructure;
