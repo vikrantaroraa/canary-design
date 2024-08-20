@@ -43,7 +43,10 @@ const visualStudioCodeFolderData: FolderStructureProps[] = [
   {
     name: "canary-design",
     folders: [
-      { name: ".storybook", folders: [] },
+      {
+        name: ".storybook",
+        folders: [{ name: "main.ts" }, { name: "preview.ts" }],
+      },
       {
         name: "dist",
         folders: [
