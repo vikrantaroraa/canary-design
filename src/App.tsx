@@ -15,6 +15,8 @@ import ExampleSelect from "src/components/example-components/SelectExample";
 import ExampleRating from "src/components/example-components/ExampleRating";
 import ReviewCardExample from "src/components/example-components/ReviewCardExample";
 import ExampleFolderStructure from "src/components/example-components/FolderStructureExmple";
+import { NestedComments } from "src/components/NestedComments";
+import ExampleComments from "src/components/example-components/CommentsExample";
 // import {
 //   CarouselTypeA,
 //   UserIndicatorComponent,
@@ -57,7 +59,8 @@ function App() {
       {/* <br /> */}
       {/* <ExampleRating /> */}
       {/* <ReviewCardExample /> */}
-      <ExampleFolderStructure />
+      {/* <ExampleFolderStructure /> */}
+      <ExampleComments />
     </>
   );
 }
