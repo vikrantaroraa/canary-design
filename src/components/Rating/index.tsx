@@ -19,7 +19,7 @@ const Rating = ({ fillColor, style, onClick }: RatingProps) => {
 
   return (
     <div>
-      {[...Array(numberOfStars)].map((star, index) => {
+      {[...Array(numberOfStars)].map((_, index) => {
         const currentRating = index + 1;
         return (
           <span
