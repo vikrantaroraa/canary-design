@@ -1,8 +1,7 @@
-import React from "react";
-import { CommentType } from "src/components/NestedComments/Comment";
+import { Comment } from "src/components/NestedComments/Comment";
 import NestedComments from "src/components/NestedComments";
 
-const commentsDataArray: CommentType[] = [
+const commentsDataArray: Comment[] = [
   {
     id: 1,
     content: "This is the first comment",
@@ -135,8 +134,14 @@ const ExampleComments = () => {
           console.log("the updated comment  is: ", updatedComment)
         }
         onDelete={(deletedCommentId) =>
-          console.log("deleted comment id is: ", deletedCommentId)
+          console.log(`The comment with id ${deletedCommentId} was deleted`)
         }
+        onUpVote={(commentId) => {
+          console.log(`The comment with id ${commentId} was up-voted`);
+        }}
+        onDownVote={(commentId) => {
+          console.log(`The comment with id ${commentId} was down-voted`);
+        }}
       />
     </div>
   );
