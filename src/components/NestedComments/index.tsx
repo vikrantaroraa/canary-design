@@ -83,23 +83,30 @@ const NestedComments = ({
   };
 
   return (
-    <>
-      <div className={styles["add-comment"]}>
-        <textarea
-          className={styles["comment-textarea"]}
-          onKeyDown={handleKeyDown}
-          value={comment}
-          rows={3}
-          cols={50}
-          placeholder={"Add a new comment..."}
-          onChange={handleChange}
-        />
-        <button className={styles["comment-button"]} onClick={handleSubmit}>
-          Add Comment
-        </button>
+    <div>
+      <div className={styles["add-main-comment"]}>
+        <div className={styles["comment-input-container"]}>
+          <textarea
+            className={styles["main-comment-textarea"]}
+            onKeyDown={handleKeyDown}
+            value={comment}
+            rows={5}
+            cols={50}
+            placeholder={"Add a new comment..."}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles["button-container"]}>
+          <button
+            className={styles["add-comment-button"]}
+            onClick={handleSubmit}
+          >
+            Add Comment
+          </button>
+        </div>
       </div>
 
-      <div>
+      <div className={styles["sort-container"]}>
         <label htmlFor="sortOrder">Sort By:</label>
         <select
           name="sort"
@@ -126,7 +133,7 @@ const NestedComments = ({
           />
         );
       })}
-    </>
+    </div>
   );
 };
 

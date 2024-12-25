@@ -124,7 +124,7 @@ const commentsDataArray: Comment[] = [
 
 const ExampleComments = () => {
   return (
-    <div>
+    <div style={{ margin: "10px" }}>
       <NestedComments
         comments={commentsDataArray}
         onSubmit={(addedComment) =>
