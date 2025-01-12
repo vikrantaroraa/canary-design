@@ -1,20 +1,23 @@
 .folder {
   margin-top: 6px;
-  background-color: rgb(233, 233, 233);
+  /* background-color: rgb(248, 248, 248); */ /* may use bg later */
+  border: 1px solid rgb(160, 160, 160);
   display: flex;
   justify-content: space-between;
-  padding: 3px;
-  width: 300px;
+  padding: 3px 4px;
+  width: 320px;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .folder > span {
-  margin: 0 5px 2px 5px;
+  margin: 0 5px 2px 0;
 }
 
-.folder > div > button {
-  font-size: 15px;
-  background-color: white;
+.action-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
 .file {

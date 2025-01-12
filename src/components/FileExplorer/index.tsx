@@ -96,7 +96,7 @@ const FileExplorer = ({
             )}
           </span>
 
-          <div>
+          <div className={styles["action-buttons"]}>
             <button onClick={(e) => handleNewFolder(e, true)}>Folder +</button>
             <button onClick={(e) => handleNewFolder(e, false)}>File +</button>
             <button onClick={handleRename}>Edit</button>
