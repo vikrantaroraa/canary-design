@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./index.module.css";
 
 export interface ExplorerItem {
@@ -17,6 +17,10 @@ interface FileExplorerProps {
   ) => void;
   handleUpdateNode: (explorerId: string, newName: string) => void;
   handleDeleteNode: (explorerId: string) => void;
+  addFolderIcon?: React.ReactNode;
+  addFileIcon?: React.ReactNode;
+  renameIcon?: React.ReactNode;
+  deleteIcon?: React.ReactNode;
 }
 
 const FileExplorer = ({
@@ -24,6 +28,10 @@ const FileExplorer = ({
   handleInsertNode,
   handleUpdateNode,
   handleDeleteNode,
+  addFolderIcon,
+  addFileIcon,
+  renameIcon,
+  deleteIcon,
 }: FileExplorerProps) => {
   const [expand, setExpand] = useState(false);
   const [showInput, setShowInput] = useState({
@@ -41,7 +49,7 @@ const FileExplorer = ({
   };
 
   const handleNewFolder = (
-    e: React.MouseEvent<HTMLButtonElement>,
+    e: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>,
     isFolder: boolean
   ) => {
     e.stopPropagation();
@@ -97,17 +105,55 @@ const FileExplorer = ({
           </span>
 
           <div className={styles["action-buttons"]}>
-            <button onClick={(e) => handleNewFolder(e, true)}>Folder +</button>
-            <button onClick={(e) => handleNewFolder(e, false)}>File +</button>
-            <button onClick={handleRename}>Edit</button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleDeleteNode(explorer.id);
-              }}
-            >
-              Delete
-            </button>
+            {addFolderIcon ? (
+              <span
+                onClick={(e) => handleNewFolder(e, true)}
+                className={styles["user-icon"]}
+              >
+                {addFolderIcon}
+              </span> // Render the icon as a clickable span
+            ) : (
+              <button onClick={(e) => handleNewFolder(e, true)}>
+                Folder +
+              </button>
+            )}
+            {addFileIcon ? (
+              <span
+                onClick={(e) => handleNewFolder(e, false)}
+                className={styles["user-icon"]}
+              >
+                {addFileIcon}
+              </span> // Render the icon as a clickable span
+            ) : (
+              <button onClick={(e) => handleNewFolder(e, false)}>File +</button>
+            )}
+            {renameIcon ? (
+              <span onClick={handleRename} className={styles["user-icon"]}>
+                {renameIcon}
+              </span> // Render the icon as a clickable span
+            ) : (
+              <button onClick={handleRename}>Edit</button>
+            )}
+            {deleteIcon ? (
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteNode(explorer.id);
+                }}
+                className={styles["user-icon"]}
+              >
+                {deleteIcon}
+              </span> // Render the icon as a clickable span
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteNode(explorer.id);
+                }}
+              >
+                Delete
+              </button>
+            )}
           </div>
         </div>
 
@@ -131,11 +177,15 @@ const FileExplorer = ({
           {explorer.items.map((exp) => {
             return (
               <FileExplorer
+                key={exp.id}
+                explorer={exp}
                 handleInsertNode={handleInsertNode}
                 handleUpdateNode={handleUpdateNode}
                 handleDeleteNode={handleDeleteNode}
-                explorer={exp}
-                key={exp.id}
+                addFolderIcon={addFolderIcon}
+                addFileIcon={addFileIcon}
+                renameIcon={renameIcon}
+                deleteIcon={deleteIcon}
               />
             );
           })}

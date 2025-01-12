@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   padding: 3px 4px;
-  width: 320px;
+  width: 330px;
   cursor: pointer;
   border-radius: 4px;
 }
@@ -16,7 +16,12 @@
 
 .action-buttons {
   display: flex;
-  gap: 4px;
+  gap: 8px;
+  align-items: center;
+}
+
+.user-icon {
+  display: flex;
   align-items: center;
 }
 
