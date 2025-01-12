@@ -1,5 +1,5 @@
 // import ExampleTabs from "src/components/example-components/TabsTypeAExample";
-import ExampleCarouselTypeB from "src/components/example-components/CarouselTypeBExample";
+// import ExampleCarouselTypeB from "src/components/example-components/CarouselTypeBExample";
 // import { ExampleTabsTypeB } from "src/components/example-components/TabsTypeBExample";
 // import { MultiStepForm } from "src/components/MultiStepForm";
 // import { FormExample } from "src/components/example-components/FormExample";
@@ -11,12 +11,13 @@ import ExampleCarouselTypeB from "src/components/example-components/CarouselType
 // import ExampleTour from "src/components/example-components/TourExample";
 // import ExampleTimeline from "src/components/example-components/TimelineExample";
 import "./App.css";
-import ExampleSelect from "src/components/example-components/SelectExample";
-import ExampleRating from "src/components/example-components/ExampleRating";
-import ReviewCardExample from "src/components/example-components/ReviewCardExample";
-import ExampleFolderStructure from "src/components/example-components/FolderStructureExmple";
-import { NestedComments } from "src/components/NestedComments";
-import ExampleComments from "src/components/example-components/CommentsExample";
+// import ExampleSelect from "src/components/example-components/SelectExample";
+// import ExampleRating from "src/components/example-components/ExampleRating";
+// import ReviewCardExample from "src/components/example-components/ReviewCardExample";
+// import ExampleFolderStructure from "src/components/example-components/FolderStructureExmple";
+// import { NestedComments } from "src/components/NestedComments";
+// import ExampleComments from "src/components/example-components/CommentsExample";
+import ExampleFileExplorer from "src/components/example-components/FileExplorerExample";
 // import {
 //   CarouselTypeA,
 //   UserIndicatorComponent,
@@ -60,7 +61,8 @@ function App() {
       {/* <ExampleRating /> */}
       {/* <ReviewCardExample /> */}
       {/* <ExampleFolderStructure /> */}
-      <ExampleComments />
+      {/* <ExampleComments /> */}
+      <ExampleFileExplorer />
     </>
   );
 }
