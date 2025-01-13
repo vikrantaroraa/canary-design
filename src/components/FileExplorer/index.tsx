@@ -86,12 +86,13 @@ const FileExplorer = ({
     return (
       <div>
         <div className={styles["folder"]} onClick={toggleExpand}>
-          <span>
+          <span className={styles["folder-name-and-rename-input"]}>
             📁
             {renameInput.visible ? (
               <input
                 type="text"
                 value={renameInput.newName}
+                className={styles["rename-input"]}
                 onChange={(e) =>
                   setRenameInput({ ...renameInput, newName: e.target.value })
                 }
@@ -104,57 +105,61 @@ const FileExplorer = ({
             )}
           </span>
 
-          <div className={styles["action-buttons"]}>
-            {addFolderIcon ? (
-              <span
-                onClick={(e) => handleNewFolder(e, true)}
-                className={styles["user-icon"]}
-              >
-                {addFolderIcon}
-              </span> // Render the icon as a clickable span
-            ) : (
-              <button onClick={(e) => handleNewFolder(e, true)}>
-                Folder +
-              </button>
-            )}
-            {addFileIcon ? (
-              <span
-                onClick={(e) => handleNewFolder(e, false)}
-                className={styles["user-icon"]}
-              >
-                {addFileIcon}
-              </span> // Render the icon as a clickable span
-            ) : (
-              <button onClick={(e) => handleNewFolder(e, false)}>File +</button>
-            )}
-            {renameIcon ? (
-              <span onClick={handleRename} className={styles["user-icon"]}>
-                {renameIcon}
-              </span> // Render the icon as a clickable span
-            ) : (
-              <button onClick={handleRename}>Edit</button>
-            )}
-            {deleteIcon ? (
-              <span
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDeleteNode(explorer.id);
-                }}
-                className={styles["user-icon"]}
-              >
-                {deleteIcon}
-              </span> // Render the icon as a clickable span
-            ) : (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDeleteNode(explorer.id);
-                }}
-              >
-                Delete
-              </button>
-            )}
-          </div>
+          {!renameInput.visible && (
+            <div className={styles["action-buttons"]}>
+              {addFolderIcon ? (
+                <span
+                  onClick={(e) => handleNewFolder(e, true)}
+                  className={styles["user-icon"]}
+                >
+                  {addFolderIcon}
+                </span> // Render the icon as a clickable span
+              ) : (
+                <button onClick={(e) => handleNewFolder(e, true)}>
+                  Folder +
+                </button>
+              )}
+              {addFileIcon ? (
+                <span
+                  onClick={(e) => handleNewFolder(e, false)}
+                  className={styles["user-icon"]}
+                >
+                  {addFileIcon}
+                </span> // Render the icon as a clickable span
+              ) : (
+                <button onClick={(e) => handleNewFolder(e, false)}>
+                  File +
+                </button>
+              )}
+              {renameIcon ? (
+                <span onClick={handleRename} className={styles["user-icon"]}>
+                  {renameIcon}
+                </span> // Render the icon as a clickable span
+              ) : (
+                <button onClick={handleRename}>Edit</button>
+              )}
+              {deleteIcon ? (
+                <span
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteNode(explorer.id);
+                  }}
+                  className={styles["user-icon"]}
+                >
+                  {deleteIcon}
+                </span> // Render the icon as a clickable span
+              ) : (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteNode(explorer.id);
+                  }}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
         <div

@@ -10,10 +10,17 @@
   border-radius: 4px;
 }
 
-.folder > span {
-  margin: 0 5px 2px 0;
+.folder-name-and-rename-input {
+  margin: 0 0 2px 0;
+  display: flex;
+  flex: 1;
+  align-items: center;
 }
 
+.rename-input {
+  height: 20px;
+  width: 100%;
+}
 .action-buttons {
   display: flex;
   gap: 8px;

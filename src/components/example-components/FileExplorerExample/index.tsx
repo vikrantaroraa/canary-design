@@ -85,6 +85,7 @@ export default function ExampleFileExplorer() {
     item: string,
     isFolder: boolean
   ) => {
+    // necessary to check for null because explorerData can be null as well
     if (explorerData) {
       const finalTree = insertNode(explorerData, folderId, item, isFolder);
       setExplorerData(finalTree);
@@ -92,6 +93,7 @@ export default function ExampleFileExplorer() {
   };
 
   const handleDeleteNode = (nodeId: string) => {
+    // necessary to check for null because explorerData can be null as well
     if (explorerData) {
       const updatedTree = deleteNode(explorerData, nodeId);
       if (updatedTree === null) {
@@ -103,6 +105,7 @@ export default function ExampleFileExplorer() {
   };
 
   const handleUpdateNode = (nodeId: string, newName: string) => {
+    // necessary to check for null because explorerData can be null as well
     if (explorerData) {
       const updatedTree = updateNode(explorerData, nodeId, newName);
       setExplorerData(updatedTree);
