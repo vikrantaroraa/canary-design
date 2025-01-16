@@ -1,4 +1,5 @@
 import { ExplorerItem } from "src/components/FileExplorer/index";
+
 const useTraverseTree = () => {
   const insertNode = (
     tree: ExplorerItem,
@@ -6,23 +7,33 @@ const useTraverseTree = () => {
     item: string,
     isFolder: boolean
   ): ExplorerItem => {
+    // If we found the target folder
     if (tree.id === folderId && tree.isFolder) {
-      tree.items.unshift({
+      // Create and return a new object with the new item prepended to items array
+      const newNode = {
         id: `${Date.now().toString(36)}-${Math.random()
           .toString(36)
           .substring(2, 6)}`,
         name: item,
         isFolder,
         items: [],
-      });
+      };
 
+      return {
+        ...tree,
+        items: [newNode, ...tree.items],
+      };
+    }
+
+    // If this is a file or we haven't found the target folder yet
+    if (!tree.isFolder) {
       return tree;
     }
 
-    let updatedItemsArray = [];
-    updatedItemsArray = tree.items.map((obj) => {
-      return insertNode(obj, folderId, item, isFolder);
-    });
+    // Return new object with recursively updated items array
+    const updatedItemsArray = tree.items.map((obj) =>
+      insertNode(obj, folderId, item, isFolder)
+    );
 
     return { ...tree, items: updatedItemsArray };
   };
@@ -49,18 +60,25 @@ const useTraverseTree = () => {
 
   // new logic of deleteNode where we keep the tree structure (or form) but replace the data with empty string
   // for a deleted node
+
   const deleteNode = (tree: ExplorerItem, nodeId: string): ExplorerItem => {
-    // Case where the root node itself is being deleted
+    // If this is the node to delete, return an empty tree structure
     if (tree.id === nodeId) {
       return { id: "", name: "", isFolder: true, items: [] }; // Empty tree
     }
 
-    // Recursively delete the node in the children array
-    const updatedItems = tree.items
-      .map((child) => deleteNode(child, nodeId)) // Recursively delete
-      .filter((child) => child.id !== ""); // Remove deleted nodes i.e. only keep nodes with valid id (not empty string)
+    // If this is a file, return as is
+    if (!tree.isFolder) {
+      return tree;
+    }
 
-    return { ...tree, items: updatedItems };
+    // Recursively delete the node in the children array
+    const updatedItemsArray = tree.items
+      .map((child) => deleteNode(child, nodeId)) // Recursively delete
+      .filter((child) => child.id !== ""); // Remove deleted nodes i.e. only keep nodes with valid id (i.e. id !== empty string)
+
+    // Return new object with filtered and recursively updated items array
+    return { ...tree, items: updatedItemsArray };
   };
 
   const updateNode = (
@@ -71,6 +89,11 @@ const useTraverseTree = () => {
     // If the node to update is found, update its name
     if (tree.id === nodeId) {
       return { ...tree, name: newName };
+    }
+
+    // If this is a file, return as is
+    if (!tree.isFolder) {
+      return tree;
     }
 
     // Traverse children and update the node if found
