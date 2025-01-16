@@ -75,9 +75,7 @@ const explorer = {
 };
 
 export default function ExampleFileExplorer() {
-  const [explorerData, setExplorerData] = useState<ExplorerItem | null>(
-    explorer
-  );
+  const [explorerData, setExplorerData] = useState<ExplorerItem>(explorer);
   const { insertNode, deleteNode, updateNode } = useTraverseTree();
 
   const handleInsertNode = (
@@ -85,37 +83,24 @@ export default function ExampleFileExplorer() {
     item: string,
     isFolder: boolean
   ) => {
-    // necessary to check for null because explorerData can be null as well
-    if (explorerData) {
-      const finalTree = insertNode(explorerData, folderId, item, isFolder);
-      setExplorerData(finalTree);
-    }
+    const finalTree = insertNode(explorerData, folderId, item, isFolder);
+    setExplorerData(finalTree);
   };
 
   const handleDeleteNode = (nodeId: string) => {
-    // necessary to check for null because explorerData can be null as well
-    if (explorerData) {
-      const updatedTree = deleteNode(explorerData, nodeId);
-      if (updatedTree === null) {
-        setExplorerData(null); // Entire tree deleted
-      } else {
-        setExplorerData(updatedTree); // Update tree without the deleted node
-      }
-    }
+    const updatedTree = deleteNode(explorerData, nodeId);
+    setExplorerData(updatedTree); // Update tree without the deleted node
   };
 
   const handleUpdateNode = (nodeId: string, newName: string) => {
-    // necessary to check for null because explorerData can be null as well
-    if (explorerData) {
-      const updatedTree = updateNode(explorerData, nodeId, newName);
-      setExplorerData(updatedTree);
-    }
+    const updatedTree = updateNode(explorerData, nodeId, newName);
+    setExplorerData(updatedTree);
   };
 
   return (
     <div className="App">
       <h2>File Explorer Component</h2>
-      {explorerData ? (
+      {explorerData.id !== "" ? (
         <FileExplorer
           explorer={explorerData}
           handleInsertNode={handleInsertNode}
