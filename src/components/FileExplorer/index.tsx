@@ -86,7 +86,11 @@ const FileExplorer = ({
     return (
       <div>
         <div className={styles["folder"]} onClick={toggleExpand}>
-          <span className={styles["folder-name-and-rename-input"]}>
+          <span
+            className={`${styles["folder-name-and-rename-input"]} ${
+              renameInput.visible ? styles["rename-input-visible"] : ""
+            }`}
+          >
             📁
             {renameInput.visible ? (
               <input
@@ -101,7 +105,7 @@ const FileExplorer = ({
                 onBlur={() => setRenameInput({ visible: false, newName: "" })}
               />
             ) : (
-              explorer.name
+              <span className={styles["folder-name"]}>{explorer.name}</span>
             )}
           </span>
 

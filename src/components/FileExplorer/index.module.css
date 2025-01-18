@@ -11,10 +11,26 @@
 }
 
 .folder-name-and-rename-input {
-  margin: 0 0 2px 0;
+  margin: 0 4px 2px 0;
   display: flex;
   flex: 1;
   align-items: center;
+  min-width: 0;
+}
+
+/* we need to have some margin right of folder name to show some space between folder name and buttons but when we 
+   are renaming the folder than the rename input should not have that right margin so that the rename input looks 
+   equally spaced from the top, bottom and right borders */
+.rename-input-visible {
+  margin-right: 0;
+}
+
+.folder-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  width: 100%;
 }
 
 .rename-input {
