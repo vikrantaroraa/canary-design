@@ -112,11 +112,10 @@ export default function ExampleFileExplorer() {
           // deleteIcon={<Trash2 color="#000" size={18} />}
         />
       ) : (
-        <div className="empty-state">
+        <div>
           <h3>No files or folders available.</h3>
           <button
             onClick={() => setExplorerData(explorer)} // Reset to initial data
-            className="reset-btn"
           >
             Reset Tree
           </button>
