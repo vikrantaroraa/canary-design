@@ -10,6 +10,10 @@
   border-radius: 4px;
 }
 
+.user-icon:hover {
+  opacity: 0.7;
+}
+
 .folder-name-and-rename-input {
   margin: 0 4px 2px 0;
   display: flex;
@@ -41,7 +45,13 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  /* display: none; */ /* uncomment this line when you want to show buttons only when folder is hovered */
 }
+
+/* uncomment below code when you want to show buttons only when folder is hovered */
+/* .folder:hover .action-buttons {
+  display: flex;
+} */
 
 .user-icon {
   display: flex;
