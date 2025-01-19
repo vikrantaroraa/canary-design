@@ -58,28 +58,8 @@ const useTraverseTree = () => {
   //   return { ...tree, items: updatedItems };
   // };
 
-  // new logic of deleteNode where we keep the tree structure (or form) but replace the data with empty string
+  // new logic of deleteNode where we keep the tree structure (or tree form) but replace the data with empty string
   // for a deleted node
-
-  // const deleteNode = (tree: ExplorerItem, nodeId: string): ExplorerItem => {
-  //   // If this is the node to delete, return an empty tree structure
-  //   if (tree.id === nodeId) {
-  //     return { id: "", name: "", isFolder: true, items: [] }; // Empty tree
-  //   }
-
-  //   // If this is a file, return as is
-  //   if (!tree.isFolder) {
-  //     return tree;
-  //   }
-
-  //   // Recursively delete the node in the children array
-  //   const updatedItemsArray = tree.items
-  //     .map((child) => deleteNode(child, nodeId)) // Recursively delete
-  //     .filter((child) => child.id !== ""); // Remove deleted nodes i.e. only keep nodes with valid id (i.e. id !== empty string)
-
-  //   // Return new object with filtered and recursively updated items array
-  //   return { ...tree, items: updatedItemsArray };
-  // };
 
   const deleteNode = (tree: ExplorerItem, nodeId: string): ExplorerItem => {
     // If this is the node to delete, determine its type and return an empty structure
@@ -99,22 +79,6 @@ const useTraverseTree = () => {
     // If it's a file, just return as is (no changes needed here)
     return tree;
   };
-
-  // const deleteFile = (tree: ExplorerItem, fileId: string): ExplorerItem => {
-  //   if (tree.id === fileId && !tree.isFolder) {
-  //     return { id: "", name: "", isFolder: false, items: [] };
-  //   }
-
-  //   if (tree.isFolder) {
-  //     const updatedItemsArray = tree.items
-  //       .map((child) => deleteFile(child, fileId))
-  //       .filter((child) => child.id !== "");
-
-  //     return { ...tree, items: updatedItemsArray };
-  //   }
-
-  //   return tree;
-  // };
 
   const updateNode = (
     tree: ExplorerItem,

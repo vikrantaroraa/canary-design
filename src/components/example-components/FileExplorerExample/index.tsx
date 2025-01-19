@@ -97,11 +97,6 @@ export default function ExampleFileExplorer() {
     setExplorerData(updatedTree);
   };
 
-  // const handleDeleteFile = (fileId: string) => {
-  //   const updatedTree = deleteFile(explorerData, fileId);
-  //   setExplorerData(updatedTree);
-  // };
-
   return (
     <div className="App">
       <h2>File Explorer Component</h2>
@@ -111,7 +106,6 @@ export default function ExampleFileExplorer() {
           handleInsertNode={handleInsertNode}
           handleDeleteNode={handleDeleteNode}
           handleUpdateNode={handleUpdateNode}
-          // handleDeleteFile={handleDeleteFile}
           // addFolderIcon={<FolderPlus color="#000" size={18} />}
           // addFileIcon={<FilePlus color="#000" size={18} />}
           // renameIcon={<SquarePen color="#000" size={18} />}

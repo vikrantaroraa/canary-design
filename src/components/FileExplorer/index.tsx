@@ -17,7 +17,6 @@ interface FileExplorerProps {
   ) => void;
   handleUpdateNode: (explorerId: string, newName: string) => void;
   handleDeleteNode: (explorerId: string) => void;
-  // handleDeleteFile: (explorerId: string) => void;
   addFolderIcon?: React.ReactNode;
   addFileIcon?: React.ReactNode;
   renameIcon?: React.ReactNode;
@@ -29,7 +28,6 @@ const FileExplorer = ({
   handleInsertNode,
   handleUpdateNode,
   handleDeleteNode,
-  // handleDeleteFile,
   addFolderIcon,
   addFileIcon,
   renameIcon,
@@ -193,7 +191,6 @@ const FileExplorer = ({
                 handleInsertNode={handleInsertNode}
                 handleUpdateNode={handleUpdateNode}
                 handleDeleteNode={handleDeleteNode}
-                // handleDeleteFile={handleDeleteFile}
                 addFolderIcon={addFolderIcon}
                 addFileIcon={addFileIcon}
                 renameIcon={renameIcon}
