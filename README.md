@@ -32,7 +32,20 @@ If you are developing a production application, we recommend updating the config
 
 Canary design is a component library built in React + Vite + TypeScript using Vite's library mode. To find out about all the available components and how to use them, read the [Documentation](https://canary-design.netlify.app/).
 
-## Contributing
+## ✨ Components
+
+- **Button**
+- **Carousel - TypeA**
+- **Carousel - TypeB**
+- **Drawer**
+- **File Upload**
+- **Steps**
+- **Tabs - TypeA**
+- **Tabs - TypeB**
+- **Timeline**
+- **Tour**
+
+## 🎉 Contributing
 
 Contributions, bug reports, and feature requests are welcome! Please feel free to open an issue or submit a pull request on this repository.
 
