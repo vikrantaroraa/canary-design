@@ -104,7 +104,23 @@ const useTraverseTree = () => {
     return { ...tree, items: updatedItemsArray };
   };
 
-  return { insertNode, deleteNode, updateNode };
+  const deleteFile = (tree: ExplorerItem, fileId: string): ExplorerItem => {
+    if (tree.id === fileId && !tree.isFolder) {
+      return { id: "", name: "", isFolder: false, items: [] };
+    }
+
+    if (tree.isFolder) {
+      const updatedItemsArray = tree.items
+        .map((child) => deleteFile(child, fileId))
+        .filter((child) => child.id !== "");
+
+      return { ...tree, items: updatedItemsArray };
+    }
+
+    return tree;
+  };
+
+  return { insertNode, deleteNode, updateNode, deleteFile };
 };
 
 export default useTraverseTree;
