@@ -26,6 +26,16 @@ If you are developing a production application, we recommend updating the config
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list -->
 
-## Canary Design
+<kbd><img src="src/assets/canary-design-screenshot.png" alt="canary-design-homepage-screenshot" style="border: 1px solid lightgrey; border-radius: 0px;" /></kbd>
+
+# Canary Design
 
 Canary design is a component library built in React + Vite + TypeScript using Vite's library mode. To find out about all the available components and how to use them, read the [Documentation](https://canary-design.netlify.app/).
+
+## Contributing
+
+Contributions, bug reports, and feature requests are welcome! Please feel free to open an issue or submit a pull request on this repository.
+
+<br>
+
+Made with ❤️ by Vikrant Arora in Kashipur, Uttarakhand ( India )
