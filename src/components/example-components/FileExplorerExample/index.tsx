@@ -76,7 +76,7 @@ const explorer = {
 
 export default function ExampleFileExplorer() {
   const [explorerData, setExplorerData] = useState<ExplorerItem>(explorer);
-  const { insertNode, deleteNode, updateNode, deleteFile } = useTraverseTree();
+  const { insertNode, deleteNode, updateNode } = useTraverseTree();
 
   const handleInsertNode = (
     folderId: string,
@@ -97,10 +97,10 @@ export default function ExampleFileExplorer() {
     setExplorerData(updatedTree);
   };
 
-  const handleDeleteFile = (fileId: string) => {
-    const updatedTree = deleteFile(explorerData, fileId);
-    setExplorerData(updatedTree);
-  };
+  // const handleDeleteFile = (fileId: string) => {
+  //   const updatedTree = deleteFile(explorerData, fileId);
+  //   setExplorerData(updatedTree);
+  // };
 
   return (
     <div className="App">
@@ -111,7 +111,7 @@ export default function ExampleFileExplorer() {
           handleInsertNode={handleInsertNode}
           handleDeleteNode={handleDeleteNode}
           handleUpdateNode={handleUpdateNode}
-          handleDeleteFile={handleDeleteFile}
+          // handleDeleteFile={handleDeleteFile}
           // addFolderIcon={<FolderPlus color="#000" size={18} />}
           // addFileIcon={<FilePlus color="#000" size={18} />}
           // renameIcon={<SquarePen color="#000" size={18} />}
