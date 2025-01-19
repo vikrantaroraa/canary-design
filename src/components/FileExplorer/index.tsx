@@ -207,8 +207,37 @@ const FileExplorer = ({
   } else {
     return (
       <div className={styles["file"]}>
-        📄 {explorer.name}
-        <button onClick={() => handleDeleteFile(explorer.id)}>Delete</button>
+        <span
+          className={`${styles["file-name-and-rename-input"]} ${
+            renameInput.visible ? styles["rename-input-visible"] : ""
+          }`}
+        >
+          📄
+          {renameInput.visible ? (
+            <input
+              type="text"
+              value={renameInput.newName}
+              className={styles["rename-input"]}
+              onChange={(e) =>
+                setRenameInput({ ...renameInput, newName: e.target.value })
+              }
+              onKeyDown={onRenameNode}
+              autoFocus
+              onBlur={() => setRenameInput({ visible: false, newName: "" })}
+            />
+          ) : (
+            <span className={styles["file-name"]}>{explorer.name}</span>
+          )}
+        </span>
+
+        {!renameInput.visible && (
+          <div className={styles["action-buttons"]}>
+            <button onClick={handleRename}>Edit</button>
+            <button onClick={() => handleDeleteFile(explorer.id)}>
+              Delete
+            </button>
+          </div>
+        )}
       </div>
     );
   }

@@ -91,11 +91,6 @@ const useTraverseTree = () => {
       return { ...tree, name: newName };
     }
 
-    // If this is a file, return as is
-    if (!tree.isFolder) {
-      return tree;
-    }
-
     // Traverse children and update the node if found
     const updatedItemsArray = tree.items.map((item) =>
       updateNode(item, nodeId, newName)
