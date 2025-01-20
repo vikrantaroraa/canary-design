@@ -8,6 +8,15 @@ export interface ExplorerItem {
   items: ExplorerItem[];
 }
 
+interface Icons {
+  addFolderIcon?: React.ReactNode; // Icon for adding a folder
+  addFileIcon?: React.ReactNode; // Icon for adding a file
+  renameIcon?: React.ReactNode; // Icon for renaming
+  deleteIcon?: React.ReactNode; // Icon for deleting
+  folderIcon?: React.ReactNode; // Icon for folder
+  fileIcon?: React.ReactNode; // Icon for file
+}
+
 interface FileExplorerProps {
   explorer: ExplorerItem;
   handleInsertNode: (
@@ -17,10 +26,7 @@ interface FileExplorerProps {
   ) => void;
   handleUpdateNode: (explorerId: string, newName: string) => void;
   handleDeleteNode: (explorerId: string) => void;
-  addFolderIcon?: React.ReactNode;
-  addFileIcon?: React.ReactNode;
-  renameIcon?: React.ReactNode;
-  deleteIcon?: React.ReactNode;
+  icons?: Icons;
 }
 
 const FileExplorer = ({
@@ -28,10 +34,7 @@ const FileExplorer = ({
   handleInsertNode,
   handleUpdateNode,
   handleDeleteNode,
-  addFolderIcon,
-  addFileIcon,
-  renameIcon,
-  deleteIcon,
+  icons,
 }: FileExplorerProps) => {
   const [expand, setExpand] = useState(false);
   const [showInput, setShowInput] = useState({
@@ -43,6 +46,15 @@ const FileExplorer = ({
     visible: false,
     newName: "",
   });
+
+  const {
+    addFolderIcon = null,
+    addFileIcon = null,
+    renameIcon = null,
+    deleteIcon = null,
+    folderIcon = null,
+    fileIcon = null,
+  } = icons || {};
 
   const toggleExpand = () => {
     setExpand((prev) => !prev);
@@ -91,7 +103,7 @@ const FileExplorer = ({
               renameInput.visible ? styles["rename-input-visible"] : ""
             }`}
           >
-            📁
+            {folderIcon || "📁"}
             {renameInput.visible ? (
               <input
                 type="text"
@@ -173,7 +185,9 @@ const FileExplorer = ({
         >
           {showInput.visible && (
             <div className={styles["input-container"]}>
-              <span>{showInput.isFolder ? "📁" : "📄"}</span>
+              <span className={styles["create-new-file-or-folder-icon"]}>
+                {showInput.isFolder ? folderIcon || "📁" : fileIcon || "📄"}
+              </span>
               <input
                 type="text"
                 onKeyDown={onAddFolder}
@@ -191,10 +205,7 @@ const FileExplorer = ({
                 handleInsertNode={handleInsertNode}
                 handleUpdateNode={handleUpdateNode}
                 handleDeleteNode={handleDeleteNode}
-                addFolderIcon={addFolderIcon}
-                addFileIcon={addFileIcon}
-                renameIcon={renameIcon}
-                deleteIcon={deleteIcon}
+                icons={icons}
               />
             );
           })}
@@ -209,7 +220,7 @@ const FileExplorer = ({
             renameInput.visible ? styles["rename-input-visible"] : ""
           }`}
         >
-          📄
+          {fileIcon || "📄"}
           {renameInput.visible ? (
             <input
               type="text"
@@ -229,10 +240,33 @@ const FileExplorer = ({
 
         {!renameInput.visible && (
           <div className={styles["action-buttons"]}>
-            <button onClick={handleRename}>Edit</button>
-            <button onClick={() => handleDeleteNode(explorer.id)}>
-              Delete
-            </button>
+            {renameIcon ? (
+              <span onClick={handleRename} className={styles["user-icon"]}>
+                {renameIcon}
+              </span> // Render the icon as a clickable span
+            ) : (
+              <button onClick={handleRename}>Edit</button>
+            )}
+            {deleteIcon ? (
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteNode(explorer.id);
+                }}
+                className={styles["user-icon"]}
+              >
+                {deleteIcon}
+              </span> // Render the icon as a clickable span
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteNode(explorer.id);
+                }}
+              >
+                Delete
+              </button>
+            )}
           </div>
         )}
       </div>

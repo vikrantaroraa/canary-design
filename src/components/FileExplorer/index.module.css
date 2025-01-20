@@ -4,7 +4,7 @@
   border: 1px solid rgb(160, 160, 160);
   display: flex;
   justify-content: space-between;
-  padding: 3px 4px;
+  padding: 4px;
   width: 330px;
   cursor: pointer;
   border-radius: 4px;
@@ -12,14 +12,16 @@
 
 .user-icon:hover {
   opacity: 0.7;
+  cursor: pointer;
 }
 
 .folder-name-and-rename-input,
 .file-name-and-rename-input {
-  margin: 0 4px 2px 0;
-  display: flex;
+  margin: 0 4px 0 0;
   flex: 1;
+  display: flex;
   align-items: center;
+  gap: 3px;
   min-width: 0;
 }
 
@@ -44,16 +46,16 @@
   width: 100%;
 }
 .action-buttons {
-  display: flex;
+  display: none;
   gap: 8px;
   align-items: center;
-  /* display: none; */ /* uncomment this line when you want to show buttons only when folder is hovered */
 }
 
 /* uncomment below code when you want to show buttons only when folder is hovered */
-/* .folder:hover .action-buttons {
+.folder:hover .action-buttons,
+.file:hover .action-buttons {
   display: flex;
-} */
+}
 
 .user-icon {
   display: flex;
@@ -62,13 +64,13 @@
 
 .file {
   margin-top: 5px;
-  display: flex;
-  padding: 3px 3px;
-  width: 330px;
-  /* padding-left: 5px; */
   border: 1px solid rgb(160, 160, 160);
-  border-radius: 4px;
+  display: flex;
   justify-content: space-between;
+  padding: 4px;
+  width: 330px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .sub-folders {
@@ -86,14 +88,18 @@
 .input-container {
   display: flex;
   align-items: center;
+  padding: 6px 0 0 0;
   gap: 5px;
 }
 
+.create-new-file-or-folder-icon {
+  display: flex;
+  align-items: center;
+}
+
 .input-container input {
-  margin: 6px 0 0 0;
   padding: 5px;
   display: flex;
-  border: 1px solid lightgray;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;

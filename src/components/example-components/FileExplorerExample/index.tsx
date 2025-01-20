@@ -1,7 +1,14 @@
 import { useState } from "react";
 import useTraverseTree from "src/components/FileExplorer/hooks/use-traverse-tree";
 import FileExplorer, { ExplorerItem } from "src/components/FileExplorer";
-// import { FilePlus, FolderPlus, SquarePen, Trash2 } from "lucide-react";
+import {
+  FilePlus,
+  FolderPlus,
+  SquarePen,
+  Trash2,
+  Folder,
+  File,
+} from "lucide-react";
 
 const explorer = {
   id: "1",
@@ -74,6 +81,15 @@ const explorer = {
   ],
 };
 
+const icons = {
+  addFolderIcon: <FolderPlus color="#000" size={18} />,
+  addFileIcon: <FilePlus color="#000" size={18} />,
+  renameIcon: <SquarePen color="#000" size={18} />,
+  deleteIcon: <Trash2 color="#000" size={18} />,
+  folderIcon: <Folder color="#ecad20" size={18} />,
+  fileIcon: <File color="#000" size={18} />,
+};
+
 export default function ExampleFileExplorer() {
   const [explorerData, setExplorerData] = useState<ExplorerItem>(explorer);
   const { insertNode, deleteNode, updateNode } = useTraverseTree();
@@ -106,10 +122,7 @@ export default function ExampleFileExplorer() {
           handleInsertNode={handleInsertNode}
           handleDeleteNode={handleDeleteNode}
           handleUpdateNode={handleUpdateNode}
-          // addFolderIcon={<FolderPlus color="#000" size={18} />}
-          // addFileIcon={<FilePlus color="#000" size={18} />}
-          // renameIcon={<SquarePen color="#000" size={18} />}
-          // deleteIcon={<Trash2 color="#000" size={18} />}
+          // icons={icons}
         />
       ) : (
         <div>
