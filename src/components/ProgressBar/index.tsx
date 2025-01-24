@@ -51,7 +51,7 @@ const ProgressBar = ({
         }}
         aria-valuemin={MIN}
         aria-valuemax={MAX}
-        aria-valuenow={percent.toFixed()}
+        aria-valuenow={Number(percent.toFixed())}
       />
     </div>
   );
