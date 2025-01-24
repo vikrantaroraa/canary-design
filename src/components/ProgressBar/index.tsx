@@ -4,11 +4,17 @@ import styles from "./index.module.css";
 const MIN = 0;
 const MAX = 100;
 
+interface ProgressBarProps {
+  value: number;
+  onLoadingStart: () => void;
+  onLoadingComplete: () => void;
+}
+
 const ProgressBar = ({
   value = 0,
   onLoadingComplete = () => {},
   onLoadingStart = () => {},
-}) => {
+}: ProgressBarProps) => {
   const [percent, setPercent] = useState(value);
   const completedRef = useRef(false);
 
