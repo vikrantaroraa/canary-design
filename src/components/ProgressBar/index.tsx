@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
 
 const MIN = 0;
@@ -10,18 +10,29 @@ const ProgressBar = ({
   onLoadingStart = () => {},
 }) => {
   const [percent, setPercent] = useState(value);
+  const completedRef = useRef(false);
 
   useEffect(() => {
-    setPercent(Math.min(MAX, Math.max(value, MIN)));
+    // Ensure value is between MIN and MAX
+    const clampedValue = Math.min(MAX, Math.max(value, MIN));
+    setPercent(clampedValue);
 
+    // Trigger onLoadingStart only when starting from MIN i.e value === MIN
+
+    // Not using clampedValue === MIN here because if we pass initial value of "value" variable to be any negative
+    // number say -50 then that value will be clamped to 0 and the condition (clampedValue === MIN) will become
+    // true and onLoadingStart will be called even though the bar has not started showing the loading animation of green
+    // color yet.
     if (value === MIN) {
       onLoadingStart();
     }
 
-    if (value >= MAX) {
+    // Trigger onLoadingComplete only once when reaching MAX
+    if (clampedValue >= MAX && !completedRef.current) {
       onLoadingComplete();
+      completedRef.current = true;
     }
-  }, [value]);
+  }, [value, onLoadingComplete, onLoadingStart]);
 
   return (
     <div className={styles["progress-bar"]}>
