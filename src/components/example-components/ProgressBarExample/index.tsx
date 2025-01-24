@@ -20,8 +20,14 @@ const ExampleProgressBar = () => {
   }, []);
 
   return (
-    <div className="App">
-      <h2>React Progress Bar Component</h2>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
+      <h2 style={{ marginBottom: 20 }}>React Progress Bar Component</h2>
       <ProgressBar
         value={value}
         onLoadingComplete={() => {
