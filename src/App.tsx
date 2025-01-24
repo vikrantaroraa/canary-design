@@ -10,6 +10,7 @@
 // import { ExampleDrawer } from "src/components/example-components/DrawerExample";
 // import ExampleTour from "src/components/example-components/TourExample";
 // import ExampleTimeline from "src/components/example-components/TimelineExample";
+import ExampleProgressBar from "src/components/example-components/ProgressBarExample";
 import "./App.css";
 // import ExampleSelect from "src/components/example-components/SelectExample";
 // import ExampleRating from "src/components/example-components/ExampleRating";
@@ -17,7 +18,7 @@ import "./App.css";
 // import ExampleFolderStructure from "src/components/example-components/FolderStructureExmple";
 // import { NestedComments } from "src/components/NestedComments";
 // import ExampleComments from "src/components/example-components/CommentsExample";
-import ExampleFileExplorer from "src/components/example-components/FileExplorerExample";
+// import ExampleFileExplorer from "src/components/example-components/FileExplorerExample";
 // import {
 //   CarouselTypeA,
 //   UserIndicatorComponent,
@@ -62,7 +63,8 @@ function App() {
       {/* <ReviewCardExample /> */}
       {/* <ExampleFolderStructure /> */}
       {/* <ExampleComments /> */}
-      <ExampleFileExplorer />
+      {/* <ExampleFileExplorer /> */}
+      <ExampleProgressBar />
     </>
   );
 }
