@@ -8,12 +8,19 @@ interface ProgressBarProps {
   value: number;
   onLoadingStart: () => void;
   onLoadingComplete: () => void;
+  // Styles for customization
+  containerStyles?: React.CSSProperties; // Styles for the container div
+  percentageStyles?: React.CSSProperties; // Styles for the percentage text div
+  fillStyles?: React.CSSProperties; // Styles for the fill div
 }
 
 const ProgressBar = ({
   value = 0,
   onLoadingComplete = () => {},
   onLoadingStart = () => {},
+  containerStyles = {},
+  percentageStyles = {},
+  fillStyles = {},
 }: ProgressBarProps) => {
   const [percent, setPercent] = useState(value);
   const completedRef = useRef(false);
@@ -41,10 +48,10 @@ const ProgressBar = ({
   }, [value, onLoadingComplete, onLoadingStart]);
 
   return (
-    <div className={styles["progress-bar"]}>
+    <div className={styles["progress-bar"]} style={containerStyles}>
       <div
         className={styles["progress-percerntage"]}
-        style={{ color: percent > 49 ? "white" : "black" }}
+        style={{ color: percent > 49 ? "white" : "black", ...percentageStyles }}
       >
         {percent.toFixed()}%
       </div>
@@ -54,6 +61,7 @@ const ProgressBar = ({
         style={{
           transform: `scaleX(${percent / MAX})`,
           transformOrigin: "left",
+          ...fillStyles,
         }}
         aria-valuemin={MIN}
         aria-valuemax={MAX}

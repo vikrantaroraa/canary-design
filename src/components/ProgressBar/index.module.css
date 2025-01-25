@@ -1,6 +1,6 @@
 .progress-bar {
   height: 16px;
-  width: 500px;
+  width: 100%;
   background-color: rgb(233, 236, 239);
   border: 1px solid lightgray;
   border-radius: 20px;

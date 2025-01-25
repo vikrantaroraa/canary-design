@@ -19,6 +19,25 @@ const ExampleProgressBar = () => {
     return () => clearInterval(interval); // Cleanup the interval on unmount
   }, []);
 
+  const containerStyles = {
+    width: 500,
+    border: "2px solid #333",
+    borderRadius: "10px",
+    backgroundColor: "#f0f0f0",
+  };
+
+  const percentageStyles = {
+    fontSize: "14px",
+    fontWeight: "bold",
+    color: "blue",
+  };
+
+  const fillStyles = {
+    backgroundColor: "orange",
+    height: "100%",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+  };
+
   return (
     <div
       style={{
@@ -35,6 +54,9 @@ const ExampleProgressBar = () => {
           console.log("loading completed...");
         }}
         onLoadingStart={() => console.log("loading started...")}
+        containerStyles={containerStyles}
+        percentageStyles={percentageStyles}
+        fillStyles={fillStyles}
       />
       <div style={{ marginTop: 16, fontWeight: "bold" }}>
         {isLoading ? "Loading..." : "Complete!"}
