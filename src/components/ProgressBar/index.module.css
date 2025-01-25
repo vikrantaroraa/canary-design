@@ -23,4 +23,5 @@
   height: 100%;
   display: flex;
   background-color: #00c251;
+  transition: transform 0.3s ease-in-out;
 }
