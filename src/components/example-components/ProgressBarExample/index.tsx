@@ -57,6 +57,14 @@ const ExampleProgressBar = () => {
         containerStyles={containerStyles}
         percentageStyles={percentageStyles}
         fillStyles={fillStyles}
+        label={(percent) => (percent === 100 ? "Complete!" : `${percent}%`)} // Custom label
+        // label={(percent) =>
+        //   percent === 100
+        //     ? "Complete!"
+        //     : percent > 50
+        //     ? "Almost there!"
+        //     : "Getting started..."
+        // }
       />
       <div style={{ marginTop: 16, fontWeight: "bold" }}>
         {isLoading ? "Loading..." : "Complete!"}

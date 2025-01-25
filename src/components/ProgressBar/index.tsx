@@ -5,6 +5,7 @@ const MIN = 0;
 const MAX = 100;
 
 interface ProgressBarProps {
+  label?: string | ((percent: number) => string);
   value: number;
   onLoadingStart: () => void;
   onLoadingComplete: () => void;
@@ -21,6 +22,7 @@ const ProgressBar = ({
   containerStyles = {},
   percentageStyles = {},
   fillStyles = {},
+  label,
 }: ProgressBarProps) => {
   const [percent, setPercent] = useState(value);
   const completedRef = useRef(false);
@@ -53,7 +55,9 @@ const ProgressBar = ({
         className={styles["progress-percerntage"]}
         style={{ color: percent > 49 ? "white" : "black", ...percentageStyles }}
       >
-        {percent.toFixed()}%
+        {typeof label === "function"
+          ? label(percent)
+          : label ?? `${percent.toFixed()}%`}
       </div>
       <div
         role="progressbar"
