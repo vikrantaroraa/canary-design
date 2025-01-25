@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ProgressBar from "src/components/ProgressBar";
 
 const ExampleProgressBar = () => {
-  const [value, setValue] = useState(-50);
+  const [value, setValue] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

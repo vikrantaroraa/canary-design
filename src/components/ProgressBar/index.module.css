@@ -6,6 +6,7 @@
   border-radius: 20px;
   overflow: hidden;
   position: relative;
+  box-sizing: border-box;
 }
 
 .progress-percerntage {
@@ -17,6 +18,7 @@
   justify-content: center;
   z-index: 1;
   font-size: 14px;
+  line-height: 1;
 }
 
 .fill {
