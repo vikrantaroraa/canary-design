@@ -13,6 +13,7 @@ interface ProgressBarProps {
   containerStyles?: React.CSSProperties; // Styles for the container div
   percentageStyles?: React.CSSProperties; // Styles for the percentage text div
   fillStyles?: React.CSSProperties; // Styles for the fill div
+  showPercentage?: boolean;
 }
 
 const ProgressBar = ({
@@ -23,6 +24,7 @@ const ProgressBar = ({
   percentageStyles = {},
   fillStyles = {},
   label,
+  showPercentage = true,
 }: ProgressBarProps) => {
   const [percent, setPercent] = useState(value);
   const completedRef = useRef(false);
@@ -51,14 +53,19 @@ const ProgressBar = ({
 
   return (
     <div className={styles["progress-bar"]} style={containerStyles}>
-      <div
-        className={styles["progress-percerntage"]}
-        style={{ color: percent > 49 ? "white" : "black", ...percentageStyles }}
-      >
-        {typeof label === "function"
-          ? label(percent)
-          : label ?? `${percent.toFixed()}%`}
-      </div>
+      {showPercentage && (
+        <div
+          className={styles["progress-percerntage"]}
+          style={{
+            color: percent > 49 ? "white" : "black",
+            ...percentageStyles,
+          }}
+        >
+          {typeof label === "function"
+            ? label(percent)
+            : label ?? `${percent.toFixed()}%`}
+        </div>
+      )}
       <div
         role="progressbar"
         className={`${styles["fill"]}`}

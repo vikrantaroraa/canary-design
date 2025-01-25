@@ -65,6 +65,7 @@ const ExampleProgressBar = () => {
         //     ? "Almost there!"
         //     : "Getting started..."
         // }
+        showPercentage={false}
       />
       <div style={{ marginTop: 16, fontWeight: "bold" }}>
         {isLoading ? "Loading..." : "Complete!"}
