@@ -14,6 +14,7 @@ interface ProgressBarProps {
   percentageStyles?: React.CSSProperties; // Styles for the percentage text div
   fillStyles?: React.CSSProperties; // Styles for the fill div
   showPercentage?: boolean;
+  fillDirection?: "ltr" | "rtl"; // Fill direction for the progress bar
 }
 
 const ProgressBar = ({
@@ -25,6 +26,7 @@ const ProgressBar = ({
   fillStyles = {},
   label,
   showPercentage = true,
+  fillDirection = "ltr",
 }: ProgressBarProps) => {
   const [percent, setPercent] = useState(value);
   const completedRef = useRef(false);
@@ -71,7 +73,7 @@ const ProgressBar = ({
         className={`${styles["fill"]}`}
         style={{
           transform: `scaleX(${percent / MAX})`,
-          transformOrigin: "left",
+          transformOrigin: fillDirection === "rtl" ? "right" : "left",
           ...fillStyles,
         }}
         aria-valuemin={MIN}
