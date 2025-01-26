@@ -15,6 +15,7 @@ interface ProgressBarProps {
   fillStyles?: React.CSSProperties; // Styles for the fill div
   showPercentage?: boolean;
   fillDirection?: "ltr" | "rtl"; // Fill direction for the progress bar
+  ariaLabel?: string; // New prop for screen reader accessibility
 }
 
 const ProgressBar = ({
@@ -27,6 +28,7 @@ const ProgressBar = ({
   label,
   showPercentage = true,
   fillDirection = "ltr",
+  ariaLabel = "Progress bar", // Default label for accessibility
 }: ProgressBarProps) => {
   const [percent, setPercent] = useState(value);
   const completedRef = useRef(false);
@@ -54,7 +56,15 @@ const ProgressBar = ({
   }, [value, onLoadingComplete, onLoadingStart]);
 
   return (
-    <div className={styles["progress-bar"]} style={containerStyles}>
+    <div
+      className={styles["progress-bar"]}
+      style={containerStyles}
+      role="progressbar"
+      aria-valuemin={MIN}
+      aria-valuemax={MAX}
+      aria-valuenow={Number(percent.toFixed())}
+      aria-label={ariaLabel} // Accessible label for screen readers
+    >
       {showPercentage && (
         <div
           className={styles["progress-percerntage"]}
@@ -69,16 +79,12 @@ const ProgressBar = ({
         </div>
       )}
       <div
-        role="progressbar"
         className={`${styles["fill"]}`}
         style={{
           transform: `scaleX(${percent / MAX})`,
           transformOrigin: fillDirection === "rtl" ? "right" : "left",
           ...fillStyles,
         }}
-        aria-valuemin={MIN}
-        aria-valuemax={MAX}
-        aria-valuenow={Number(percent.toFixed())}
       />
     </div>
   );

@@ -40,11 +40,7 @@ const ExampleProgressBar = () => {
 
   return (
     <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
+      style={{ display: "flex", alignItems: "center", flexDirection: "column" }}
     >
       <h2 style={{ marginBottom: 20 }}>React Progress Bar Component</h2>
       <ProgressBar
@@ -67,6 +63,7 @@ const ExampleProgressBar = () => {
         // }
         showPercentage={true}
         fillDirection="rtl"
+        ariaLabel="File upload progress" // Custom accessible label
       />
       <div style={{ marginTop: 16, fontWeight: "bold" }}>
         {isLoading ? "Loading..." : "Complete!"}
