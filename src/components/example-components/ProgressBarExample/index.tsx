@@ -20,6 +20,9 @@ const ExampleProgressBar = () => {
     return () => clearInterval(interval); // Cleanup the interval on unmount
   }, []);
 
+  // Reset function to be passed to ProgressBar
+  const resetProgress = () => setValue(0);
+
   const containerStyles = {
     width: 500,
     border: "2px solid #333",
@@ -58,6 +61,8 @@ const ExampleProgressBar = () => {
       <ProgressBar
         value={value}
         indeterminate={isIndeterminate}
+        resetOnIndeterminateToggle={true}
+        resetProgress={resetProgress}
         onLoadingComplete={() => {
           setIsLoading(false);
           console.log("loading completed...");

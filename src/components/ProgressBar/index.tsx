@@ -16,6 +16,8 @@ interface ProgressBarProps {
   fillDirection?: "ltr" | "rtl"; // Fill direction for the progress bar
   ariaLabel?: string; // New prop for screen reader accessibility
   indeterminate?: boolean; // Prop for indeterminate mode
+  resetOnIndeterminateToggle?: boolean; // New prop to reset value on toggle
+  resetProgress?: () => void; // Callback function to reset the progress
 }
 
 const ProgressBar = ({
@@ -30,12 +32,18 @@ const ProgressBar = ({
   fillDirection = "ltr",
   ariaLabel = "Progress bar", // Default label for accessibility
   indeterminate = false, // Default to determinate mode
+  resetOnIndeterminateToggle = false, // Default to false if not provided
+  resetProgress = () => {},
 }: ProgressBarProps) => {
   const [percent, setPercent] = useState(value);
   const completedRef = useRef(false);
 
   useEffect(() => {
-    if (!indeterminate) {
+    if (resetOnIndeterminateToggle && indeterminate) {
+      // Reset progress to 0 when toggled to indeterminate mode
+      setPercent(MIN);
+      resetProgress();
+    } else if (!indeterminate) {
       // Ensure value is between MIN and MAX
       const clampedValue = Math.min(MAX, Math.max(value, MIN));
       setPercent(clampedValue);
@@ -56,7 +64,14 @@ const ProgressBar = ({
         completedRef.current = true;
       }
     }
-  }, [value, onLoadingComplete, onLoadingStart, indeterminate]);
+  }, [
+    value,
+    onLoadingComplete,
+    onLoadingStart,
+    indeterminate,
+    resetOnIndeterminateToggle,
+    resetProgress,
+  ]);
 
   return (
     <div
