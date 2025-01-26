@@ -4,6 +4,7 @@ import ProgressBar from "src/components/ProgressBar";
 const ExampleProgressBar = () => {
   const [value, setValue] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isIndeterminate, setIsIndeterminate] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,6 +39,17 @@ const ExampleProgressBar = () => {
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
   };
 
+  const toggleIndeterminateModeButtonStyle = {
+    marginBottom: 20,
+    marginTop: 20,
+    padding: "8px 16px",
+    border: "none",
+    borderRadius: "5px",
+    backgroundColor: "#007bff",
+    color: "#fff",
+    cursor: "pointer",
+  };
+
   return (
     <div
       style={{ display: "flex", alignItems: "center", flexDirection: "column" }}
@@ -45,6 +57,7 @@ const ExampleProgressBar = () => {
       <h2 style={{ marginBottom: 20 }}>React Progress Bar Component</h2>
       <ProgressBar
         value={value}
+        indeterminate={isIndeterminate}
         onLoadingComplete={() => {
           setIsLoading(false);
           console.log("loading completed...");
@@ -68,6 +81,12 @@ const ExampleProgressBar = () => {
       <div style={{ marginTop: 16, fontWeight: "bold" }}>
         {isLoading ? "Loading..." : "Complete!"}
       </div>
+      <button
+        onClick={() => setIsIndeterminate((prev) => !prev)}
+        style={toggleIndeterminateModeButtonStyle}
+      >
+        Toggle Indeterminate Mode
+      </button>
     </div>
   );
 };

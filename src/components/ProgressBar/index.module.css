@@ -27,3 +27,19 @@
   background-color: #00c251;
   transition: transform 0.3s ease-in-out;
 }
+
+.indeterminate-fill {
+  animation: indeterminate-animation 2s infinite linear;
+}
+
+@keyframes indeterminate-animation {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
