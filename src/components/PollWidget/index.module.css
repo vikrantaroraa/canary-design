@@ -15,17 +15,31 @@
 }
 
 .options-container {
-  padding: 8px;
-  padding-left: 0;
   overflow-y: scroll;
-  /* background-color: red; */
+  margin-bottom: 1.25rem;
+}
+
+/* Chrome, Edge, Opera, Safari, and other WebKit-based browsers. */
+.options-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Microsoft web browsers */
+.options-container {
+  -ms-overflow-style: none;
+}
+
+/* Gecko-based browsers */
+.options-container {
+  scrollbar-width: none;
 }
 
 .progress-bar {
   width: 100%;
   background-color: #e5e7eb;
   height: 8px;
-  border-radius: 3cqi;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .progress-bar-fill {
@@ -39,23 +53,21 @@
 .remove-btn {
   background-color: #ef4444;
   color: #ffffff;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 0.25rem;
+  border: 1px solid #000;
+  cursor: pointer;
 }
 
 .option {
-  margin-top: 0.25rem; /* 4px */
-  margin-bottom: 0.25;
-  /* border: 1px dotted; */
+  margin-top: 0.5rem;
 }
 
 .label-and-count {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .option-label {
@@ -63,6 +75,6 @@
   align-items: center;
 }
 
-.option-label > * + * {
-  margin-left: 0.5rem; /* spacing between direct children */
+.option-label > input {
+  margin-right: 0.5rem;
 }

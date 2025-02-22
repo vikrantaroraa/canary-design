@@ -129,7 +129,7 @@ const PollWidget = ({
         className={styles["options-container"]}
         style={{
           ...optionsContainer,
-          maxHeight: currentOptions.length > 4 ? "100px" : "auto",
+          maxHeight: currentOptions.length > 4 ? "160px" : "auto",
         }}
       >
         {currentOptions.map((option, index) => {
