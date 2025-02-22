@@ -16,7 +16,9 @@
 
 .options-container {
   padding: 8px;
+  padding-left: 0;
   overflow-y: scroll;
+  /* background-color: red; */
 }
 
 .progress-bar {
@@ -42,4 +44,25 @@
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   border-radius: 0.25rem;
+}
+
+.option {
+  margin-top: 0.25rem; /* 4px */
+  margin-bottom: 0.25;
+  /* border: 1px dotted; */
+}
+
+.label-and-count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+}
+
+.option-label > * + * {
+  margin-left: 0.5rem; /* spacing between direct children */
 }

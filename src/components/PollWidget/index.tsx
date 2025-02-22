@@ -74,6 +74,33 @@ const PollWidget = ({
     0
   );
 
+  const handleVote = async (optionId: number) => {
+    let newSelectedOptions: number[];
+
+    if (isMultiple) {
+    } else {
+      //change option
+      if (selectedOptions.length > 0 && selectedOptions[0] != optionId) {
+        const updatedOptions = await onVoteRemove(pollId, selectedOptions);
+        setCurrentOptions(updatedOptions);
+      }
+      //select option
+      newSelectedOptions = [optionId];
+      const updatedOptions = await onVote(pollId, newSelectedOptions);
+      setCurrentOptions(updatedOptions);
+    }
+
+    setSelectedOptions(newSelectedOptions);
+    localStorage.setItem(`poll-${pollId}`, JSON.stringify(newSelectedOptions));
+  };
+
+  const handleRemoveVote = async () => {
+    const updatedOptions = await onVoteRemove(pollId, selectedOptions);
+    setSelectedOptions([]);
+    localStorage.removeItem(`poll-${pollId}`);
+    setCurrentOptions(updatedOptions);
+  };
+
   return (
     <fieldset className={styles["poll-widget"]} role="group" style={container}>
       <legend className={styles["title"]} style={titleStyle}>
@@ -90,11 +117,18 @@ const PollWidget = ({
           const percentage =
             totalVotes > 0 ? (option.votes / totalVotes) * 100 : 0;
           return (
-            <div>
-              <div>
-                <label htmlFor="" style={optionLabel}>
+            <div key={option.id} className={styles["option"]}>
+              <div className={styles["label-and-count"]}>
+                <label
+                  htmlFor={`option-${option.id}`}
+                  style={optionLabel}
+                  className={styles["option-label"]}
+                >
                   <input
+                    id={`option-${option.id}`}
                     type={isMultiple ? "checkbox" : "radio"}
+                    onChange={() => handleVote(option.id)}
+                    checked={selectedOptions.includes(option.id)}
                     style={optionInput}
                   />
                   <span>{option.title}</span>
@@ -111,7 +145,7 @@ const PollWidget = ({
                     className={styles["progress-bar-fill"]}
                     style={{
                       ...progressBarFill,
-                      transform: `scale(${percentage / 100})`,
+                      transform: `scaleX(${percentage / 100})`,
                     }}
                   ></div>
                 )}
@@ -122,7 +156,11 @@ const PollWidget = ({
       </div>
 
       {selectedOptions.length > 0 && (
-        <button className={styles["remove-btn"]} style={removeButton}>
+        <button
+          className={styles["remove-btn"]}
+          style={removeButton}
+          onClick={handleRemoveVote}
+        >
           Remove Vote
         </button>
       )}
