@@ -1,6 +1,6 @@
-import { Option, Poll } from "../components/PollWidget";
+import { Option, PollData } from "src/components/PollWidget";
 
-export const fetchPoll = async (pollId: number): Promise<Poll> => {
+export const fetchPoll = async (pollId: number): Promise<PollData> => {
   const response = await fetch(`http://localhost:3000/polls/${pollId}`);
   if (!response.ok) {
     throw new Error("Failed to fetch poll");

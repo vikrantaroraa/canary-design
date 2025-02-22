@@ -132,7 +132,7 @@ const PollWidget = ({
           maxHeight: currentOptions.length > 4 ? "160px" : "auto",
         }}
       >
-        {currentOptions.map((option, index) => {
+        {currentOptions.map((option) => {
           const percentage =
             totalVotes > 0 ? (option.votes / totalVotes) * 100 : 0;
           return (
