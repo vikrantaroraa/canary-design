@@ -1,0 +1,26 @@
+{
+  "polls": [
+    {
+      "id": "41",
+      "question": "Best YT chnannel to learn Frontend",
+      "totalCount": 23,
+      "options": [
+        {
+          "id": 83,
+          "title": "Roadside Coder",
+          "votes": 11
+        },
+        {
+          "id": 84,
+          "title": "Algo Agarwal",
+          "votes": 6
+        },
+        {
+          "id": 85,
+          "title": "All the above",
+          "votes": 6
+        }
+      ]
+    }
+  ]
+}

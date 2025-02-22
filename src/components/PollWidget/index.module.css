@@ -1,0 +1,45 @@
+.poll-widget {
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.options-container {
+  padding: 8px;
+  overflow-y: scroll;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #e5e7eb;
+  height: 8px;
+  border-radius: 3cqi;
+}
+
+.progress-bar-fill {
+  background-color: #3b82f6;
+  height: 100%;
+  border-radius: 9999px;
+  transform: translate(0); /* transform (enables transforms) */
+  transform-origin: left;
+}
+
+.remove-btn {
+  background-color: #ef4444;
+  color: #ffffff;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: 0.25rem;
+}

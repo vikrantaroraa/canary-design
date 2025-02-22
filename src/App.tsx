@@ -12,6 +12,7 @@
 // import ExampleTimeline from "src/components/example-components/TimelineExample";
 import ExampleProgressBar from "src/components/example-components/ProgressBarExample";
 import "./App.css";
+import ExamplePollWidget from "src/components/example-components/PollWidgetExample";
 // import ExampleSelect from "src/components/example-components/SelectExample";
 // import ExampleRating from "src/components/example-components/ExampleRating";
 // import ReviewCardExample from "src/components/example-components/ReviewCardExample";
@@ -64,7 +65,8 @@ function App() {
       {/* <ExampleFolderStructure /> */}
       {/* <ExampleComments /> */}
       {/* <ExampleFileExplorer /> */}
-      <ExampleProgressBar />
+      {/* <ExampleProgressBar /> */}
+      <ExamplePollWidget />
     </>
   );
 }
