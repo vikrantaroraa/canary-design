@@ -37,7 +37,7 @@ const ExamplePollWidget = () => {
         onVote={submitVote}
         onVoteRemove={removeVote}
         pollWidgetStyles={{}}
-        // isMultiple={}
+        isMultiple
       />
     </div>
   );

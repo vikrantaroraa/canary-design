@@ -78,6 +78,16 @@ const PollWidget = ({
     let newSelectedOptions: number[];
 
     if (isMultiple) {
+      if (selectedOptions.includes(optionId)) {
+        //remove the selected option
+        newSelectedOptions = selectedOptions.filter((id) => id !== optionId);
+        const updatedOptions = await onVoteRemove(pollId, [optionId]);
+        setCurrentOptions(updatedOptions);
+      } else {
+        newSelectedOptions = [...selectedOptions, optionId];
+        const updatedOptions = await onVote(pollId, [optionId]);
+        setCurrentOptions(updatedOptions);
+      }
     } else {
       //change option
       if (selectedOptions.length > 0 && selectedOptions[0] != optionId) {
