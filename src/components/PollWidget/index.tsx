@@ -112,8 +112,17 @@ const PollWidget = ({
   };
 
   return (
-    <fieldset className={styles["poll-widget"]} role="group" style={container}>
-      <legend className={styles["title"]} style={titleStyle}>
+    <fieldset
+      className={styles["poll-widget"]}
+      role="group"
+      aria-labelledby={`poll-${pollId}-title`}
+      style={container}
+    >
+      <legend
+        id={`poll-${pollId}-title`}
+        className={styles["title"]}
+        style={titleStyle}
+      >
         {title}
       </legend>
       <div
@@ -139,9 +148,11 @@ const PollWidget = ({
                     type={isMultiple ? "checkbox" : "radio"}
                     onChange={() => handleVote(option.id)}
                     checked={selectedOptions.includes(option.id)}
+                    aria-checked={selectedOptions.includes(option.id)}
+                    aria-describedby={`option-${option.id}-info`}
                     style={optionInput}
                   />
-                  <span>{option.title}</span>
+                  <span id={`option-${option.id}-info`}>{option.title}</span>
                 </label>
                 {selectedOptions.length > 0 && (
                   <span style={optionVotes}>
