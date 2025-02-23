@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./index.module.css";
+import { RefreshCw } from "lucide-react";
 
 export interface Option {
   id: number;
@@ -182,7 +183,8 @@ const PollWidget = ({
           style={removeButton}
           onClick={handleRemoveVote}
         >
-          Remove Vote
+          <RefreshCw style={{ height: 16, width: 16 }} />
+          Reset Poll
         </button>
       )}
     </fieldset>

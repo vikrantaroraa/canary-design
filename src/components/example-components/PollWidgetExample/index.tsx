@@ -36,7 +36,18 @@ const ExamplePollWidget = () => {
         options={options}
         onVote={submitVote}
         onVoteRemove={removeVote}
-        pollWidgetStyles={{}}
+        pollWidgetStyles={{
+          container: { width: 380 },
+          progressBarFill: {
+            backgroundColor: "#111827",
+          },
+          optionInput: {
+            accentColor: "#111827",
+          },
+          removeButton: {
+            backgroundColor: "#111827",
+          },
+        }}
         isMultiple
       />
     </div>
