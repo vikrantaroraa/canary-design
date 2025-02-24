@@ -48,8 +48,8 @@ const PollWidget = ({
   onVoteRemove,
   pollWidgetStyles = {},
 }: PollWidgetProps) => {
-  const [currentOptions, setCurrentOptions] = useState<Option[]>(options);
-  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
+  const [currentOptions, setCurrentOptions] = useState<Option[]>(options); // array of all the option objects
+  const [selectedOptions, setSelectedOptions] = useState<number[]>([]); //array of all the selected options' ids
 
   const {
     container,
@@ -79,37 +79,50 @@ const PollWidget = ({
     let newSelectedOptions: number[];
 
     if (isMultiple) {
+      // if the clicked option is already present in the selectedOptions array, then remove the clicked option
+      // from the selectedOptions array, since it is being un-selected by the user when he clicks on it
       if (selectedOptions.includes(optionId)) {
-        //remove the selected option
         newSelectedOptions = selectedOptions.filter((id) => id !== optionId);
         const updatedOptions = await onVoteRemove(pollId, [optionId]);
         setCurrentOptions(updatedOptions);
-      } else {
+      }
+      // if the clicked option is NOT present in the selectedOptions array, then select the clicked option
+      else {
         newSelectedOptions = [...selectedOptions, optionId];
         const updatedOptions = await onVote(pollId, [optionId]);
         setCurrentOptions(updatedOptions);
       }
-    } else {
-      //change option
+    }
+    // Note: Inside the below else we are not checking the if condition [ if (selectedOptions.includes(optionId)) ]
+    // like we are doing when isMultiple is True because if an already checked checkbox input is checked again then
+    // it gets un-checked and we need to remove the selection using onVoteRemove as done above but if an already
+    // checked radio button is clicked again then it stays selected so we need to do nothing in that case
+    else {
+      //  un-select all the the currently selected options ( which would only be a single optionId inside the
+      //  selectedOptions array since this code is for single radio-button selection ) if:-
+      //  a - there is some option selected (selectedOptions.length > 0)
+      //  b - the currently selected option is not the option the user has clicked on to vote for (selectedOptions[0] != optionId)
       if (selectedOptions.length > 0 && selectedOptions[0] != optionId) {
         const updatedOptions = await onVoteRemove(pollId, selectedOptions);
         setCurrentOptions(updatedOptions);
       }
-      //select option
+      //select the option the user has clicked on to vote for
       newSelectedOptions = [optionId];
       const updatedOptions = await onVote(pollId, newSelectedOptions);
       setCurrentOptions(updatedOptions);
     }
 
+    // update the selected options array used for checking/un-checking the radio or checkbox input and to
+    // conditionally show data like vote count and Reset Poll button
     setSelectedOptions(newSelectedOptions);
     localStorage.setItem(`poll-${pollId}`, JSON.stringify(newSelectedOptions));
   };
 
   const handleRemoveVote = async () => {
     const updatedOptions = await onVoteRemove(pollId, selectedOptions);
+    setCurrentOptions(updatedOptions);
     setSelectedOptions([]);
     localStorage.removeItem(`poll-${pollId}`);
-    setCurrentOptions(updatedOptions);
   };
 
   return (
