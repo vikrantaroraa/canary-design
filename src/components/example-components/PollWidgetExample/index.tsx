@@ -28,29 +28,26 @@ const ExamplePollWidget = () => {
   const { id, options, question, totalCount } = pollData;
 
   return (
-    <div className="App">
-      <h2>React Poll Widget Component</h2>
-      <PollWidget
-        pollId={id}
-        title={question}
-        options={options}
-        onVote={submitVote}
-        onVoteRemove={removeVote}
-        pollWidgetStyles={{
-          container: { width: 380 },
-          progressBarFill: {
-            backgroundColor: "#111827",
-          },
-          optionInput: {
-            accentColor: "#111827",
-          },
-          removeButton: {
-            backgroundColor: "#111827",
-          },
-        }}
-        isMultiple
-      />
-    </div>
+    <PollWidget
+      pollId={id}
+      title={question}
+      options={options}
+      onVote={submitVote}
+      onVoteRemove={removeVote}
+      pollWidgetStyles={{
+        container: { width: 380 },
+        progressBarFill: {
+          backgroundColor: "#111827",
+        },
+        optionInput: {
+          accentColor: "#111827",
+        },
+        removeButton: {
+          backgroundColor: "#111827",
+        },
+      }}
+      isMultiple
+    />
   );
 };
 
