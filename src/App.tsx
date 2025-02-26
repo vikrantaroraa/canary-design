@@ -13,6 +13,7 @@
 import ExampleProgressBar from "src/components/example-components/ProgressBarExample";
 import "./App.css";
 import ExamplePollWidget from "src/components/example-components/PollWidgetExample";
+import ExampleTypeahead from "src/components/example-components/TypeaheadExample";
 // import ExampleSelect from "src/components/example-components/SelectExample";
 // import ExampleRating from "src/components/example-components/ExampleRating";
 // import ReviewCardExample from "src/components/example-components/ReviewCardExample";
@@ -66,7 +67,8 @@ function App() {
       {/* <ExampleComments /> */}
       {/* <ExampleFileExplorer /> */}
       {/* <ExampleProgressBar /> */}
-      <ExamplePollWidget />
+      {/* <ExamplePollWidget /> */}
+      <ExampleTypeahead />
     </>
   );
 }
