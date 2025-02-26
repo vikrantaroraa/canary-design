@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./index.module.css";
+import SuggestionsList from "src/components/Typeahead/SuggestionsList";
 
 const Typeahead = ({
   placeholder = "",
@@ -56,6 +57,8 @@ const Typeahead = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
+  const handleSuggestionClick = () => {};
+
   return (
     <div className={styles["container"]}>
       <input
@@ -67,8 +70,18 @@ const Typeahead = ({
         onFocus={onFocus}
         onChange={handleInputChange}
       />
-      {error && <div className={styles["error"]}>{error}</div>}
-      {loading && <div className={styles["loading"]}>{customLoading}</div>}
+      {(SuggestionsList.length > 0 || loading || error) && (
+        <ul className={styles["suggestion-list"]}>
+          {error && <div className={styles["error"]}>{error}</div>}
+          {loading && <div className={styles["loading"]}>{customLoading}</div>}
+          <SuggestionsList
+            datakey={datakey}
+            hightlight={inputValue}
+            suggestions={suggestions}
+            onSuggestionClick={handleSuggestionClick}
+          />
+        </ul>
+      )}
     </div>
   );
 };
