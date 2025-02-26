@@ -29,7 +29,7 @@ const SuggestionsList = ({
         return (
           <li
             key={index}
-            onClick={onSuggestionClick}
+            onClick={() => onSuggestionClick(suggestion)}
             className={styles["suggestion-item"]}
           >
             {getHighlightedText(currentSuggestion, hightlight)}

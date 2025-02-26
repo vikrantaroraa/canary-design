@@ -8,7 +8,7 @@ const Typeahead = ({
   fetchSuggestions,
   datakey = "",
   customLoading = "Loading...",
-  onSelect = () => {},
+  onSelect = (suggestion) => {},
   onChange = (inputValue) => {},
   onBlur = () => {},
   onFocus = () => {},
@@ -57,7 +57,11 @@ const Typeahead = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
-  const handleSuggestionClick = () => {};
+  const handleSuggestionClick = (suggestion: string) => {
+    setInputvalue(datakey ? suggestion[datakey] : suggestion);
+    onSelect(suggestion);
+    setSuggestions([]);
+  };
 
   return (
     <div className={styles["container"]}>

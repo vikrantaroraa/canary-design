@@ -34,7 +34,7 @@ const ExampleTypeahead = () => {
       fetchSuggestions={fetchSuggestions}
       datakey="name"
       customLoading={<>Loading Recipes...</>}
-      onSelect={(res) => console.log(res)}
+      onSelect={(suggestion) => console.log("selection item:- ", suggestion)}
       onChange={(inputValue) => {}}
       onBlur={(e) => {}}
       onFocus={(e) => {}}
