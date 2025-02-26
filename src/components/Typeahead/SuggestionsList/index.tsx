@@ -7,8 +7,20 @@ const SuggestionsList = ({
   datakey,
   onSuggestionClick,
 }) => {
-  const getHighlightedText = (currentSuggestion, highlight) => {
-    return currentSuggestion;
+  const getHighlightedText = (text: string, highlight: string) => {
+    const parts = text.split(new RegExp(`(${highlight})`, "gi"));
+    console.log(parts);
+    return (
+      <span>
+        {parts.map((part: string, index: number) => {
+          return part.toLowerCase() === highlight.toLowerCase() ? (
+            <b key={index}>{part}</b>
+          ) : (
+            part
+          );
+        })}
+      </span>
+    );
   };
   return (
     <React.Fragment>
