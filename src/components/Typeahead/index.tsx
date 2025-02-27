@@ -1,6 +1,7 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import styles from "./index.module.css";
 import SuggestionsList from "src/components/Typeahead/SuggestionsList";
+import debounce from "lodash/debounce";
 
 const Typeahead = ({
   placeholder = "",
@@ -48,9 +49,15 @@ const Typeahead = ({
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getSuggestionsDebounced = useCallback(
+    debounce(getSuggestions, 300),
+    []
+  );
+
   useEffect(() => {
     if (inputValue.length > 1) {
-      getSuggestions(inputValue);
+      getSuggestionsDebounced(inputValue);
     } else {
       setSuggestions([]);
     }

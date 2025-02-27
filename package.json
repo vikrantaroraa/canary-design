@@ -69,5 +69,8 @@
   "sideEffects": [
     "**/*.css"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
