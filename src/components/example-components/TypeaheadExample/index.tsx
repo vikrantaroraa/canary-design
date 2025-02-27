@@ -32,7 +32,8 @@ const ExampleTypeahead = () => {
       placeholder={"Enter text"}
       // staticData={staticData}
       fetchSuggestions={fetchSuggestions}
-      datakey="name"
+      caching={true}
+      datakey={"name"}
       customLoading={<>Loading Recipes...</>}
       onSelect={(suggestion) => console.log("selection item:- ", suggestion)}
       onChange={(inputValue) => {}}

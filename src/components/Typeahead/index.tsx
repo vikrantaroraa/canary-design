@@ -2,11 +2,13 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import styles from "./index.module.css";
 import SuggestionsList from "src/components/Typeahead/SuggestionsList";
 import debounce from "lodash/debounce";
+import useCache from "src/components/Typeahead/hooks/use-cache";
 
 const Typeahead = ({
   placeholder = "",
   staticData,
   fetchSuggestions,
+  caching = true,
   datakey = "",
   customLoading = "Loading...",
   onSelect = (suggestion) => {},
@@ -22,30 +24,41 @@ const Typeahead = ({
 
   console.log("suggestions are:- ", suggestions);
 
+  const { setCache, getCache } = useCache("autocomplete", 3600);
+
   const handleInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
     setInputvalue(event.target.value);
     onChange(event.target.value);
   };
 
   const getSuggestions = async (query: string) => {
-    let result;
     setError(null);
-    setLoading(true);
-    try {
-      if (staticData) {
-        result = staticData.filter((item: string) => {
-          return item.toLowerCase().includes(query.toLowerCase());
-        });
-      } else if (fetchSuggestions) {
-        result = await fetchSuggestions(query);
+    const cachedSuggestions = getCache(query);
+
+    // If caching is enabled and cache does exist then get the suggestions from the cached data otherwise fetch
+    // suggestions data from api call and save it to the cache.
+    if (caching && cachedSuggestions) {
+      setSuggestions(cachedSuggestions);
+    } else {
+      setLoading(true);
+      try {
+        let result;
+        if (staticData) {
+          result = staticData.filter((item: string) => {
+            return item.toLowerCase().includes(query.toLowerCase());
+          });
+        } else if (fetchSuggestions) {
+          result = await fetchSuggestions(query);
+        }
+        setCache(query, result); // saving fetched data to cache
+        console.log("ye aaya result:- ", result);
+        setSuggestions(result);
+      } catch (error) {
+        setError("Failed to fetch suggestions!");
+        setSuggestions([]);
+      } finally {
+        setLoading(false);
       }
-      console.log("ye aaya result:- ", result);
-      setSuggestions(result);
-    } catch (error) {
-      setError("Failed to fetch suggestions!");
-      setSuggestions([]);
-    } finally {
-      setLoading(false);
     }
   };
 
