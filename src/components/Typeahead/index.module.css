@@ -45,6 +45,7 @@
   cursor: pointer;
 }
 
-.suggestion-item:hover {
+.suggestion-item:hover,
+.suggestion-item[aria-selected="true"] {
   background-color: #f0f0f0;
 }

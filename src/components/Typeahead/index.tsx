@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
 import SuggestionsList from "src/components/Typeahead/SuggestionsList";
 import debounce from "lodash/debounce";
@@ -22,6 +22,7 @@ const Typeahead = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const suggestionsListRef = useRef(null);
 
   console.log("suggestions are:- ", suggestions);
 
@@ -70,6 +71,7 @@ const Typeahead = ({
   );
 
   useEffect(() => {
+    setSelectedIndex(-1);
     if (inputValue.length > 1) {
       getSuggestionsDebounced(inputValue);
     } else {
@@ -89,6 +91,7 @@ const Typeahead = ({
       case "ArrowDown":
         setSelectedIndex((prevIndex) => {
           const newIndex = (prevIndex + 1) % suggestions.length;
+          scrollIntoView(newIndex);
           return newIndex;
         });
         break;
@@ -96,6 +99,7 @@ const Typeahead = ({
         setSelectedIndex((prevIndex) => {
           const newIndex =
             (prevIndex - 1 + suggestions.length) % suggestions.length;
+          scrollIntoView(newIndex);
           return newIndex;
         });
         break;
@@ -107,6 +111,19 @@ const Typeahead = ({
 
       default:
         break;
+    }
+  };
+
+  const scrollIntoView = (index) => {
+    if (suggestionsListRef.current) {
+      const suggestionElements =
+        suggestionsListRef.current.getElementsByTagName("li");
+      if (suggestionElements[index]) {
+        suggestionElements[index].scrollIntoView({
+          behaviour: "smooth",
+          block: "nearest",
+        });
+      }
     }
   };
 
@@ -126,7 +143,11 @@ const Typeahead = ({
         aria-activedescendant={`suggestion-${selectedIndex}`}
       />
       {(SuggestionsList.length > 0 || loading || error) && (
-        <ul className={styles["suggestion-list"]} role="listbox">
+        <ul
+          className={styles["suggestion-list"]}
+          role="listbox"
+          ref={suggestionsListRef}
+        >
           {error && <div className={styles["error"]}>{error}</div>}
           {loading && <div className={styles["loading"]}>{customLoading}</div>}
           <SuggestionsList
