@@ -6,6 +6,7 @@ const SuggestionsList = ({
   hightlight,
   datakey,
   onSuggestionClick,
+  selectedIndex,
 }) => {
   const getHighlightedText = (text: string, highlight: string) => {
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
@@ -31,6 +32,9 @@ const SuggestionsList = ({
             key={index}
             onClick={() => onSuggestionClick(suggestion)}
             className={styles["suggestion-item"]}
+            id={`suggestion-${index}`}
+            role="option"
+            aria-selected={selectedIndex === index}
           >
             {getHighlightedText(currentSuggestion, hightlight)}
           </li>

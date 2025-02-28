@@ -21,6 +21,7 @@ const Typeahead = ({
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   console.log("suggestions are:- ", suggestions);
 
@@ -83,6 +84,32 @@ const Typeahead = ({
     setSuggestions([]);
   };
 
+  const handleKeyDown = (event) => {
+    switch (event.key) {
+      case "ArrowDown":
+        setSelectedIndex((prevIndex) => {
+          const newIndex = (prevIndex + 1) % suggestions.length;
+          return newIndex;
+        });
+        break;
+      case "ArrowUp":
+        setSelectedIndex((prevIndex) => {
+          const newIndex =
+            (prevIndex - 1 + suggestions.length) % suggestions.length;
+          return newIndex;
+        });
+        break;
+      case "Enter":
+        if (selectedIndex >= 0 && selectedIndex <= suggestions.length) {
+          handleSuggestionClick(suggestions[selectedIndex]);
+        }
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <div className={styles["container"]}>
       <input
@@ -93,9 +120,13 @@ const Typeahead = ({
         onBlur={onBlur}
         onFocus={onFocus}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        aria-autocomplete="list"
+        aria-controls="suggestions-list"
+        aria-activedescendant={`suggestion-${selectedIndex}`}
       />
       {(SuggestionsList.length > 0 || loading || error) && (
-        <ul className={styles["suggestion-list"]}>
+        <ul className={styles["suggestion-list"]} role="listbox">
           {error && <div className={styles["error"]}>{error}</div>}
           {loading && <div className={styles["loading"]}>{customLoading}</div>}
           <SuggestionsList
@@ -103,6 +134,7 @@ const Typeahead = ({
             hightlight={inputValue}
             suggestions={suggestions}
             onSuggestionClick={handleSuggestionClick}
+            selectedIndex={selectedIndex}
           />
         </ul>
       )}
