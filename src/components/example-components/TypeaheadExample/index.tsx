@@ -1,19 +1,19 @@
 import React from "react";
 import Typeahead from "src/components/Typeahead";
 
-const staticData = [
-  "apple",
-  "banana",
-  "cranberry",
-  "orange",
-  "grape",
-  "mango",
-  "melon",
-  "berry",
-  "peach",
-  "cherry",
-  "plum",
-];
+// const staticData = [
+//   "apple",
+//   "banana",
+//   "blueberry",
+//   "orange",
+//   "grape",
+//   "mango",
+//   "melon",
+//   "berry",
+//   "peach",
+//   "cherry",
+//   "plum",
+// ];
 
 const fetchSuggestions = async (query: string) => {
   const response = await fetch(
@@ -36,9 +36,9 @@ const ExampleTypeahead = () => {
       datakey={"name"}
       customLoading={<>Loading Recipes...</>}
       onSelect={(suggestion) => console.log("selection item:- ", suggestion)}
-      onChange={(inputValue) => {}}
-      onBlur={(e) => {}}
-      onFocus={(e) => {}}
+      onChange={(inputValue) => console.log("input value is:- ", inputValue)}
+      onBlur={(event) => console.log(event)}
+      onFocus={(event) => console.log(event)}
       customStyles={{}}
     />
   );

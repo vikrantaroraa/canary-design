@@ -1,8 +1,29 @@
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "./index.module.css";
 import SuggestionsList from "src/components/Typeahead/SuggestionsList";
 import debounce from "lodash/debounce";
 import useCache from "src/components/Typeahead/hooks/use-cache";
+
+interface TypeaheadProps {
+  placeholder?: string;
+  staticData?: string[];
+  fetchSuggestions: (query: string) => Promise<unknown[]>;
+  caching?: boolean;
+  datakey?: string;
+  customLoading?: ReactNode;
+  onSelect: (suggestion: unknown) => void;
+  onChange: (inputValue: string) => void;
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus: (event: React.FocusEvent<HTMLInputElement>) => void;
+  customStyles: React.CSSProperties;
+}
 
 const Typeahead = ({
   placeholder = "",
@@ -11,18 +32,18 @@ const Typeahead = ({
   caching = true,
   datakey = "",
   customLoading = "Loading...",
-  onSelect = (suggestion) => {},
-  onChange = (inputValue) => {},
+  onSelect = () => {},
+  onChange = () => {},
   onBlur = () => {},
   onFocus = () => {},
   customStyles = {},
-}) => {
+}: TypeaheadProps) => {
   const [inputValue, setInputvalue] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState<unknown[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const suggestionsListRef = useRef(null);
+  const suggestionsListRef = useRef<HTMLUListElement | null>(null);
 
   console.log("suggestions are:- ", suggestions);
 
@@ -37,9 +58,7 @@ const Typeahead = ({
     setError(null);
     const cachedSuggestions = getCache(query);
 
-    // If caching is enabled and cache does exist then get the suggestions from the cached data otherwise fetch
-    // suggestions data from api call and save it to the cache.
-    if (caching && cachedSuggestions) {
+    if (caching && Array.isArray(cachedSuggestions)) {
       setSuggestions(cachedSuggestions);
     } else {
       setLoading(true);
@@ -52,9 +71,13 @@ const Typeahead = ({
         } else if (fetchSuggestions) {
           result = await fetchSuggestions(query);
         }
-        setCache(query, result); // saving fetched data to cache
-        console.log("ye aaya result:- ", result);
-        setSuggestions(result);
+        setCache(query, result);
+
+        if (Array.isArray(result)) {
+          setSuggestions(result);
+        } else {
+          console.error("fetchSuggestions must return an array");
+        }
       } catch (error) {
         setError("Failed to fetch suggestions!");
         setSuggestions([]);
@@ -80,13 +103,21 @@ const Typeahead = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
-  const handleSuggestionClick = (suggestion: string) => {
-    setInputvalue(datakey ? suggestion[datakey] : suggestion);
+  const handleSuggestionClick = (suggestion: unknown) => {
+    if (typeof suggestion === "object" && suggestion !== null) {
+      if (datakey && datakey in suggestion) {
+        setInputvalue(String((suggestion as Record<string, unknown>)[datakey]));
+      } else {
+        setInputvalue(String(suggestion));
+      }
+    } else {
+      setInputvalue(String(suggestion));
+    }
     onSelect(suggestion);
     setSuggestions([]);
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
       case "ArrowDown":
         setSelectedIndex((prevIndex) => {
@@ -114,13 +145,13 @@ const Typeahead = ({
     }
   };
 
-  const scrollIntoView = (index) => {
+  const scrollIntoView = (index: number) => {
     if (suggestionsListRef.current) {
       const suggestionElements =
         suggestionsListRef.current.getElementsByTagName("li");
       if (suggestionElements[index]) {
         suggestionElements[index].scrollIntoView({
-          behaviour: "smooth",
+          behavior: "smooth",
           block: "nearest",
         });
       }
@@ -152,7 +183,7 @@ const Typeahead = ({
           {loading && <div className={styles["loading"]}>{customLoading}</div>}
           <SuggestionsList
             datakey={datakey}
-            hightlight={inputValue}
+            highlight={inputValue}
             suggestions={suggestions}
             onSuggestionClick={handleSuggestionClick}
             selectedIndex={selectedIndex}

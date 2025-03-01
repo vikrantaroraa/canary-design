@@ -1,13 +1,21 @@
 import React from "react";
 import styles from "../index.module.css";
 
+interface SuggestionsListProps {
+  suggestions: unknown[];
+  highlight: string;
+  datakey: string;
+  onSuggestionClick: (suggestion: unknown) => void;
+  selectedIndex: number;
+}
+
 const SuggestionsList = ({
   suggestions = [],
-  hightlight,
+  highlight,
   datakey,
   onSuggestionClick,
   selectedIndex,
-}) => {
+}: SuggestionsListProps) => {
   const getHighlightedText = (text: string, highlight: string) => {
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
     console.log(parts);
@@ -23,10 +31,23 @@ const SuggestionsList = ({
       </span>
     );
   };
+
+  const getSuggestionText = (suggestion: unknown): string => {
+    if (
+      typeof suggestion === "object" &&
+      suggestion !== null &&
+      datakey &&
+      datakey in suggestion
+    ) {
+      return String((suggestion as Record<string, unknown>)[datakey]);
+    }
+    return String(suggestion);
+  };
+
   return (
     <React.Fragment>
       {suggestions.map((suggestion, index) => {
-        const currentSuggestion = datakey ? suggestion[datakey] : suggestion;
+        const currentSuggestion = getSuggestionText(suggestion);
         return (
           <li
             key={index}
@@ -36,7 +57,7 @@ const SuggestionsList = ({
             role="option"
             aria-selected={selectedIndex === index}
           >
-            {getHighlightedText(currentSuggestion, hightlight)}
+            {getHighlightedText(currentSuggestion, highlight)}
           </li>
         );
       })}
