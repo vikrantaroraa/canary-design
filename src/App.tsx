@@ -14,6 +14,7 @@ import ExampleProgressBar from "src/components/example-components/ProgressBarExa
 import "./App.css";
 import ExamplePollWidget from "src/components/example-components/PollWidgetExample";
 import ExampleTypeahead from "src/components/example-components/TypeaheadExample";
+import ExampleMemoryGame from "src/components/example-components/MemoryGameExample";
 // import ExampleSelect from "src/components/example-components/SelectExample";
 // import ExampleRating from "src/components/example-components/ExampleRating";
 // import ReviewCardExample from "src/components/example-components/ReviewCardExample";
@@ -68,7 +69,8 @@ function App() {
       {/* <ExampleFileExplorer /> */}
       {/* <ExampleProgressBar /> */}
       {/* <ExamplePollWidget /> */}
-      <ExampleTypeahead />
+      {/* <ExampleTypeahead /> */}
+      <ExampleMemoryGame />
     </>
   );
 }
