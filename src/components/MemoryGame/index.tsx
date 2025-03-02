@@ -11,7 +11,7 @@ const MemoryGame = () => {
 
   const [cards, setCards] = useState<CardType[]>([]);
   const [flipped, setFlipped] = useState<number[]>([]);
-  const [solved, setSolved] = useState<CardType[]>([]);
+  const [solved, setSolved] = useState<number[]>([]);
 
   const [disabled, setDisabled] = useState(false);
   const [won, setWon] = useState(false);
@@ -46,6 +46,21 @@ const MemoryGame = () => {
     initializeGame();
   }, [gridSize]);
 
+  const checkCardMatch = (secondId: number) => {
+    const [firstId] = flipped;
+    if (cards[firstId].number === cards[secondId].number) {
+      setSolved([...solved, firstId, secondId]);
+      console.log("setting flipped empty");
+      setFlipped([]);
+      setDisabled(false);
+    } else {
+      setTimeout(() => {
+        setFlipped([]);
+        setDisabled(false);
+      }, 1000);
+    }
+  };
+
   const handleCardClick = (id: number) => {
     if (disabled || won) return;
 
@@ -58,6 +73,7 @@ const MemoryGame = () => {
       if (id !== flipped[0]) {
         setFlipped([...flipped, id]);
         // check match logic
+        checkCardMatch(id);
       } else {
         setFlipped([]);
         setDisabled(false);
@@ -65,7 +81,8 @@ const MemoryGame = () => {
     }
   };
 
-  const isFlipped = (id: number) => flipped.includes(id);
+  const isFlipped = (id: number) => flipped.includes(id) || solved.includes(id);
+  const isSolved = (id: number) => solved.includes(id);
 
   return (
     <div className={styles["container"]}>
@@ -98,7 +115,9 @@ const MemoryGame = () => {
               onClick={() => handleCardClick(id)}
               className={`${styles["number-tile"]} ${
                 isFlipped(id)
-                  ? styles["card-flipped"]
+                  ? isSolved(id)
+                    ? styles["card-solved"]
+                    : styles["card-flipped"]
                   : styles["card-unflipped"]
               }`}
             >

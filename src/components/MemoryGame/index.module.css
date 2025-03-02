@@ -50,3 +50,7 @@
   background-color: #d1d5db; /* bg-gray-300 */
   color: #9ca3af; /* text-gray-400 */
 }
+
+.card-solved {
+  background-color: #22c55e;
+}
