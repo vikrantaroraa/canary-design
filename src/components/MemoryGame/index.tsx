@@ -8,10 +8,13 @@ interface CardType {
 
 const MemoryGame = () => {
   const [gridSize, setGridSize] = useState(4);
+
   const [cards, setCards] = useState<CardType[]>([]);
-  const [flipped, setFlipped] = useState<CardType[]>([]);
-  const [solved, setFSolved] = useState<CardType[]>([]);
+  const [flipped, setFlipped] = useState<number[]>([]);
+  const [solved, setSolved] = useState<CardType[]>([]);
+
   const [disabled, setDisabled] = useState(false);
+  const [won, setWon] = useState(false);
 
   const handleGridSizeChange = (event: ChangeEvent<HTMLInputElement>) => {
     const size = parseInt(event.target.value);
@@ -35,12 +38,34 @@ const MemoryGame = () => {
       number,
     }));
 
+    console.log(finalArray);
     setCards(finalArray);
   };
 
   useEffect(() => {
     initializeGame();
   }, [gridSize]);
+
+  const handleCardClick = (id: number) => {
+    if (disabled || won) return;
+
+    if (flipped.length === 0) {
+      setFlipped([id]);
+    }
+
+    if (flipped.length === 1) {
+      setDisabled(true);
+      if (id !== flipped[0]) {
+        setFlipped([...flipped, id]);
+        // check match logic
+      } else {
+        setFlipped([]);
+        setDisabled(false);
+      }
+    }
+  };
+
+  const isFlipped = (id: number) => flipped.includes(id);
 
   return (
     <div className={styles["container"]}>
@@ -68,8 +93,16 @@ const MemoryGame = () => {
       >
         {cards.map(({ id, number }) => {
           return (
-            <div key={id} className={styles["number-tile"]}>
-              {number}
+            <div
+              key={id}
+              onClick={() => handleCardClick(id)}
+              className={`${styles["number-tile"]} ${
+                isFlipped(id)
+                  ? styles["card-flipped"]
+                  : styles["card-unflipped"]
+              }`}
+            >
+              {isFlipped(id) ? number : "?"}
             </div>
           );
         })}

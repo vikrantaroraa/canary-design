@@ -38,7 +38,15 @@
   line-height: 1.75rem;
   font-weight: 700; /* font-bold */
   border-radius: 0.5rem; /* rounded-lg */
+  transition: all 0.3s ease; /* transition-all & duration-300 */
+}
+
+.card-flipped {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+.card-unflipped {
   background-color: #d1d5db; /* bg-gray-300 */
   color: #9ca3af; /* text-gray-400 */
-  transition: all 0.3s ease; /* transition-all & duration-300 */
 }
