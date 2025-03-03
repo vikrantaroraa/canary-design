@@ -40,6 +40,9 @@ const MemoryGame = () => {
 
     console.log(finalArray);
     setCards(finalArray);
+    setFlipped([]);
+    setSolved([]);
+    setWon(false);
   };
 
   useEffect(() => {
@@ -50,7 +53,6 @@ const MemoryGame = () => {
     const [firstId] = flipped;
     if (cards[firstId].number === cards[secondId].number) {
       setSolved([...solved, firstId, secondId]);
-      console.log("setting flipped empty");
       setFlipped([]);
       setDisabled(false);
     } else {
@@ -80,6 +82,12 @@ const MemoryGame = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (solved.length === cards.length && cards.length > 0) {
+      setWon(true);
+    }
+  }, [solved, cards]);
 
   const isFlipped = (id: number) => flipped.includes(id) || solved.includes(id);
   const isSolved = (id: number) => solved.includes(id);
@@ -128,8 +136,12 @@ const MemoryGame = () => {
       </div>
 
       {/* Result */}
+      {won && <div className={styles["win-message"]}>You Won!</div>}
 
       {/* Reset / Play Again Button */}
+      <button onClick={initializeGame} className={styles["reset-btn"]}>
+        {won ? "Play Again" : "Reset"}
+      </button>
     </div>
   );
 };
