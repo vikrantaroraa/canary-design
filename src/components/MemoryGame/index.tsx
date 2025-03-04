@@ -15,6 +15,9 @@ const MemoryGame = () => {
 
   const [disabled, setDisabled] = useState(false);
   const [won, setWon] = useState(false);
+  const [maxMoves, setMaxMoves] = useState(0);
+  const [moves, setMoves] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   const handleGridSizeChange = (event: ChangeEvent<HTMLInputElement>) => {
     const size = parseInt(event.target.value);
@@ -43,11 +46,13 @@ const MemoryGame = () => {
     setFlipped([]);
     setSolved([]);
     setWon(false);
+    setMoves(0);
+    setGameOver(false);
   };
 
   useEffect(() => {
     initializeGame();
-  }, [gridSize]);
+  }, [gridSize, maxMoves]);
 
   const checkCardMatch = (secondId: number) => {
     const [firstId] = flipped;
@@ -64,9 +69,10 @@ const MemoryGame = () => {
   };
 
   const handleCardClick = (id: number) => {
-    if (disabled || won) return;
+    if (disabled || gameOver) return;
 
     if (flipped.length === 0) {
+      setMoves((moves) => moves + 1);
       setFlipped([id]);
     }
 
@@ -74,6 +80,7 @@ const MemoryGame = () => {
       setDisabled(true);
       if (id !== flipped[0]) {
         setFlipped([...flipped, id]);
+        setMoves((moves) => moves + 1);
         // check match logic
         checkCardMatch(id);
       } else {
@@ -86,8 +93,16 @@ const MemoryGame = () => {
   useEffect(() => {
     if (solved.length === cards.length && cards.length > 0) {
       setWon(true);
+      setGameOver(true);
+    } else if (maxMoves > 0 && moves >= maxMoves) {
+      setGameOver(true);
     }
-  }, [solved, cards]);
+  }, [solved, cards, moves, maxMoves]);
+
+  const handleMaxMovesChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const moves = parseInt(event.target.value);
+    if (moves >= 0) setMaxMoves(moves);
+  };
 
   const isFlipped = (id: number) => flipped.includes(id) || solved.includes(id);
   const isSolved = (id: number) => solved.includes(id);
@@ -95,17 +110,37 @@ const MemoryGame = () => {
   return (
     <div className={styles["container"]}>
       {/* Input */}
-      <div className={styles["input-container"]}>
-        <label htmlFor="gridSize">Grid Size: (max 10)</label>
-        <input
-          type="number"
-          id="gridSize"
-          min={2}
-          max={10}
-          value={gridSize}
-          onChange={handleGridSizeChange}
-          className={styles["grid-size-input"]}
-        />
+      <div className={styles["inputs-container"]}>
+        {/* Select Grid Size Input */}
+        <div>
+          <label htmlFor="gridSize">Grid Size: </label>
+          <input
+            type="number"
+            id="gridSize"
+            min={2}
+            max={10}
+            value={gridSize}
+            onChange={handleGridSizeChange}
+            className={styles["grid-size-input"]}
+          />
+        </div>
+
+        {/* Select Number of Moves Input */}
+        <div>
+          <label htmlFor="maxMoves">Max Moves (0 for unlimited): </label>
+          <input
+            type="number"
+            id="maxMoves"
+            min={0}
+            value={maxMoves}
+            onChange={handleMaxMovesChange}
+            className={styles["grid-size-input"]}
+          />
+        </div>
+      </div>
+
+      <div>
+        Moves: {moves} {moves > 0 ? ` / ${maxMoves}` : ""}
       </div>
 
       {/* Game Board */}
@@ -136,7 +171,15 @@ const MemoryGame = () => {
       </div>
 
       {/* Result */}
-      {won && <div className={styles["win-message"]}>You Won!</div>}
+      {gameOver && (
+        <div
+          className={`${styles["game-finished-message"]} ${
+            won ? styles["win-message"] : styles["lose-message"]
+          }`}
+        >
+          {won ? "You Won!" : "Game Over!"}
+        </div>
+      )}
 
       {/* Reset / Play Again Button */}
       <button onClick={initializeGame} className={styles["reset-btn"]}>
