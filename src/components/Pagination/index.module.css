@@ -1,0 +1,28 @@
+.pagination {
+  padding: 10px;
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination > span {
+  padding: 15px 20px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.selected-page {
+  background-color: rgb(220, 220, 220);
+}
+
+.page-number-tile {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide-button {
+  opacity: 0;
+}
