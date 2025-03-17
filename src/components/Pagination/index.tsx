@@ -18,7 +18,7 @@ const Pagination = ({
   const selectPageHandler = (selectedPage: number) => {
     if (
       selectedPage >= 1 &&
-      selectedPage <= products.length / 10 &&
+      selectedPage <= Math.ceil(products.length / 10) &&
       selectedPage !== page
     ) {
       setPage(selectedPage);
