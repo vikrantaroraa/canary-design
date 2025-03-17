@@ -6,6 +6,8 @@ const containerStyles: React.CSSProperties = {
   flexDirection: "column",
   padding: "20px",
   gap: "20px",
+  height: "auto",
+  minHeight: "100vh",
 };
 
 const productsContainerStyle: React.CSSProperties = {
@@ -43,6 +45,15 @@ const productLabelStyles: React.CSSProperties = {
   textOverflow: "ellipsis",
   minWidth: 0,
   width: "100%",
+};
+
+const loadingStyles: React.CSSProperties = {
+  display: "flex",
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  fontSize: "22px",
+  fontWeight: "bold",
 };
 
 const itemsPerPageOptions = [6, 9, 15, 24, 36, 50];
@@ -91,7 +102,7 @@ const ExamplePagination = () => {
           ))}
         </select>
       </label>
-      {products.length !== 0 && (
+      {products.length !== 0 ? (
         <div style={productsContainerStyle}>
           {products
             .slice((page - 1) * itemsPerPage, page * itemsPerPage)
@@ -108,6 +119,8 @@ const ExamplePagination = () => {
               );
             })}
         </div>
+      ) : (
+        <div style={loadingStyles}>Loading...</div>
       )}
 
       {products.length > 0 && (
