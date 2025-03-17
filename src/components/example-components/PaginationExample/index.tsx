@@ -45,19 +45,18 @@ const productLabelStyles: React.CSSProperties = {
   width: "100%",
 };
 
-const itemsPerPageOptions = [6, 15, 24, 36, 50];
+const itemsPerPageOptions = [6, 9, 15, 24, 36, 50];
 
 const ExamplePagination = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(9); // Dynamic itemsPerPage - can be changed to any number thirogh a dropdown
+  const [itemsPerPage, setItemsPerPage] = useState(itemsPerPageOptions[1]); // Dynamic itemsPerPage - can be changed to any number using a dropdown
   // TotalPages is useful when calling only 10 (or just a single page items which can be anything like 9, 12, 15 etc). Essesntially when we do not call all items in one go and call every page item
   // const [totalPages, setTotalPages] = useState(0);
 
   const fetchProducts = async () => {
     const res = await fetch(`https://dummyjson.com/products?limit=200`);
     const data = await res.json();
-    console.log(data);
     if (data && data.products) {
       setProducts(data.products);
       // setTotalPages(Math.ceil(data.total / 10));
