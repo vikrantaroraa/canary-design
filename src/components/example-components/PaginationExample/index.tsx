@@ -76,7 +76,7 @@ const ExamplePagination = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [page]);
+  }, []);
 
   // Reset to first page when itemsPerPage changes
   useEffect(() => {
