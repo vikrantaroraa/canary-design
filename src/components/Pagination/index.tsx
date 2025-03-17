@@ -18,7 +18,7 @@ const Pagination = ({
   const selectPageHandler = (selectedPage: number) => {
     if (
       selectedPage >= 1 &&
-      selectedPage <= Math.ceil(products.length / 10) &&
+      selectedPage <= totalPages &&
       selectedPage !== page
     ) {
       setPage(selectedPage);
@@ -95,7 +95,7 @@ const Pagination = ({
       <span
         onClick={() => selectPageHandler(page + 1)}
         className={`${styles["page-number-tile"]} ${
-          page < products.length / 10 ? "" : styles["hide-button"]
+          page < totalPages ? "" : styles["hide-button"]
         }`}
       >
         ▶
