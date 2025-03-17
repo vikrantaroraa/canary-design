@@ -62,10 +62,9 @@ function App() {
       <Button onClick={() => console.log("hi")}>Hello</Button> */}
       {/* <br /> */}
       {/* <ExampleSelect /> */}
-      {/* <br /> */}
       {/* <ExampleRating /> */}
-      {/* <ReviewCardExample /> */}
-      {/* <ExampleFolderStructure /> */}
+      {/* <ReviewCardExample /> */} {/* Not Needed */}
+      {/* <ExampleFolderStructure />   */} {/* Not Needed */}
       {/* <ExampleComments /> */}
       {/* <ExampleFileExplorer /> */}
       {/* <ExampleProgressBar /> */}
