@@ -1,22 +1,18 @@
 import styles from "./index.module.css";
 
 interface PaginationProps {
-  products: unknown[];
+  totalPages: number;
   page: number;
   setPage: (page: number) => void;
   maxVisiblePages?: number;
-  itemsPerPage?: number;
 }
 
 const Pagination = ({
-  products,
+  totalPages,
   page,
   setPage,
   maxVisiblePages = 5,
-  itemsPerPage = 10, // Default to 10 items per page
 }: PaginationProps) => {
-  const totalPages = Math.ceil(products.length / itemsPerPage);
-
   const selectPageHandler = (selectedPage: number) => {
     if (
       selectedPage >= 1 &&

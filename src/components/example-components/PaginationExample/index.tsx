@@ -41,6 +41,7 @@ const productLabelStyles: React.CSSProperties = {
 const ExamplePagination = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(9); // Dynamic itemsPerPage - can be changed to any number thirogh a dropdown
   // TotalPages is useful when calling only 10 (or just a single page items which can be anything like 9, 12, 15 etc). Essesntially when we do not call all items in one go and call every page item
   // const [totalPages, setTotalPages] = useState(0);
 
@@ -58,13 +59,21 @@ const ExamplePagination = () => {
     fetchProducts();
   }, [page]);
 
+  // Reset to first page when itemsPerPage changes
+  useEffect(() => {
+    setPage(1);
+  }, [itemsPerPage]);
+
+  // Calculate total pages dynamically
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
   return (
     <div className="App">
       <h2>React Pagination Component</h2>
       {products.length !== 0 && (
         <div style={productsContainerStyle}>
           {products
-            .slice(page * 10 - 10, page * 10)
+            .slice((page - 1) * itemsPerPage, page * itemsPerPage)
             .map(({ id, thumbnail, title }) => {
               return (
                 <div style={productStyles} key={id}>
@@ -81,7 +90,7 @@ const ExamplePagination = () => {
       )}
 
       {products.length > 0 && (
-        <Pagination products={products} page={page} setPage={setPage} />
+        <Pagination totalPages={totalPages} page={page} setPage={setPage} />
       )}
     </div>
   );
