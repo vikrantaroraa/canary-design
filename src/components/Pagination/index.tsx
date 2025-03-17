@@ -5,6 +5,7 @@ interface PaginationProps {
   page: number;
   setPage: (page: number) => void;
   maxVisiblePages?: number;
+  itemsPerPage?: number;
 }
 
 const Pagination = ({
@@ -12,8 +13,9 @@ const Pagination = ({
   page,
   setPage,
   maxVisiblePages = 5,
+  itemsPerPage = 10, // Default to 10 items per page
 }: PaginationProps) => {
-  const totalPages = Math.ceil(products.length / 10);
+  const totalPages = Math.ceil(products.length / itemsPerPage);
 
   const selectPageHandler = (selectedPage: number) => {
     if (
