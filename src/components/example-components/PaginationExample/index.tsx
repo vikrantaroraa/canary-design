@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import Pagination from "src/components/Pagination";
 
+const containerStyles: React.CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  padding: "20px",
+  gap: "20px",
+};
+
 const productsContainerStyle: React.CSSProperties = {
   display: "grid",
-  margin: "20px",
   padding: "0px",
   listStyleType: "none",
   gap: "20px",
   gridTemplateColumns: "1fr 1fr 1fr",
+  marginBottom: "20px",
 };
 
 const productStyles: React.CSSProperties = {
@@ -37,6 +44,8 @@ const productLabelStyles: React.CSSProperties = {
   minWidth: 0,
   width: "100%",
 };
+
+const itemsPerPageOptions = [6, 15, 24, 36, 50];
 
 const ExamplePagination = () => {
   const [products, setProducts] = useState([]);
@@ -68,8 +77,21 @@ const ExamplePagination = () => {
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
   return (
-    <div className="App">
-      <h2>React Pagination Component</h2>
+    <div style={containerStyles}>
+      {/* Dropdown to Change Items Per Page */}
+      <label>
+        Items per page:
+        <select
+          value={itemsPerPage}
+          onChange={(e) => setItemsPerPage(Number(e.target.value))}
+        >
+          {itemsPerPageOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
       {products.length !== 0 && (
         <div style={productsContainerStyle}>
           {products
