@@ -1,7 +1,9 @@
-import React, { createRef, useEffect, useRef } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import Note from "src/components/StickyNotes/Note";
 
 const StickyNotes = ({ notes, setNotes }) => {
+  // Added a new state variable to track initialization
+  const [isInitialized, setIsInitialized] = useState(false);
   const notesRef = useRef([]);
 
   const determineNewPosition = () => {
@@ -13,14 +15,29 @@ const StickyNotes = ({ notes, setNotes }) => {
     };
   };
 
+  // First useEffect - runs only once to load notes from localStorage
   useEffect(() => {
-    // localstorage logic
+    const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+
+    if (savedNotes.length > 0) {
+      setNotes(savedNotes);
+    }
+    setIsInitialized(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Second useEffect - runs when notes change, but only after initialization
+  useEffect(() => {
+    if (!isInitialized) return;
+
+    // Update positions for any new notes and save all to localStorage
     const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
 
     const updatedNotes = notes.map((note) => {
-      const savedNote = savedNotes.find((n) => n.id === note.id);
+      if (note.position) return note; // Keep existing positions
 
-      if (savedNote) {
+      const savedNote = savedNotes.find((n) => n.id === note.id);
+      if (savedNote && savedNote.position) {
         return { ...note, position: savedNote.position };
       } else {
         const position = determineNewPosition();
@@ -28,10 +45,14 @@ const StickyNotes = ({ notes, setNotes }) => {
       }
     });
 
-    setNotes(updatedNotes);
+    // Added equality check before updating state to prevent loops:
+    if (JSON.stringify(updatedNotes) !== JSON.stringify(notes)) {
+      setNotes(updatedNotes);
+    }
+
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [notes.length]);
+  }, [notes, isInitialized]);
 
   const handleDragStart = (note, e) => {
     const { id } = note;
