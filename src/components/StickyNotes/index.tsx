@@ -30,8 +30,8 @@ const StickyNotes = ({ notes, setNotes }) => {
 
     setNotes(updatedNotes);
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notes.length]);
-  // console.log("notesRef.current:- ", notesRef.current);
 
   const handleDragStart = (note, e) => {
     const { id } = note;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import StickyNotes from "src/components/StickyNotes";
 
 const ExampleStickyNotes = () => {
+  const [newNote, setNewNote] = useState("");
   const [notes, setNotes] = useState([
     {
       id: 1,
@@ -12,7 +13,28 @@ const ExampleStickyNotes = () => {
       text: "Like this Video and Subscribe to Roadside Coder",
     },
   ]);
-  return <StickyNotes notes={notes} setNotes={setNotes} />;
+
+  const addNewNote = () => {
+    if (newNote) {
+      setNotes([...notes, { id: notes.length + 1, text: newNote }]);
+      setNewNote("");
+    }
+  };
+
+  return (
+    <div>
+      <div>
+        <input
+          type="text"
+          placeholder="Add a new note"
+          value={newNote}
+          onChange={(e) => setNewNote(e.target.value)}
+        />
+        <button onClick={addNewNote}>Add New Note</button>
+      </div>
+      <StickyNotes notes={notes} setNotes={setNotes} />
+    </div>
+  );
 };
 
 export default ExampleStickyNotes;
