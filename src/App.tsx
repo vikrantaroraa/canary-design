@@ -16,6 +16,7 @@ import ExamplePollWidget from "src/components/example-components/PollWidgetExamp
 import ExampleTypeahead from "src/components/example-components/TypeaheadExample";
 import ExampleMemoryGame from "src/components/example-components/MemoryGameExample";
 import ExamplePagination from "src/components/example-components/PaginationExample";
+import ExampleStickyNotes from "src/components/example-components/StickyNotesExample";
 // import ExampleSelect from "src/components/example-components/SelectExample";
 // import ExampleRating from "src/components/example-components/ExampleRating";
 // import ReviewCardExample from "src/components/example-components/ReviewCardExample";
@@ -71,7 +72,8 @@ function App() {
       {/* <ExamplePollWidget /> */}
       {/* <ExampleTypeahead /> */}
       {/* <ExampleMemoryGame /> */}
-      <ExamplePagination />
+      {/* <ExamplePagination /> */}
+      <ExampleStickyNotes />
     </>
   );
 }
