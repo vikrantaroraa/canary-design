@@ -1,9 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styles from "../index.module.css";
 
-const Note = ({ content, initialPosition, ...props }) => {
+const Note = forwardRef(({ content, initialPosition, ...props }, ref) => {
   return (
     <div
+      ref={ref}
       className={styles["note"]}
       style={{
         left: `${initialPosition?.x}px`,
@@ -14,6 +15,6 @@ const Note = ({ content, initialPosition, ...props }) => {
       📌 {content}
     </div>
   );
-};
+});
 
 export default Note;
