@@ -1,10 +1,21 @@
 import React, { createRef, useEffect, useRef, useState } from "react";
 import Note from "src/components/StickyNotes/Note";
 
-const StickyNotes = ({ notes, setNotes }) => {
+export interface Note {
+  id: number;
+  text: string;
+  position?: { x: number; y: number };
+}
+
+interface StickyNotesProps {
+  notes: Note[];
+  setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
+}
+
+const StickyNotes = ({ notes, setNotes }: StickyNotesProps) => {
   // Added a new state variable to track initialization
   const [isInitialized, setIsInitialized] = useState(false);
-  const notesRef = useRef([]);
+  const notesRef = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
   const determineNewPosition = () => {
     const maxX = window.innerWidth - 250;
@@ -17,7 +28,10 @@ const StickyNotes = ({ notes, setNotes }) => {
 
   // First useEffect - runs only once to load notes from localStorage
   useEffect(() => {
-    const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+    const savedNotesString = localStorage.getItem("notes");
+
+    // Check for null before parsing
+    const savedNotes = savedNotesString ? JSON.parse(savedNotesString) : [];
 
     if (savedNotes.length > 0) {
       setNotes(savedNotes);
@@ -31,12 +45,15 @@ const StickyNotes = ({ notes, setNotes }) => {
     if (!isInitialized) return;
 
     // Update positions for any new notes and save all to localStorage
-    const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+    const savedNotesString = localStorage.getItem("notes");
+
+    // Check for null before parsing
+    const savedNotes = savedNotesString ? JSON.parse(savedNotesString) : [];
 
     const updatedNotes = notes.map((note) => {
       if (note.position) return note; // Keep existing positions
 
-      const savedNote = savedNotes.find((n) => n.id === note.id);
+      const savedNote = savedNotes.find((n: Note) => n.id === note.id);
       if (savedNote && savedNote.position) {
         return { ...note, position: savedNote.position };
       } else {
@@ -54,16 +71,25 @@ const StickyNotes = ({ notes, setNotes }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notes, isInitialized]);
 
-  const handleDragStart = (note, e) => {
+  const handleDragStart = (
+    note: Note,
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     const { id } = note;
-    const noteRef = notesRef.current[id].current;
+    const noteRef = notesRef.current[id]?.current;
+
+    if (!noteRef) {
+      console.error(`Note reference with id ${id} not found.`);
+      return;
+    }
+
     const rect = noteRef.getBoundingClientRect();
     const offsetX = e.clientX - rect.left;
     const offsetY = e.clientY - rect.top;
 
-    const startPosition = note.position;
+    const startPosition = note.position || { x: 0, y: 0 };
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const newX = e.clientX - offsetX;
       const newY = e.clientY - offsetY;
 
@@ -91,14 +117,27 @@ const StickyNotes = ({ notes, setNotes }) => {
     document.addEventListener("mouseup", handleMouseup);
   };
 
-  const checkForOverlap = (id) => {
-    const currentNoteRef = notesRef.current[id].current;
+  const checkForOverlap = (id: number) => {
+    const currentNoteRef = notesRef.current[id]?.current;
+
+    // Check if the current note reference is valid
+    if (!currentNoteRef) {
+      console.error(`Note reference with id ${id} not found.`);
+      return false;
+    }
+
     const currentRect = currentNoteRef.getBoundingClientRect();
 
     return notes.some((note) => {
       if (note.id === id) return false;
 
-      const otherNoteRef = notesRef.current[note.id].current;
+      const otherNoteRef = notesRef.current[note.id]?.current;
+
+      // Check if the other note reference is valid
+      if (!otherNoteRef) {
+        console.warn(`Note reference with id ${note.id} not found.`);
+        return false;
+      }
       const otherRect = otherNoteRef.getBoundingClientRect();
 
       const overlap = !(
@@ -112,7 +151,10 @@ const StickyNotes = ({ notes, setNotes }) => {
     });
   };
 
-  const updateNotePosition = (id, newPosition) => {
+  const updateNotePosition = (
+    id: number,
+    newPosition: { x: number; y: number }
+  ) => {
     const updatedNotes = notes.map((note) => {
       if (note.id === id) {
         return { ...note, position: newPosition };
@@ -126,13 +168,13 @@ const StickyNotes = ({ notes, setNotes }) => {
 
   return (
     <div>
-      {notes.map((note, index) => {
+      {notes.map((note) => {
         const { id, text, position } = note;
         return (
           <Note
             key={id}
             content={text}
-            initialPosition={position}
+            initialPosition={position || { x: 0, y: 0 }}
             ref={
               notesRef.current[id]
                 ? notesRef.current[id]

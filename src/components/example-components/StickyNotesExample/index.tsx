@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import StickyNotes from "src/components/StickyNotes";
+import { useState } from "react";
+import StickyNotes, { Note } from "src/components/StickyNotes";
 
 const ExampleStickyNotes = () => {
   const [newNote, setNewNote] = useState("");
-  const [notes, setNotes] = useState([
+  const [notes, setNotes] = useState<Note[]>([
     {
       id: 1,
       text: "Check the description for my Frontend Interview Prep Course",
