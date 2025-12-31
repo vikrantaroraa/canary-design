@@ -5,6 +5,7 @@ export interface StyleType {
 
 export interface RatingProps {
   fillColor?: string;
-  style?: Partial<StyleType>;
+  iconStyle?: Partial<StyleType>;
   onClick?: (rating: number) => void;
+  containerStyle?: object;
 }
