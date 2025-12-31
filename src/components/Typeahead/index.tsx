@@ -14,7 +14,7 @@ import useCache from "src/components/Typeahead/hooks/use-cache";
 interface TypeaheadProps {
   placeholder?: string;
   staticData?: string[];
-  fetchSuggestions: (query: string) => Promise<unknown[]>;
+  fetchSuggestions?: (query: string) => Promise<unknown[]>;
   caching?: boolean;
   datakey?: string;
   customLoading?: ReactNode;
