@@ -70,6 +70,7 @@ function App() {
       {/* <ExampleFileExplorer /> */}
       {/* <ExampleProgressBar /> */}
       {/* <ExamplePollWidget /> */}
+      {/* Refactor PollWidget component to work without the need to make api call for getting data from json-server */}
       {/* <ExampleTypeahead /> */}
       {/* <ExampleMemoryGame /> */}
       {/* <ExamplePagination /> */}
