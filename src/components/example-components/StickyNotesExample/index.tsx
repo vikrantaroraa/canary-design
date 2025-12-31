@@ -6,11 +6,7 @@ const ExampleStickyNotes = () => {
   const [notes, setNotes] = useState<Note[]>([
     {
       id: 1,
-      text: "Check the description for my Frontend Interview Prep Course",
-    },
-    {
-      id: 2,
-      text: "Like this Video and Subscribe to Roadside Coder",
+      text: "Canary-Design is awesome!",
     },
   ]);
 
@@ -21,16 +17,41 @@ const ExampleStickyNotes = () => {
     }
   };
 
+  const containerStyles: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    marginBottom: "16px",
+  };
+
+  const inputStyles: React.CSSProperties = {
+    padding: "4px 6px",
+    marginRight: "8px",
+  };
+  const buttonStyles: React.CSSProperties = {
+    padding: "4px 6px",
+    cursor: "pointer",
+  };
+
   return (
     <div>
-      <div>
-        <input
-          type="text"
-          placeholder="Add a new note"
-          value={newNote}
-          onChange={(e) => setNewNote(e.target.value)}
-        />
-        <button onClick={addNewNote}>Add New Note</button>
+      <div style={containerStyles}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            addNewNote();
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Add a new note"
+            value={newNote}
+            onChange={(e) => setNewNote(e.target.value)}
+            style={inputStyles}
+          />
+          <button type="submit" style={buttonStyles}>
+            Add New Note
+          </button>
+        </form>
       </div>
       <StickyNotes notes={notes} setNotes={setNotes} />
     </div>
