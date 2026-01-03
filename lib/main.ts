@@ -25,3 +25,4 @@ export { Drawer } from "./components/Drawer";
 export { FileUpload } from "./components/FileUpload";
 export { Tour } from "./components/Tour";
 export type { TourData } from "./components/Tour";
+export { Rating } from "./components/Rating";

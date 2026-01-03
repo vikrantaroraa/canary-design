@@ -1,0 +1,14 @@
+.container {
+  width: fit-content;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 32px;
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-sizing: border-box;
+}
