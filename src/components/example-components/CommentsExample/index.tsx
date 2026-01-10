@@ -147,4 +147,4 @@ const ExampleComments = () => {
   );
 };
 
-export default ExampleComments;
+export { ExampleComments };
