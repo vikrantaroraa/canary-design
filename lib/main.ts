@@ -26,3 +26,5 @@ export { FileUpload } from "./components/FileUpload";
 export { Tour } from "./components/Tour";
 export type { TourData } from "./components/Tour";
 export { Rating } from "./components/Rating";
+export { NestedComments } from "./components/NestedComments";
+export type { Comment } from "./components/NestedComments/Comment";
