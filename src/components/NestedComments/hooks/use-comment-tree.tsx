@@ -175,4 +175,4 @@ const useCommentTree = (initialComments: Comment[]) => {
   };
 };
 
-export default useCommentTree;
+export { useCommentTree };

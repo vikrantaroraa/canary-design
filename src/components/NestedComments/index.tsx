@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useCommentTree from "src/components/NestedComments/hooks/use-comment-tree";
+import { useCommentTree } from "src/components/NestedComments/hooks/use-comment-tree";
 import styles from "./index.module.css";
-import CommentComponent, { Comment } from "./Comment";
+import { Comment, CommentComponent } from "./Comment";
 
 interface NestedCommentProps {
   comments: Comment[];
@@ -137,4 +137,4 @@ const NestedComments = ({
   );
 };
 
-export default NestedComments;
+export { NestedComments };

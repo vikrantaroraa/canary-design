@@ -180,4 +180,4 @@ const CommentComponent = ({
   );
 };
 
-export default CommentComponent;
+export { CommentComponent };

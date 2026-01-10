@@ -1,5 +1,5 @@
 import { Comment } from "src/components/NestedComments/Comment";
-import NestedComments from "src/components/NestedComments";
+import { NestedComments } from "src/components/NestedComments";
 
 const commentsDataArray: Comment[] = [
   {
